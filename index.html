@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satu Langkah - Menggerakkan Kebaikan & Dampak Nyata</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset CSS Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif; 
+        }
+
+        /* Variabel Warna */
+        :root {
+            --color-primary: #FFD700; /* Kuning Cerah (Hope/Energy) */
+            --color-secondary: #0056b3; /* Biru Gelap (Trust/Serenity) */
+            --color-accent: #28a745; /* Hijau (Growth/Nature) */
+            --color-text-dark: #212529; 
+            --color-text-light: #6c757d; 
+            --color-white: #ffffff;
+            --color-light-grey: #f8f9fa; 
+        }
+
+        body {
+            line-height: 1.7;
+            color: var(--color-text-dark);
+            background-color: var(--color-white); 
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif; 
+            margin-bottom: 0.8em;
+            color: var(--color-secondary);
+        }
+        h2 { font-size: 2.8em; text-align: center; margin-bottom: 50px; }
+        h3 { font-size: 1.8em; margin-top: 30px; color: var(--color-accent); }
+        p { margin-bottom: 1em; }
+
+        /* === HEADER DAN NAVBAR === */
+        .header {
+            background-color: rgba(0, 86, 179, 0.9);
+            color: var(--color-white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: background-color 0.4s ease, padding 0.4s ease;
+        }
+        .header.sticky {
+            background-color: var(--color-secondary);
+            padding: 10px 50px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+
+        /* Styling untuk container logo (link a) */
+        .logo {
+            font-size: 2.0em;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        /* Styling untuk gambar logo */
+        .logo-img {
+            height: 40px; /* Ukuran standar logo di navbar */
+            width: auto;
+            border-radius: 5px; 
+            transition: height 0.4s ease;
+        }
+        .header.sticky .logo-img {
+             height: 35px; /* Sedikit lebih kecil saat sticky */
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: var(--color-white);
+            text-decoration: none;
+            margin-left: 30px;
+            padding: 10px 18px;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .nav-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            color: var(--color-white);
+            font-size: 1.8em;
+            cursor: pointer;
+        }
+
+        /* === SECTION KONTEN === */
+        .content-section {
+            padding: 100px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 100vh;
+            padding-top: 120px;
+            border-bottom: 1px solid var(--color-light-grey);
+            background-color: var(--color-white);
+        }
+        
+        .yellow-bg {
+            background-color: var(--color-primary); 
+            padding-top: 100px;
+            padding-bottom: 100px;
+            color: var(--color-text-dark);
+        }
+        .yellow-bg h2, .yellow-bg h3 {
+            color: var(--color-secondary);
+        }
+        
+        /* Styling Konten Panjang */
+        .content-text {
+            column-count: 2; 
+            column-gap: 40px;
+            text-align: justify;
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: var(--color-text-light);
+        }
+        .content-text p, .content-text ul, .content-text ol {
+            margin-bottom: 25px;
+            break-inside: avoid-column;
+        }
+        .content-text ul, .content-text ol {
+            margin-left: 25px;
+        }
+        .content-text li { margin-bottom: 8px; }
+        .hidden-content { display: none; margin-top: 20px; column-span: all; }
+
+        /* Tombol Baca Lebih Lanjut */
+        .read-more-btn {
+            display: block;
+            width: fit-content;
+            margin: 20px auto 0;
+            padding: 10px 25px;
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .read-more-btn:hover { background-color: #218838; }
+
+        /* === CAROUSEL === */
+        .hero-section {
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            overflow: hidden;
+            position: relative;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 400%; /* 4 slides */
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide {
+            width: calc(100% / 4);
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0.6; 
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 0 10%;
+            max-width: 800px;
+        }
+
+        .slide-content h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            color: var(--color-primary);
+            text-shadow: 3px 3px 7px rgba(0,0,0,0.8);
+            line-height: 1.1;
+        }
+
+        .slide-content p {
+            font-size: 1.8em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 18px;
+            cursor: pointer;
+            z-index: 20;
+            font-size: 1.8em;
+            transition: background 0.3s, transform 0.3s;
+            border-radius: 50%;
+        }
+        .carousel-btn:hover { background: var(--color-primary); color: var(--color-secondary); transform: translateY(-50%) scale(1.1); }
+        .prev { left: 20px; }
+        .next { right: 20px; }
+
+        /* === Counter Section === */
+        .counter-section {
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            padding: 80px 50px;
+            text-align: center;
+        }
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .counter-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .counter-item .count {
+            font-size: 3.5em;
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+        .counter-item .label {
+            font-size: 1.2em;
+            font-weight: 500;
+        }
+
+        /* === Accordion Styling === */
+        .accordion-item {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--color-white);
+        }
+        .accordion-header {
+            background-color: var(--color-light-grey);
+            padding: 18px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            color: var(--color-secondary);
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        .accordion-header:hover {
+            background-color: #e9ecef;
+        }
+        .accordion-header i {
+            transition: transform 0.3s;
+        }
+        .accordion-body {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            background-color: var(--color-white);
+        }
+        .accordion-item.active .accordion-body {
+            max-height: 600px;
+            padding: 15px 25px;
+        }
+        .accordion-item.active .accordion-header i {
+            transform: rotate(180deg);
+        }
+
+        /* === Modal Box Styling === */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 10000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.7); 
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: var(--color-white);
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close-button:hover, .close-button:focus {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === Form Styling === */
+        .contact-form {
+            column-count: 1; max-width: 700px; margin: 0 auto; padding: 30px; 
+            background: var(--color-light-grey); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+        }
+        .contact-form label { display: block; margin-top: 18px; font-weight: bold; color: var(--color-secondary); }
+        .contact-form input, .contact-form select, .contact-form textarea { 
+            width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #ced4da; border-radius: 6px; 
+            font-size: 1em; transition: border-color 0.3s, box-shadow 0.3s; 
+        }
+        .contact-form textarea { resize: vertical; min-height: 120px; }
+        .contact-form button { 
+            background-color: var(--color-accent); color: white; padding: 14px 25px; border: none; 
+            border-radius: 6px; cursor: pointer; margin-top: 30px; font-size: 1.1em; font-weight: bold; 
+            width: 100%; transition: background-color 0.3s, transform 0.2s; 
+        }
+        .contact-form button:hover { background-color: #218838; transform: translateY(-2px); }
+        .form-group.error input, .form-group.error select, .form-group.error textarea {
+            border-color: #dc3545;
+        }
+        .form-group .error-message {
+            color: #dc3545;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: none;
+        }
+        .form-group.error .error-message {
+            display: block;
+        }
+        
+        /* === Footer === */
+        footer {
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            text-align: center;
+            padding: 30px;
+            font-size: 0.95em;
+        }
+        footer a { color: var(--color-primary); text-decoration: none; transition: color 0.3s; }
+        footer a:hover { color: var(--color-white); }
+        
+        /* --- Responsif --- */
+        @media (max-width: 992px) {
+            .header { padding: 15px 30px; }
+            .content-section { padding: 80px 30px; }
+            .content-text { column-count: 1; }
+            h2 { font-size: 2.2em; }
+            .slide-content h1 { font-size: 3em; }
+            .slide-content p { font-size: 1.3em; }
+            .counter-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+            .logo-img { height: 35px; }
+        }
+
+        @media (max-width: 768px) {
+            .header { padding: 12px 20px; }
+            .nav-toggle { display: block; }
+            .nav-menu {
+                display: none; 
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: var(--color-secondary);
+                padding: 10px 0;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                border-top: 1px solid rgba(255,255,255,0.2);
+            }
+            .nav-menu.active { display: flex; }
+            .nav-item { margin: 0; text-align: center; padding: 15px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .hero-section { height: 70vh; }
+            .slide-content h1 { font-size: 2.5em; }
+            .slide-content p { font-size: 1.1em; }
+            .content-section { padding: 60px 20px; }
+            .counter-grid { grid-template-columns: 1fr; }
+            h2 { font-size: 2em; }
+            .logo-img { height: 30px; }
+        }
+        @media (max-width: 480px) {
+            .logo { font-size: 1.5em; }
+            .slide-content h1 { font-size: 2em; }
+            .slide-content p { font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="main-header">
+        <a href="#home" class="logo">
+            <img src="https://media.licdn.com/dms/image/v2/D4D0BAQHdjxwbLX9xXQ/company-logo_200_200/B4DZhoC0IPHwAM-/0/1754092225583?e=1764806400&v=beta&t=WLjGayk6-Mr0B_m185xv7hhexa5GMYeVbqOdOzyvhGM" alt="Logo Resmi Satu Langkah" class="logo-img">
+        </a>
+        
+        <button class="nav-toggle" aria-label="toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav class="nav-menu">
+            <a href="#home" class="nav-item active">Beranda</a>
+            <a href="#about" class="nav-item">Tentang Kami</a>
+            <a href="#programs" class="nav-item">Program Relawan</a>
+            <a href="#impact" class="nav-item">Dampak Kami</a>
+            <a href="#contact" class="nav-item">Hubungi & Donasi</a>
+        </nav>
+    </header>
+
+    <main>
+        
+        <section id="home" class="hero-section">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    
+                    <div class="carousel-slide">
+                        <img src="https://picsum.photos/1200/800?random=11" alt="Relawan Menyapa Anak-anak" class="slide-image">
+                        <div class="slide-content">
+                            <h1>Wujudkan Kebaikan: Satu Langkah Penuh Makna</h1>
+                            <p>Bergabunglah dalam gerakan kerelawanan untuk menciptakan dampak nyata di seluruh negeri.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <img src="https://picsum.photos/1200/800?random=12" alt="Tim Relawan Membersihkan Pantai" class="slide-image">
+                        <div class="slide-content">
+                            <h1>Aksi Hijau: Merawat Masa Depan Bumi</h1>
+                            <p>Sumbangkan waktu Anda untuk program konservasi lingkungan dan pelestarian alam.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <img src="https://picsum.photos/1200/800?random=13" alt="Pemberian Bantuan Medis oleh Relawan" class="slide-image">
+                        <div class="slide-content">
+                            <h1>Kesehatan Merata: Uluran Tangan Relawan Medis</h1>
+                            <p>Pastikan komunitas terpencil mendapatkan akses layanan kesehatan yang layak.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <img src="https://picsum.photos/1200/800?random=14" alt="Anak-anak Belajar Bersama Relawan" class="slide-image">
+                        <div class="slide-content">
+                            <h1>Mencerdaskan Bangsa: Berbagi Ilmu dan Harapan</h1>
+                            <p>Jadilah mentor yang menginspirasi anak-anak meraih masa depan yang lebih cerah.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-btn next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+        </section>
+        
+        <div id="home-more-content" class="content-section yellow-bg">
+            <h2>Bergabunglah Dengan Gerakan Kebaikan Kami</h2>
+            <div class="content-text">
+                <p>Satu Langkah adalah komunitas relawan yang berdedikasi untuk menciptakan dampak positif yang berkelanjutan di seluruh Indonesia. Kami percaya pada kekuatan kolektif dari tindakan-tindakan kecil yang bersatu untuk menghasilkan perubahan transformatif. Dengan semangat kebersamaan dan integritas, kami berupaya menjangkau komunitas yang paling rentan dan memberikan dukungan yang mereka butuhkan.</p>
+                <p>Misi kami berakar pada tiga pilar utama: **Pemberdayaan Pendidikan, Pelestarian Lingkungan, dan Kesejahteraan Sosial**. Setiap program dirancang dengan cermat untuk tidak hanya memberikan bantuan langsung tetapi juga membangun kapasitas komunitas agar dapat mandiri di masa depan. Kami mengundang individu dan organisasi untuk bergabung dalam perjalanan penuh makna ini.</p>
+                <h3>Bagaimana Anda Bisa Berkontribusi?</h3>
+                <ul>
+                    <li>**Sebagai Relawan Aktif:** Sumbangkan waktu, tenaga, dan keahlian Anda di berbagai program kami.</li>
+                    <li>**Sebagai Donatur:** Dukungan finansial Anda adalah bahan bakar utama bagi operasional dan program kami.</li>
+                    <li>**Sebagai Mitra Korporat:** Kemitraan CSR (Corporate Social Responsibility) untuk dampak yang lebih luas.</li>
+                    <li>**Sebagai Penyebar Informasi:** Bantu kami menyebarkan pesan dan kebutuhan kami melalui jejaring Anda.</li>
+                </ul>
+                <p>Setiap kontribusi, sekecil apapun, akan sangat berarti. Kami berkomitmen untuk transparansi penuh dalam setiap laporan dampak dan keuangan kami.</p>
+                <button class="read-more-btn" data-target="home-more-content-hidden">Baca Lebih Lanjut</button>
+                <div id="home-more-content-hidden" class="hidden-content">
+                    <p>Kami bangga dengan pendekatan kami yang berpusat pada masyarakat, di mana setiap program dimulai dengan mendengarkan kebutuhan dan aspirasi langsung dari komunitas yang kami layani. Ini memastikan bahwa inisiatif kami relevan, diterima dengan baik, dan memberikan solusi jangka panjang, bukan hanya perbaikan sementara.</p>
+                    <p>Dari program literasi untuk anak-anak hingga inisiatif sanitasi air bersih, Satu Langkah hadir sebagai teman dan fasilitator perubahan. Mari bersama, kita wujudkan Indonesia yang lebih peduli dan berdaya.</p>
+                    <p>Kami menyelenggarakan pertemuan virtual bulanan yang terbuka untuk umum. Anda dapat bergabung untuk mendengarkan langsung tentang kemajuan program kami dan bagaimana kontribusi Anda memberikan perbedaan.</p>
+                </div>
+            </div>
+        </div>
+
+        <section id="about" class="content-section">
+            <h2>Visi dan Prinsip Utama Kami</h2>
+            <div class="content-text">
+                <p>Yayasan Satu Langkah lahir dari keinginan tulus untuk mengisi kesenjangan antara potensi kebaikan individu dan kebutuhan nyata masyarakat. Didirikan pada tahun 2017, kami telah berkembang dari inisiatif akar rumput menjadi organisasi yang diakui secara nasional, dengan jaringan relawan yang solid dan program yang terbukti efektif.</p>
+                <p>Kami mengoperasikan yayasan dengan nilai-nilai **integritas, empati, dan keberlanjutan**. Setiap keputusan diambil dengan mempertimbangkan dampak jangka panjang terhadap penerima manfaat dan lingkungan. Kami menjunjung tinggi akuntabilitas, dan laporan keuangan serta dampak kami dapat diakses publik.</p>
+
+                <h3>Nilai-nilai Utama yang Menggerakkan Kami</h3>
+                <ol>
+                    <li>**Kemanusiaan:** Keyakinan pada martabat setiap individu dan pentingnya saling membantu.</li>
+                    <li>**Keadilan Sosial:** Berusaha mengurangi ketidaksetaraan dan memberikan kesempatan yang sama.</li>
+                    <li>**Lingkungan:** Bertanggung jawab dalam menjaga kelestarian alam untuk generasi mendatang.</li>
+                    <li>**Transparansi:** Jujur dan terbuka dalam setiap aspek operasional dan keuangan.</li>
+                    <li>**Kolaborasi:** Membangun kemitraan yang kuat dengan individu, komunitas, dan organisasi lain.</li>
+                </ol>
+                <p>Tim inti kami terdiri dari para profesional berpengalaman di bidang sosial, pendidikan, dan lingkungan, didukung oleh ribuan relawan dari berbagai latar belakang. Kami percaya bahwa keragaman adalah kekuatan dan setiap individu memiliki sesuatu yang unik untuk disumbangkan.</p>
+                <p>Proses seleksi dan pelatihan relawan kami dirancang untuk memastikan kesiapan dan keselarasan nilai. Kami mengadakan lokakarya reguler mengenai etika relawan, keamanan lapangan, dan metodologi program.</p>
+                <button class="read-more-btn" data-target="about-hidden">Baca Selengkapnya</button>
+                <div id="about-hidden" class="hidden-content">
+                    <h3>Struktur Organisasi & Tata Kelola</h3>
+                    <p>Satu Langkah diatur oleh Dewan Pembina yang independen, yang mengawasi kepatuhan kami terhadap misi dan visi. Manajemen Harian dijalankan oleh Direktur Eksekutif dan tim manajer program, keuangan, dan relawan. Kami secara rutin menjalani audit eksternal untuk memastikan semua dana digunakan secara efisien dan sesuai dengan tujuan.</p>
+                    <p>Kami juga memiliki komite etik internal yang siap menangani setiap masukan atau keluhan untuk menjaga standar tertinggi dalam interaksi dengan relawan dan komunitas.</p>
+                    <p>Komitmen kami adalah menjadi contoh utama dalam tata kelola organisasi nirlaba yang modern dan profesional. Laporan tahunan kami mencakup detail operasional hingga tingkat desa.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="programs" class="content-section yellow-bg">
+            <h2>Pilihan Program Relawan Aktif Kami</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: var(--color-text-dark);">Temukan program yang paling sesuai dengan minat dan keahlian Anda. Setiap program dirancang untuk memberikan dampak maksimal dengan dukungan dan pelatihan penuh.</p>
+
+            <div class="accordion-container" style="max-width: 900px; margin: 0 auto;">
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span><i class="fas fa-graduation-cap"></i> Program "Mentor Harapan" - Pendidikan & Literasi</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p><strong>Deskripsi:</strong> Fokus pada peningkatan kualitas pendidikan di daerah pelosok. Relawan akan mengajar mata pelajaran dasar (Matematika, Bahasa Indonesia, IPA) kepada siswa SD-SMP, membimbing aktivitas ekstrakurikuler, dan mengembangkan minat baca melalui perpustakaan keliling.</p>
+                        <h3>Detail & Persyaratan:</h3>
+                        <ul>
+                            <li><strong>Durasi:</strong> Minimal 3 bulan (dapat diperpanjang).</li>
+                            <li><strong>Lokasi:</strong> Desa-desa dampingan di Jawa Barat, Sumatera Utara, dan Nusa Tenggara Timur.</li>
+                            <li><strong>Kualifikasi:</strong> Pendidikan minimal S1 (semua jurusan, diutamakan kependidikan/sosial). Memiliki passion mengajar dan adaptasi tinggi.</li>
+                            <li><strong>Benefit:</strong> Akomodasi, tunjangan hidup bulanan, sertifikat pengalaman, asuransi, dan pelatihan pedagogi khusus.</li>
+                            <li><strong>Jadwal Pendaftaran:</strong> Dibuka setiap bulan Maret dan September.</li>
+                        </ul>
+                        <p><strong>Dampak:</strong> Peningkatan rata-rata nilai siswa, penumbuhan minat baca, dan inspirasi bagi anak-anak untuk melanjutkan pendidikan tinggi. Kami telah melihat peningkatan nilai ujian sebesar 15% pada tahun lalu.</p>
+                        <button class="read-more-btn" onclick="openModal('modalProgram1')" style="margin-top: 10px;">Lihat Studi Kasus (Modal)</button>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span><i class="fas fa-tree"></i> Program "Penjaga Lingkungan" - Konservasi Alam</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p><strong>Deskripsi:</strong> Aksi nyata untuk menjaga kelestarian lingkungan dan mitigasi perubahan iklim. Relawan akan terlibat dalam penanaman pohon, pembersihan sungai/pantai, edukasi daur ulang kepada masyarakat, dan pemantauan ekosistem lokal.</p>
+                        <h3>Detail & Persyaratan:</h3>
+                        <ul>
+                            <li><strong>Durasi:</strong> 1 minggu - 1 bulan (tergantung proyek).</li>
+                            <li><strong>Lokasi:</strong> Kawasan hutan lindung, pesisir, dan daerah perkotaan (proyek spesifik).</li>
+                            <li><strong>Kualifikasi:</strong> Bersemangat terhadap isu lingkungan, fisik sehat, dan siap bekerja di lapangan. Tidak ada batas pendidikan khusus.</li>
+                            <li><strong>Benefit:</strong> Pengalaman langsung di lapangan, pelatihan konservasi, koneksi dengan aktivis lingkungan.</li>
+                            <li><strong>Jadwal Pendaftaran:</strong> Sesuai kebutuhan proyek (cek website secara berkala).</li>
+                        </ul>
+                        <p><strong>Kisah Sukses:</strong> Dalam 6 bulan terakhir, 2 hektar hutan mangrove telah berhasil direstorasi. Keterlibatan Anda sangat berarti bagi paru-paru bumi.</p>
+                        <button class="read-more-btn" onclick="openModal('modalProgram2')" style="margin-top: 10px;">Kisah Sukses (Modal)</button>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span><i class="fas fa-hands-helping"></i> Aksi Cepat Tanggap (ACT) - Bantuan Kemanusiaan</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p><strong>Deskripsi:</strong> Tim siaga yang responsif terhadap bencana alam atau krisis kemanusiaan mendadak. Fokus pada distribusi logistik, pendirian posko darurat, dan dukungan psikososial (trauma *counseling*).</p>
+                        <h3>Detail & Persyaratan:</h3>
+                        <ul>
+                            <li><strong>Durasi:</strong> Sesuai masa tanggap darurat (biasanya 1-2 minggu).</li>
+                            <li><strong>Lokasi:</strong> Area terdampak bencana di Indonesia.</li>
+                            <li><strong>Kualifikasi:</strong> Prioritas bagi tenaga medis, psikolog, dan relawan logistik. Diperlukan sertifikat pelatihan P3K dasar.</li>
+                            <li><strong>Benefit:</strong> Asuransi penuh selama penugasan, pelatihan manajemen bencana.</li>
+                        </ul>
+                        <p><strong>Peringatan:</strong> Program ini membutuhkan kesiapan mental dan fisik yang tinggi. Relawan harus selalu siap siaga. Kami menyediakan pelatihan simulasi bencana setiap 3 bulan.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span><i class="fas fa-laptop-code"></i> Mentoring Digital & Administrasi (Virtual)</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p><strong>Deskripsi:</strong> Sukarela dari rumah! Bantu kami dalam urusan administrasi, desain grafis, media sosial, atau menjadi mentor digital bagi anak muda. Kontribusi penting untuk efisiensi organisasi.</p>
+                        <h3>Detail & Persyaratan:</h3>
+                        <ul>
+                            <li><strong>Durasi:</strong> Minimal 4 jam per minggu.</li>
+                            <li><strong>Lokasi:</strong> Sepenuhnya virtual/online.</li>
+                            <li><strong>Kualifikasi:</strong> Keahlian di bidang IT, desain, penulisan (copywriting), atau manajemen data.</li>
+                        </ul>
+                        <p><strong>Keuntungan:</strong> Fleksibilitas waktu, pengalaman kerja organisasi nirlaba profesional, dan networking luas dengan relawan lain di seluruh dunia. Anda akan menjadi "Pahlawan Belakang Layar" kami!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="impact" class="counter-section">
+            <h2>Dampak Positif yang Telah Kita Ciptakan</h2>
+            <div class="counter-grid">
+                
+                <div class="counter-item">
+                    <div class="count" data-target="2500">0</div>
+                    <div class="label">Relawan Terdaftar</div>
+                </div>
+
+                <div class="counter-item">
+                    <div class="count" data-target="15000">0</div>
+                    <div class="label">Jam Kebaikan Tersalurkan</div>
+                </div>
+
+                <div class="counter-item">
+                    <div class="count" data-target="75">0</div>
+                    <div class="label">Komunitas Terdampingi</div>
+                </div>
+
+                <div class="counter-item">
+                    <div class="count" data-target="100000">0</div>
+                    <div class="label">Penerima Manfaat Langsung</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <h2>Hubungi Kami & Salurkan Donasi Anda</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px; font-size: 1.1em;">Partisipasi Anda, baik waktu maupun dana, adalah denyut nadi pergerakan kami. Mari bersatu dalam langkah kebaikan.</p>
+            
+            <form id="contact-form" class="contact-form">
+                <h3>Pendaftaran Relawan/Kemitraan</h3>
+                
+                <div class="form-group">
+                    <label for="name">Nama Lengkap:</label>
+                    <input type="text" id="name" name="name" required data-validate="text">
+                    <span class="error-message">Nama harus diisi.</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Alamat Email:</label>
+                    <input type="email" id="email" name="email" required data-validate="email">
+                    <span class="error-message">Email harus format yang benar (contoh@domain.com).</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Nomor Telepon (WhatsApp):</label>
+                    <input type="tel" id="phone" name="phone" data-validate="phone">
+                    <span class="error-message">Nomor telepon harus format angka (minimal 8 digit).</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="involvement">Bentuk Keterlibatan yang Diminati:</label>
+                    <select id="involvement" name="involvement" required data-validate="select">
+                        <option value="">-- Pilih Bentuk Keterlibatan --</option>
+                        <option value="volunteer">Daftar sebagai Relawan Aktif</option>
+                        <option value="corporate">Kemitraan Perusahaan (CSR)</option>
+                        <option value="media">Liputan/Kemitraan Media</option>
+                        <option value="question">Pertanyaan Umum</option>
+                    </select>
+                    <span class="error-message">Pilihan harus diisi.</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Pesan / Jelaskan minat spesifik Anda:</label>
+                    <textarea id="message" name="message" rows="6" required data-validate="message"></textarea>
+                    <span class="error-message">Pesan harus diisi (minimal 10 karakter).</span>
+                </div>
+                
+                <button type="submit" id="submit-btn">Kirim Permintaan Keterlibatan</button>
+
+                <p id="form-message" style="margin-top: 20px; font-weight: bold; text-align: center;"></p>
+            </form>
+
+            <div style="max-width: 600px; margin: 40px auto; padding: 20px; background: #fff3cd; border-radius: 8px; border: 2px solid var(--color-primary); text-align: center;">
+                <h3>Informasi Donasi Finansial 💳</h3>
+                <p>Setiap donasi Anda 100% dialokasikan untuk program lapangan. Mari dukung aksi nyata kami!</p>
+                <p style="font-size: 1.2em; font-weight: bold; color: var(--color-secondary);">Bank Kebaikan (BK) - A.N. Yayasan Satu Langkah</p>
+                <p style="font-size: 1.8em; font-weight: bold; color: var(--color-accent); margin: 10px 0;">7890 1234 5678</p>
+                <p><i class="fas fa-hand-holding-usd"></i> Kami menerbitkan laporan penggunaan dana bulanan secara terbuka.</p>
+                <a href="#" style="color: var(--color-secondary); text-decoration: none; font-weight: bold;"><i class="fas fa-file-pdf"></i> Unduh Laporan Audit Terbaru</a>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Yayasan Satu Langkah. Bergerak Bersama untuk Indonesia yang Lebih Baik.</p>
+        <p>Kontak: info@satulangkah.org | Alamat: Jl. Kebaikan No. 1, Jakarta</p>
+        <p>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </p>
+    </footer>
+
+    <div id="modalProgram1" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('modalProgram1')">&times;</span>
+            <h3>Studi Kasus: Mentor Harapan</h3>
+            <p><strong>Lokasi:</strong> Desa Suka Maju, NTT</p>
+            <p><strong>Periode:</strong> 6 Bulan (Januari - Juni 2024)</p>
+            <p><strong>Dampak:</strong> 95 siswa SD/SMP berhasil melanjutkan ke jenjang berikutnya. Peningkatan rata-rata nilai Bahasa Indonesia dari 65 menjadi 80. Relawan berhasil mendirikan perpustakaan mini dengan donasi 500 buku.</p>
+            <button class="read-more-btn" style="margin-top: 15px;" onclick="closeModal('modalProgram1')">Tutup</button>
+        </div>
+    </div>
+
+    <div id="modalProgram2" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('modalProgram2')">&times;</span>
+            <h3>Kisah Sukses: Penjaga Lingkungan</h3>
+            <p><strong>Lokasi:</strong> Pesisir Cilacap, Jawa Tengah</p>
+            <p><strong>Fokus:</strong> Restorasi Mangrove</p>
+            <p><strong>Hasil:</strong> 5.000 bibit mangrove ditanam oleh 150 relawan lokal dan luar. Program ini meningkatkan kesadaran masyarakat pesisir terhadap dampak abrasi dan pentingnya ekosistem mangrove. Kini, tingkat abrasi menurun signifikan.</p>
+            <button class="read-more-btn" style="margin-top: 15px;" onclick="closeModal('modalProgram2')">Tutup</button>
+        </div>
+    </div>
+
+
+    <script>
+        // === 1. Navbar Sticky & Toggle Responsif ===
+        const header = document.getElementById('main-header');
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        // Sticky Navbar
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+
+        // Toggle Menu
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.querySelector('i').classList.toggle('fa-bars');
+            navToggle.querySelector('i').classList.toggle('fa-times');
+        });
+        
+        // Tutup menu saat klik nav item (hanya di mobile)
+        navMenu.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    navToggle.querySelector('i').classList.remove('fa-times');
+                    navToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+
+        // === 2. Scroll Spy (Menandai Navbar yang Aktif) ===
+        const sections = document.querySelectorAll('main section, #home-more-content');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const headerHeight = header.offsetHeight;
+            const scrollOffset = window.scrollY + headerHeight + 50; // Padding tambahan
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollOffset >= sectionTop && scrollOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').includes(current)) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // === 3. Carousel/Slider Gambar Header ===
+        const track = document.querySelector('.carousel-track');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+
+        function updateCarousel() {
+            const slideWidth = slides[0].clientWidth;
+            track.style.transform = 'translateX(' + (-currentIndex * slideWidth) + 'px)';
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        });
+
+        // Otomatis geser
+        let autoSlide = setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            updateCarousel();
+        }, 5000);
+
+        // Hentikan otomatis saat hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
+        carouselContainer.addEventListener('mouseleave', () => {
+             autoSlide = setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateCarousel();
+            }, 5000);
+        });
+
+        window.addEventListener('resize', updateCarousel);
+        window.addEventListener('load', updateCarousel);
+
+
+        // === 4. Accordion/Togglable Content (Program Relawan) ===
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const body = header.nextElementSibling;
+                
+                // Tutup yang lain (opsional)
+                document.querySelectorAll('.accordion-item.active').forEach(activeItem => {
+                    if (activeItem !== item) {
+                        activeItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle yang sedang diklik
+                item.classList.toggle('active');
+            });
+        });
+        
+        // === 5. "Read More/Read Less" Toggle ===
+        document.querySelectorAll('.read-more-btn[data-target]').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const isVisible = targetElement.style.display === 'block';
+                    targetElement.style.display = isVisible ? 'none' : 'block';
+                    e.target.textContent = isVisible ? 'Baca Lebih Lanjut' : 'Sembunyikan Konten';
+                }
+            });
+        });
+
+
+        // === 6. Counter Animasi (Dampak Kami) ===
+        function animateCounter(el) {
+            const target = +el.getAttribute('data-target');
+            const duration = 2000; // 2 detik
+            let start = 0;
+            const step = (target / duration) * 10;
+            
+            const timer = setInterval(() => {
+                start += step;
+                el.textContent = Math.floor(start).toLocaleString('id-ID');
+
+                if (start >= target) {
+                    clearInterval(timer);
+                    el.textContent = target.toLocaleString('id-ID'); // Pastikan nilai akhir tepat
+                }
+            }, 10);
+        }
+
+        const counterSection = document.getElementById('impact');
+        let counterExecuted = false;
+
+        function checkImpactSection() {
+            if (counterSection && !counterExecuted) {
+                const rect = counterSection.getBoundingClientRect();
+                // Eksekusi jika section terlihat
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    document.querySelectorAll('.counter-item .count').forEach(animateCounter);
+                    counterExecuted = true;
+                }
+            }
+        }
+        window.addEventListener('scroll', checkImpactSection);
+        window.addEventListener('load', checkImpactSection); // Cek saat load
+
+
+        // === 7. Form Validation Interaktif ===
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        function validateInput(input) {
+            const parent = input.closest('.form-group');
+            let isValid = true;
+            const value = input.value.trim();
+            const type = input.getAttribute('data-validate');
+
+            parent.classList.remove('error');
+
+            if (input.required && value === '') {
+                isValid = false;
+            } else if (type === 'email' && value !== '' && !/\S+@\S+\.\S+/.test(value)) {
+                isValid = false;
+            } else if (type === 'phone' && value !== '' && !/^\d{8,}$/.test(value)) {
+                isValid = false;
+            } else if (type === 'message' && value !== '' && value.length < 10) {
+                isValid = false;
+            } else if (type === 'select' && value === '') {
+                 isValid = false;
+            }
+
+            if (!isValid) {
+                parent.classList.add('error');
+            }
+            return isValid;
+        }
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let formIsValid = true;
+
+            contactForm.querySelectorAll('[data-validate]').forEach(input => {
+                if (!validateInput(input)) {
+                    formIsValid = false;
+                }
+            });
+
+            if (formIsValid) {
+                const submitBtn = document.getElementById('submit-btn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Memproses Permintaan...';
+
+                const name = document.getElementById('name').value;
+                const involvement = document.getElementById('involvement').value;
+                
+                // Simulasi pengiriman data dengan delay 2 detik
+                setTimeout(() => {
+                    console.log(`Permintaan Keterlibatan Dikirim oleh: ${name}. Minat: ${involvement}`);
+                    
+                    formMessage.style.color = 'green';
+                    formMessage.innerHTML = `✅ Sukses! Terima kasih, **${name}**. Kami akan segera menghubungi Anda mengenai minat (**${involvement}**).`;
+                    
+                    contactForm.reset();
+
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Kirim Permintaan Keterlibatan';
+                }, 2000);
+            } else {
+                formMessage.style.color = 'red';
+                formMessage.innerHTML = '❌ Harap perbaiki kesalahan pada formulir yang ditandai.';
+            }
+        });
+
+        // Live validation saat input blur
+        contactForm.querySelectorAll('[data-validate]').forEach(input => {
+            input.addEventListener('blur', () => validateInput(input));
+        });
+
+
+        // === 8. Modal Box ===
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        // Tutup modal jika user klik di luar kotak konten
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+        
+        // === 9. Tombol Go To Top ===
+        const goToTopButton = document.createElement('button');
+        goToTopButton.innerHTML = '<i class="fas fa-heart"></i>';
+        goToTopButton.style.cssText = 'position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px; background-color: var(--color-accent); color: var(--color-white); border: none; border-radius: 50%; cursor: pointer; display: none; z-index: 9999; font-size: 1.5em; box-shadow: 0 4px 10px rgba(0,0,0,0.4); transition: all 0.3s;';
+        document.body.appendChild(goToTopButton);
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                goToTopButton.style.display = 'block';
+            } else {
+                goToTopButton.style.display = 'none';
+            }
+        });
+
+        goToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
