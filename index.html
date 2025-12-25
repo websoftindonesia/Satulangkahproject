@@ -3,1062 +3,2662 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Satu Langkah - Menggerakkan Kebaikan & Dampak Nyata</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Satu Langkah Project - Platform Volunteer Indonesia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        /* Reset CSS Dasar */
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif; 
-        }
-
-        /* Variabel Warna */
-        :root {
-            --color-primary: #FFD700; /* Kuning Cerah (Hope/Energy) */
-            --color-secondary: #0056b3; /* Biru Gelap (Trust/Serenity) */
-            --color-accent: #28a745; /* Hijau (Growth/Nature) */
-            --color-text-dark: #212529; 
-            --color-text-light: #6c757d; 
-            --color-white: #ffffff;
-            --color-light-grey: #f8f9fa; 
         }
 
         body {
-            line-height: 1.7;
-            color: var(--color-text-dark);
-            background-color: var(--color-white); 
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background: #fefefe;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif; 
-            margin-bottom: 0.8em;
-            color: var(--color-secondary);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        h2 { font-size: 2.8em; text-align: center; margin-bottom: 50px; }
-        h3 { font-size: 1.8em; margin-top: 30px; color: var(--color-accent); }
-        p { margin-bottom: 1em; }
 
-        /* === HEADER DAN NAVBAR === */
-        .header {
-            background-color: rgba(0, 86, 179, 0.9);
-            color: var(--color-white);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px;
+        /* Welcome Screen */
+        .welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: background-color 0.4s ease, padding 0.4s ease;
-        }
-        .header.sticky {
-            background-color: var(--color-secondary);
-            padding: 10px 50px;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-        }
-
-        /* Styling untuk container logo (link a) */
-        .logo {
-            font-size: 2.0em;
-            font-weight: 700;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        /* Styling untuk gambar logo */
-        .logo-img {
-            height: 40px; /* Ukuran standar logo di navbar */
-            width: auto;
-            border-radius: 5px; 
-            transition: height 0.4s ease;
-        }
-        .header.sticky .logo-img {
-             height: 35px; /* Sedikit lebih kecil saat sticky */
-        }
-        
-        .nav-menu {
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-item {
-            color: var(--color-white);
-            text-decoration: none;
-            margin-left: 30px;
-            padding: 10px 18px;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-            font-weight: 500;
-        }
-
-        .nav-item:hover {
-            background-color: var(--color-primary);
-            color: var(--color-secondary);
-            transform: translateY(-2px);
-        }
-
-        .nav-item.active {
-            background-color: var(--color-primary);
-            color: var(--color-secondary);
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .nav-toggle {
-            display: none; 
-            background: none;
-            border: none;
-            color: var(--color-white);
-            font-size: 1.8em;
-            cursor: pointer;
-        }
-
-        /* === SECTION KONTEN === */
-        .content-section {
-            padding: 100px 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-            min-height: 100vh;
-            padding-top: 120px;
-            border-bottom: 1px solid var(--color-light-grey);
-            background-color: var(--color-white);
-        }
-        
-        .yellow-bg {
-            background-color: var(--color-primary); 
-            padding-top: 100px;
-            padding-bottom: 100px;
-            color: var(--color-text-dark);
-        }
-        .yellow-bg h2, .yellow-bg h3 {
-            color: var(--color-secondary);
-        }
-        
-        /* Styling Konten Panjang */
-        .content-text {
-            column-count: 2; 
-            column-gap: 40px;
-            text-align: justify;
-            font-size: 1.05em;
-            line-height: 1.8;
-            color: var(--color-text-light);
-        }
-        .content-text p, .content-text ul, .content-text ol {
-            margin-bottom: 25px;
-            break-inside: avoid-column;
-        }
-        .content-text ul, .content-text ol {
-            margin-left: 25px;
-        }
-        .content-text li { margin-bottom: 8px; }
-        .hidden-content { display: none; margin-top: 20px; column-span: all; }
-
-        /* Tombol Baca Lebih Lanjut */
-        .read-more-btn {
-            display: block;
-            width: fit-content;
-            margin: 20px auto 0;
-            padding: 10px 25px;
-            background-color: var(--color-accent);
-            color: var(--color-white);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .read-more-btn:hover { background-color: #218838; }
-
-        /* === CAROUSEL === */
-        .hero-section {
-            background-color: var(--color-secondary);
-            color: var(--color-white);
-            overflow: hidden;
-            position: relative;
-            height: 90vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .carousel-container {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .carousel-track {
-            display: flex;
-            width: 400%; /* 4 slides */
-            height: 100%;
-            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .carousel-slide {
-            width: calc(100% / 4);
-            height: 100%;
-            flex-shrink: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
-        .slide-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            opacity: 0.6; 
+        .welcome-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
         }
 
-        .slide-content {
-            position: relative;
-            z-index: 10;
+        .welcome-content {
             text-align: center;
-            padding: 0 10%;
-            max-width: 800px;
-        }
-
-        .slide-content h1 {
-            font-size: 4.5em;
-            margin-bottom: 20px;
-            color: var(--color-primary);
-            text-shadow: 3px 3px 7px rgba(0,0,0,0.8);
-            line-height: 1.1;
-        }
-
-        .slide-content p {
-            font-size: 1.8em;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-        }
-        
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
             color: white;
-            border: none;
-            padding: 18px;
-            cursor: pointer;
-            z-index: 20;
-            font-size: 1.8em;
-            transition: background 0.3s, transform 0.3s;
-            border-radius: 50%;
+            animation: welcomeAnimation 2s ease-in-out;
         }
-        .carousel-btn:hover { background: var(--color-primary); color: var(--color-secondary); transform: translateY(-50%) scale(1.1); }
-        .prev { left: 20px; }
-        .next { right: 20px; }
 
-        /* === Counter Section === */
-        .counter-section {
-            background-color: var(--color-secondary);
-            color: var(--color-white);
-            padding: 80px 50px;
-            text-align: center;
+        .welcome-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        .counter-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .counter-item {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .counter-item .count {
-            font-size: 3.5em;
-            font-weight: bold;
-            color: var(--color-primary);
-            margin-bottom: 10px;
-        }
-        .counter-item .label {
-            font-size: 1.2em;
+
+        .welcome-content p {
+            font-size: 1.5rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
             font-weight: 500;
         }
 
-        /* === Accordion Styling === */
-        .accordion-item {
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            overflow: hidden;
-            background-color: var(--color-white);
+        .welcome-logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: logoSpin 2s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        .accordion-header {
-            background-color: var(--color-light-grey);
-            padding: 18px 25px;
-            cursor: pointer;
+
+        .welcome-logo i {
+            font-size: 4rem;
+            color: #FFD700;
+        }
+
+        @keyframes welcomeAnimation {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes logoSpin {
+            0% { transform: rotate(0deg) scale(0.5); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Loading Bar */
+        .loading-bar {
+            width: 300px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+            margin: 2rem auto;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: white;
+            border-radius: 3px;
+            animation: loadingProgress 3s ease-in-out forwards;
+        }
+
+        @keyframes loadingProgress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.15);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .navbar {
+            padding: 1.2rem 0;
+        }
+
+        .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: bold;
-            color: var(--color-secondary);
-            font-size: 1.1em;
-            transition: background-color 0.3s;
-        }
-        .accordion-header:hover {
-            background-color: #e9ecef;
-        }
-        .accordion-header i {
-            transition: transform 0.3s;
-        }
-        .accordion-body {
-            padding: 0 25px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-            background-color: var(--color-white);
-        }
-        .accordion-item.active .accordion-body {
-            max-height: 600px;
-            padding: 15px 25px;
-        }
-        .accordion-item.active .accordion-header i {
-            transform: rotate(180deg);
         }
 
-        /* === Modal Box Styling === */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 10000; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.7); 
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: var(--color-white);
-            margin: auto;
-            padding: 30px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            text-align: center;
-            position: relative;
-            animation: fadeIn 0.3s ease-out;
-        }
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 20px;
+        .nav-brand h2 {
+            color: #FFD700;
+            font-weight: 800;
             cursor: pointer;
-            transition: color 0.3s;
-        }
-        .close-button:hover, .close-button:focus {
-            color: var(--color-accent);
-            text-decoration: none;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            transition: all 0.3s ease;
+            font-size: 1.8rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        /* === Form Styling === */
-        .contact-form {
-            column-count: 1; max-width: 700px; margin: 0 auto; padding: 30px; 
-            background: var(--color-light-grey); border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+        .nav-brand h2:hover {
+            transform: scale(1.05);
+            color: #FFA500;
         }
-        .contact-form label { display: block; margin-top: 18px; font-weight: bold; color: var(--color-secondary); }
-        .contact-form input, .contact-form select, .contact-form textarea { 
-            width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #ced4da; border-radius: 6px; 
-            font-size: 1em; transition: border-color 0.3s, box-shadow 0.3s; 
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
         }
-        .contact-form textarea { resize: vertical; min-height: 120px; }
-        .contact-form button { 
-            background-color: var(--color-accent); color: white; padding: 14px 25px; border: none; 
-            border-radius: 6px; cursor: pointer; margin-top: 30px; font-size: 1.1em; font-weight: bold; 
-            width: 100%; transition: background-color 0.3s, transform 0.2s; 
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            padding: 0.8rem 0;
+            font-size: 1rem;
         }
-        .contact-form button:hover { background-color: #218838; transform: translateY(-2px); }
-        .form-group.error input, .form-group.error select, .form-group.error textarea {
-            border-color: #dc3545;
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            transition: width 0.3s ease;
+            border-radius: 2px;
         }
-        .form-group .error-message {
-            color: #dc3545;
-            font-size: 0.9em;
-            margin-top: 5px;
+
+        .nav-menu a:hover::after,
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #FFD700;
+        }
+
+        .nav-toggle {
             display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
         }
-        .form-group.error .error-message {
+
+        .nav-toggle span {
+            width: 28px;
+            height: 3px;
+            background: #333;
+            margin: 4px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Sub Navbar */
+        .sub-navbar {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 1rem 0;
+            margin-top: 80px;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .sub-navbar.show {
+            transform: translateY(0);
+        }
+
+        .sub-nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .sub-nav-menu li {
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 25px;
+            padding: 0.7rem 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .sub-nav-menu li:hover,
+        .sub-nav-menu li.active {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .sub-nav-menu li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .sub-nav-menu li:hover a,
+        .sub-nav-menu li.active a {
+            color: #FFD700;
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+            min-height: calc(100vh - 160px);
+            padding: 3rem 0;
+            animation: fadeInUp 0.6s ease-in-out;
+        }
+
+        .page-section.active {
             display: block;
         }
-        
-        /* === Footer === */
-        footer {
-            background-color: var(--color-secondary);
-            color: var(--color-white);
-            text-align: center;
-            padding: 30px;
-            font-size: 0.95em;
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
-        footer a { color: var(--color-primary); text-decoration: none; transition: color 0.3s; }
-        footer a:hover { color: var(--color-white); }
-        
-        /* --- Responsif --- */
-        @media (max-width: 992px) {
-            .header { padding: 15px 30px; }
-            .content-section { padding: 80px 30px; }
-            .content-text { column-count: 1; }
-            h2 { font-size: 2.2em; }
-            .slide-content h1 { font-size: 3em; }
-            .slide-content p { font-size: 1.3em; }
-            .counter-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-            .logo-img { height: 35px; }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: slideInDown 0.8s ease-in-out;
+        }
+
+        @keyframes slideInDown {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Hero Section with Background */
+        .hero {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23228B22" width="1200" height="600"/><g fill="%23FFF" opacity="0.1"><circle cx="200" cy="150" r="80"/><circle cx="400" cy="300" r="60"/><circle cx="800" cy="200" r="70"/><circle cx="1000" cy="400" r="90"/><rect x="100" y="400" width="200" height="100" rx="10"/><rect x="600" y="100" width="150" height="80" rx="8"/></g><g fill="%23FFD700" opacity="0.2"><polygon points="300,500 350,400 400,500"/><polygon points="700,350 750,250 800,350"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 140px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="volunteers" patternUnits="userSpaceOnUse" width="100" height="100"><g fill="%23FFF" opacity="0.08"><circle cx="20" cy="20" r="3"/><circle cx="50" cy="30" r="2"/><circle cx="80" cy="15" r="2.5"/><circle cx="30" cy="60" r="2"/><circle cx="70" cy="70" r="3"/><circle cx="15" cy="80" r="2.5"/></g></pattern></defs><rect width="100" height="100" fill="url(%23volunteers)"/></svg>');
+            animation: floatingPattern 25s linear infinite;
+        }
+
+        @keyframes floatingPattern {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: heroTitleAnimation 1s ease-in-out;
+            line-height: 1.2;
+        }
+
+        @keyframes heroTitleAnimation {
+            0% { opacity: 0; transform: translateY(50px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            animation: heroTextAnimation 1s ease-in-out 0.3s both;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        @keyframes heroTextAnimation {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 0.95; transform: translateY(0); }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: heroButtonsAnimation 1s ease-in-out 0.6s both;
+        }
+
+        @keyframes heroButtonsAnimation {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.15);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 65%; left: 85%; animation-delay: 2s; }
+        .floating-element:nth-child(3) { top: 35%; left: 15%; animation-delay: 4s; }
+        .floating-element:nth-child(4) { top: 75%; left: 70%; animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(180deg); }
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #FFD700;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            border-color: white;
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            border-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #FFD700;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Activity Cards */
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.15);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: 2px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.25);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .activity-image {
+            height: 220px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.15"/><circle cx="80" cy="30" r="1.5" fill="white" opacity="0.15"/><circle cx="50" cy="70" r="2.5" fill="white" opacity="0.15"/></svg>');
+            animation: sparkle 4s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .activity-badge {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            color: #FFD700;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            animation: pulse 3s ease-in-out infinite;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .activity-content {
+            padding: 2rem;
+        }
+
+        .activity-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: #333;
+            transition: color 0.3s ease;
+            line-height: 1.4;
+        }
+
+        .activity-card:hover .activity-title {
+            color: #FFD700;
+        }
+
+        .activity-org {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .activity-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .activity-meta div {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .activity-meta i {
+            color: #FFD700;
+            width: 18px;
+            font-size: 1rem;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: linear-gradient(135deg, #fff9e6, #fff3cc);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15);
+            animation: slideInLeft 0.8s ease-in-out;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        @keyframes slideInLeft {
+            0% { opacity: 0; transform: translateX(-50px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .filter-group i {
+            color: #FFD700;
+            font-size: 1.2rem;
+        }
+
+        .filter-group span {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .filter-select {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            background: white;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            min-width: 150px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.1);
+        }
+
+        .filter-btn {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #fff9e6, #ffffff);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 3px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(255, 215, 0, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.08), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.25);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.15) rotate(360deg);
+            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
+        }
+
+        .service-icon i {
+            font-size: 2.2rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .service-link {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .service-link:hover {
+            color: #FFA500;
+            transform: translateX(8px);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 80px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="0,0 100,0 80,100 0,80" fill="white" opacity="0.08"/></svg>');
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            padding: 2rem 1rem;
+            transition: transform 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item:hover {
+            transform: scale(1.08);
+        }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .stat-item p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: #fefefe;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+
+        .about-text p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .image-placeholder {
+            background: linear-gradient(135deg, #fff9e6, #fff3cc);
+            border: 3px dashed rgba(255, 215, 0, 0.4);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: #999;
+            transition: all 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            border-color: #FFD700;
+            background: linear-gradient(135deg, #fff5e6, #ffe6b3);
+        }
+
+        .image-placeholder i {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            color: #FFD700;
+        }
+
+        /* Blog Section */
+        .blog {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #fff9e6, #ffffff);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(255, 215, 0, 0.15);
+            transition: all 0.4s ease;
+            border: 2px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.25);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .blog-image {
+            height: 220px;
+            background: linear-gradient(135deg, #fff9e6, #fff3cc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blog-image .image-placeholder {
+            border: none;
+            padding: 2rem;
+            background: transparent;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-content h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            color: #333;
+            transition: color 0.3s ease;
+            line-height: 1.4;
+        }
+
+        .blog-card:hover .blog-content h3 {
+            color: #FFD700;
+        }
+
+        .blog-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .blog-link {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .blog-link:hover {
+            color: #FFA500;
+            text-decoration: underline;
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 100px 0;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+        }
+
+        .partner-item {
+            text-align: center;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .partner-item:hover {
+            transform: scale(1.08);
+        }
+
+        .partner-logo {
+            background: linear-gradient(135deg, #fff9e6, #fff3cc);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            color: #999;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .partner-item:hover .partner-logo {
+            background: linear-gradient(135deg, #fff5e6, #ffe6b3);
+            border-color: #FFD700;
+        }
+
+        .partner-logo i {
+            font-size: 3.5rem;
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #333, #2c2c2c);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: #FFD700;
+            font-weight: 700;
+        }
+
+        .footer-section p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FFD700;
+            padding-left: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-4px) scale(1.15);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info p:hover {
+            transform: translateX(8px);
+        }
+
+        .contact-info i {
+            color: #FFD700;
+            font-size: 1.1rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 2.5rem;
+            text-align: center;
+            color: #ccc;
+            font-size: 1.05rem;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 30px;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
         }
 
         @media (max-width: 768px) {
-            .header { padding: 12px 20px; }
-            .nav-toggle { display: block; }
             .nav-menu {
-                display: none; 
-                flex-direction: column;
+                position: fixed;
+                top: 85px;
+                left: -100%;
                 width: 100%;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                background-color: var(--color-secondary);
-                padding: 10px 0;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-                border-top: 1px solid rgba(255,255,255,0.2);
+                height: calc(100vh - 85px);
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 3rem;
+                transition: left 0.4s ease;
+                box-shadow: 0 4px 25px rgba(255, 215, 0, 0.2);
             }
-            .nav-menu.active { display: flex; }
-            .nav-item { margin: 0; text-align: center; padding: 15px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-            .hero-section { height: 70vh; }
-            .slide-content h1 { font-size: 2.5em; }
-            .slide-content p { font-size: 1.1em; }
-            .content-section { padding: 60px 20px; }
-            .counter-grid { grid-template-columns: 1fr; }
-            h2 { font-size: 2em; }
-            .logo-img { height: 30px; }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 1.5rem 0;
+            }
+            
+            .nav-menu a {
+                font-size: 1.2rem;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                transition: all 0.3s ease;
+            }
+            
+            .nav-menu a:hover {
+                background: rgba(255, 215, 0, 0.1);
+            }
+            
+            .nav-toggle {
+                display: flex;
+            }
+            
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(-45deg) translate(-6px, 7px);
+            }
+            
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(45deg) translate(-6px, -7px);
+            }
+
+            .sub-navbar {
+                margin-top: 0;
+                padding: 1.5rem 0;
+            }
+
+            .sub-nav-menu {
+                gap: 1rem;
+                justify-content: flex-start;
+            }
+
+            .welcome-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .welcome-content p {
+                font-size: 1.3rem;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+                line-height: 1.3;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-text h2 {
+                font-size: 2.2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .page-header p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid,
+            .blog-grid,
+            .activity-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .stat-item h3 {
+                font-size: 2.8rem;
+            }
+
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .filter-group {
+                justify-content: space-between;
+            }
+
+            .filter-select {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .services,
+            .about,
+            .blog,
+            .partners {
+                padding: 80px 0;
+            }
         }
+
         @media (max-width: 480px) {
-            .logo { font-size: 1.5em; }
-            .slide-content h1 { font-size: 2em; }
-            .slide-content p { font-size: 0.9em; }
+            .container {
+                padding: 0 20px;
+            }
+
+            .navbar {
+                padding: 1rem 0;
+            }
+
+            .nav-brand h2 {
+                font-size: 1.5rem;
+            }
+
+            .welcome-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .welcome-content p {
+                font-size: 1.1rem;
+            }
+
+            .welcome-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .welcome-logo i {
+                font-size: 3rem;
+            }
+            
+            .hero {
+                padding: 100px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .page-header {
+                margin-bottom: 3rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .services,
+            .about,
+            .blog,
+            .partners {
+                padding: 60px 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 3rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .stat-item h3 {
+                font-size: 2.2rem;
+            }
+
+            .sub-nav-menu {
+                gap: 0.8rem;
+            }
+
+            .sub-nav-menu li {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .activity-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .activity-card {
+                margin: 0 10px;
+            }
+
+            .filter-section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .service-card,
+            .blog-card {
+                margin: 0 10px;
+            }
+
+            .about-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .scroll-to-top {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Additional Animations */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .slide-up {
+            animation: slideUp 0.6s ease-in-out;
+        }
+
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal-overlay.show {
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .modal-header h2 {
+            color: #333;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+            padding: 0.5rem;
+        }
+        
+        .modal-close:hover {
+            color: #FFD700;
+        }
+
+        .modal-body p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .modal-body strong {
+            color: #FFD700;
+            font-weight: 700;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            justify-content: flex-end;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 120px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: white;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Dark Theme */
+        .dark-theme {
+            background: #1a1a1a;
+            color: #fff;
+        }
+        
+        .dark-theme .header {
+            background: rgba(26, 26, 26, 0.95);
+            border-bottom-color: rgba(255, 215, 0, 0.2);
+        }
+
+        .dark-theme .nav-menu a {
+            color: #fff;
+        }
+        
+        .dark-theme .service-card,
+        .dark-theme .activity-card,
+        .dark-theme .blog-card {
+            background: #2a2a2a;
+            color: #fff;
+            border-color: rgba(255, 215, 0, 0.2);
+        }
+
+        .dark-theme .filter-section {
+            background: linear-gradient(135deg, #2a2a2a, #333);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .dark-theme .filter-select {
+            background: #333;
+            color: #fff;
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .dark-theme .page-header h1,
+        .dark-theme .section-title,
+        .dark-theme .about-text h2 {
+            color: #fff;
+        }
+
+        .dark-theme .services,
+        .dark-theme .blog,
+        .dark-theme .about {
+            background: #1a1a1a;
         }
     </style>
 </head>
 <body>
+    <!-- Welcome Screen -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-content">
+            <div class="welcome-logo">
+                <i class="fas fa-hands-helping"></i>
+            </div>
+            <h1>Welcome to</h1>
+            <p>Satu Langkah Project</p>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
 
-    <header class="header" id="main-header">
-        <a href="#home" class="logo">
-            <img src="https://media.licdn.com/dms/image/v2/D4D0BAQHdjxwbLX9xXQ/company-logo_200_200/B4DZhoC0IPHwAM-/0/1754092225583?e=1764806400&v=beta&t=WLjGayk6-Mr0B_m185xv7hhexa5GMYeVbqOdOzyvhGM" alt="Logo Resmi Satu Langkah" class="logo-img">
-        </a>
-        
-        <button class="nav-toggle" aria-label="toggle navigation">
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <nav class="nav-menu">
-            <a href="#home" class="nav-item active">Beranda</a>
-            <a href="#about" class="nav-item">Tentang Kami</a>
-            <a href="#programs" class="nav-item">Program Relawan</a>
-            <a href="#impact" class="nav-item">Dampak Kami</a>
-            <a href="#contact" class="nav-item">Hubungi & Donasi</a>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h2 onclick="showPage('home')">Satu Langkah Project</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a onclick="showPage('home')" class="nav-link active">Beranda</a></li>
+                    <li><a onclick="showPage('activities')" class="nav-link">Cari Aktivitas</a></li>
+                    <li><a onclick="showPage('organizations')" class="nav-link">Cari Organisasi</a></li>
+                    <li><a onclick="showPage('about')" class="nav-link">Tentang Kami</a></li>
+                    <li><a onclick="showPage('blog')" class="nav-link">Blog</a></li>
+                    <li><a onclick="showPage('contact')" class="nav-link">Kontak</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </nav>
     </header>
 
-    <main>
-        
-        <section id="home" class="hero-section">
-            <div class="carousel-container">
-                <div class="carousel-track">
-                    
-                    <div class="carousel-slide">
-                        <img src="https://picsum.photos/1200/800?random=11" alt="Relawan Menyapa Anak-anak" class="slide-image">
-                        <div class="slide-content">
-                            <h1>Wujudkan Kebaikan: Satu Langkah Penuh Makna</h1>
-                            <p>Bergabunglah dalam gerakan kerelawanan untuk menciptakan dampak nyata di seluruh negeri.</p>
-                        </div>
-                    </div>
+    <!-- Sub Navbar -->
+    <div class="sub-navbar" id="subNavbar" style="display: none;">
+        <div class="container">
+            <ul class="sub-nav-menu" id="subNavMenu">
+                <!-- Sub menu items will be populated by JavaScript -->
+            </ul>
+        </div>
+    </div>
 
-                    <div class="carousel-slide">
-                        <img src="https://picsum.photos/1200/800?random=12" alt="Tim Relawan Membersihkan Pantai" class="slide-image">
-                        <div class="slide-content">
-                            <h1>Aksi Hijau: Merawat Masa Depan Bumi</h1>
-                            <p>Sumbangkan waktu Anda untuk program konservasi lingkungan dan pelestarian alam.</p>
-                        </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <img src="https://picsum.photos/1200/800?random=13" alt="Pemberian Bantuan Medis oleh Relawan" class="slide-image">
-                        <div class="slide-content">
-                            <h1>Kesehatan Merata: Uluran Tangan Relawan Medis</h1>
-                            <p>Pastikan komunitas terpencil mendapatkan akses layanan kesehatan yang layak.</p>
-                        </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <img src="https://picsum.photos/1200/800?random=14" alt="Anak-anak Belajar Bersama Relawan" class="slide-image">
-                        <div class="slide-content">
-                            <h1>Mencerdaskan Bangsa: Berbagi Ilmu dan Harapan</h1>
-                            <p>Jadilah mentor yang menginspirasi anak-anak meraih masa depan yang lebih cerah.</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- Home Page -->
+    <section id="home" class="page-section active">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="floating-elements">
+                <div class="floating-element"><i class="fas fa-heart" style="font-size: 2rem;"></i></div>
+                <div class="floating-element"><i class="fas fa-hands-helping" style="font-size: 1.5rem;"></i></div>
+                <div class="floating-element"><i class="fas fa-users" style="font-size: 2.5rem;"></i></div>
+                <div class="floating-element"><i class="fas fa-globe" style="font-size: 2rem;"></i></div>
             </div>
-            <button class="carousel-btn prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
-            <button class="carousel-btn next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
-        </section>
-        
-        <div id="home-more-content" class="content-section yellow-bg">
-            <h2>Bergabunglah Dengan Gerakan Kebaikan Kami</h2>
-            <div class="content-text">
-                <p>Satu Langkah adalah komunitas relawan yang berdedikasi untuk menciptakan dampak positif yang berkelanjutan di seluruh Indonesia. Kami percaya pada kekuatan kolektif dari tindakan-tindakan kecil yang bersatu untuk menghasilkan perubahan transformatif. Dengan semangat kebersamaan dan integritas, kami berupaya menjangkau komunitas yang paling rentan dan memberikan dukungan yang mereka butuhkan.</p>
-                <p>Misi kami berakar pada tiga pilar utama: **Pemberdayaan Pendidikan, Pelestarian Lingkungan, dan Kesejahteraan Sosial**. Setiap program dirancang dengan cermat untuk tidak hanya memberikan bantuan langsung tetapi juga membangun kapasitas komunitas agar dapat mandiri di masa depan. Kami mengundang individu dan organisasi untuk bergabung dalam perjalanan penuh makna ini.</p>
-                <h3>Bagaimana Anda Bisa Berkontribusi?</h3>
-                <ul>
-                    <li>**Sebagai Relawan Aktif:** Sumbangkan waktu, tenaga, dan keahlian Anda di berbagai program kami.</li>
-                    <li>**Sebagai Donatur:** Dukungan finansial Anda adalah bahan bakar utama bagi operasional dan program kami.</li>
-                    <li>**Sebagai Mitra Korporat:** Kemitraan CSR (Corporate Social Responsibility) untuk dampak yang lebih luas.</li>
-                    <li>**Sebagai Penyebar Informasi:** Bantu kami menyebarkan pesan dan kebutuhan kami melalui jejaring Anda.</li>
-                </ul>
-                <p>Setiap kontribusi, sekecil apapun, akan sangat berarti. Kami berkomitmen untuk transparansi penuh dalam setiap laporan dampak dan keuangan kami.</p>
-                <button class="read-more-btn" data-target="home-more-content-hidden">Baca Lebih Lanjut</button>
-                <div id="home-more-content-hidden" class="hidden-content">
-                    <p>Kami bangga dengan pendekatan kami yang berpusat pada masyarakat, di mana setiap program dimulai dengan mendengarkan kebutuhan dan aspirasi langsung dari komunitas yang kami layani. Ini memastikan bahwa inisiatif kami relevan, diterima dengan baik, dan memberikan solusi jangka panjang, bukan hanya perbaikan sementara.</p>
-                    <p>Dari program literasi untuk anak-anak hingga inisiatif sanitasi air bersih, Satu Langkah hadir sebagai teman dan fasilitator perubahan. Mari bersama, kita wujudkan Indonesia yang lebih peduli dan berdaya.</p>
-                    <p>Kami menyelenggarakan pertemuan virtual bulanan yang terbuka untuk umum. Anda dapat bergabung untuk mendengarkan langsung tentang kemajuan program kami dan bagaimana kontribusi Anda memberikan perbedaan.</p>
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Ambil Peran Jadi Relawan</h1>
+                    <p>Ubah niat baik jadi aksi baik hari ini. Bergabunglah dengan komunitas volunteer terbesar di Indonesia dan ciptakan dampak positif yang berkelanjutan.</p>
+                    <div class="hero-buttons">
+                        <a onclick="showPage('activities')" class="btn btn-primary">Cari Aktivitas</a>
+                        <a onclick="showPage('about')" class="btn btn-secondary">Pelajari Lebih Lanjut</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <section id="about" class="content-section">
-            <h2>Visi dan Prinsip Utama Kami</h2>
-            <div class="content-text">
-                <p>Yayasan Satu Langkah lahir dari keinginan tulus untuk mengisi kesenjangan antara potensi kebaikan individu dan kebutuhan nyata masyarakat. Didirikan pada tahun 2017, kami telah berkembang dari inisiatif akar rumput menjadi organisasi yang diakui secara nasional, dengan jaringan relawan yang solid dan program yang terbukti efektif.</p>
-                <p>Kami mengoperasikan yayasan dengan nilai-nilai **integritas, empati, dan keberlanjutan**. Setiap keputusan diambil dengan mempertimbangkan dampak jangka panjang terhadap penerima manfaat dan lingkungan. Kami menjunjung tinggi akuntabilitas, dan laporan keuangan serta dampak kami dapat diakses publik.</p>
-
-                <h3>Nilai-nilai Utama yang Menggerakkan Kami</h3>
-                <ol>
-                    <li>**Kemanusiaan:** Keyakinan pada martabat setiap individu dan pentingnya saling membantu.</li>
-                    <li>**Keadilan Sosial:** Berusaha mengurangi ketidaksetaraan dan memberikan kesempatan yang sama.</li>
-                    <li>**Lingkungan:** Bertanggung jawab dalam menjaga kelestarian alam untuk generasi mendatang.</li>
-                    <li>**Transparansi:** Jujur dan terbuka dalam setiap aspek operasional dan keuangan.</li>
-                    <li>**Kolaborasi:** Membangun kemitraan yang kuat dengan individu, komunitas, dan organisasi lain.</li>
-                </ol>
-                <p>Tim inti kami terdiri dari para profesional berpengalaman di bidang sosial, pendidikan, dan lingkungan, didukung oleh ribuan relawan dari berbagai latar belakang. Kami percaya bahwa keragaman adalah kekuatan dan setiap individu memiliki sesuatu yang unik untuk disumbangkan.</p>
-                <p>Proses seleksi dan pelatihan relawan kami dirancang untuk memastikan kesiapan dan keselarasan nilai. Kami mengadakan lokakarya reguler mengenai etika relawan, keamanan lapangan, dan metodologi program.</p>
-                <button class="read-more-btn" data-target="about-hidden">Baca Selengkapnya</button>
-                <div id="about-hidden" class="hidden-content">
-                    <h3>Struktur Organisasi & Tata Kelola</h3>
-                    <p>Satu Langkah diatur oleh Dewan Pembina yang independen, yang mengawasi kepatuhan kami terhadap misi dan visi. Manajemen Harian dijalankan oleh Direktur Eksekutif dan tim manajer program, keuangan, dan relawan. Kami secara rutin menjalani audit eksternal untuk memastikan semua dana digunakan secara efisien dan sesuai dengan tujuan.</p>
-                    <p>Kami juga memiliki komite etik internal yang siap menangani setiap masukan atau keluhan untuk menjaga standar tertinggi dalam interaksi dengan relawan dan komunitas.</p>
-                    <p>Komitmen kami adalah menjadi contoh utama dalam tata kelola organisasi nirlaba yang modern dan profesional. Laporan tahunan kami mencakup detail operasional hingga tingkat desa.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="programs" class="content-section yellow-bg">
-            <h2>Pilihan Program Relawan Aktif Kami</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: var(--color-text-dark);">Temukan program yang paling sesuai dengan minat dan keahlian Anda. Setiap program dirancang untuk memberikan dampak maksimal dengan dukungan dan pelatihan penuh.</p>
-
-            <div class="accordion-container" style="max-width: 900px; margin: 0 auto;">
-                
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span><i class="fas fa-graduation-cap"></i> Program "Mentor Harapan" - Pendidikan & Literasi</span>
-                        <i class="fas fa-chevron-down"></i>
+        <!-- Stats Section -->
+        <div class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3 data-target="302625">0</h3>
+                        <p>Relawan</p>
                     </div>
-                    <div class="accordion-body">
-                        <p><strong>Deskripsi:</strong> Fokus pada peningkatan kualitas pendidikan di daerah pelosok. Relawan akan mengajar mata pelajaran dasar (Matematika, Bahasa Indonesia, IPA) kepada siswa SD-SMP, membimbing aktivitas ekstrakurikuler, dan mengembangkan minat baca melalui perpustakaan keliling.</p>
-                        <h3>Detail & Persyaratan:</h3>
-                        <ul>
-                            <li><strong>Durasi:</strong> Minimal 3 bulan (dapat diperpanjang).</li>
-                            <li><strong>Lokasi:</strong> Desa-desa dampingan di Jawa Barat, Sumatera Utara, dan Nusa Tenggara Timur.</li>
-                            <li><strong>Kualifikasi:</strong> Pendidikan minimal S1 (semua jurusan, diutamakan kependidikan/sosial). Memiliki passion mengajar dan adaptasi tinggi.</li>
-                            <li><strong>Benefit:</strong> Akomodasi, tunjangan hidup bulanan, sertifikat pengalaman, asuransi, dan pelatihan pedagogi khusus.</li>
-                            <li><strong>Jadwal Pendaftaran:</strong> Dibuka setiap bulan Maret dan September.</li>
-                        </ul>
-                        <p><strong>Dampak:</strong> Peningkatan rata-rata nilai siswa, penumbuhan minat baca, dan inspirasi bagi anak-anak untuk melanjutkan pendidikan tinggi. Kami telah melihat peningkatan nilai ujian sebesar 15% pada tahun lalu.</p>
-                        <button class="read-more-btn" onclick="openModal('modalProgram1')" style="margin-top: 10px;">Lihat Studi Kasus (Modal)</button>
+                    <div class="stat-item">
+                        <h3 data-target="6478">0</h3>
+                        <p>Organisasi</p>
                     </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span><i class="fas fa-tree"></i> Program "Penjaga Lingkungan" - Konservasi Alam</span>
-                        <i class="fas fa-chevron-down"></i>
+                    <div class="stat-item">
+                        <h3 data-target="12792">0</h3>
+                        <p>Aktivitas</p>
                     </div>
-                    <div class="accordion-body">
-                        <p><strong>Deskripsi:</strong> Aksi nyata untuk menjaga kelestarian lingkungan dan mitigasi perubahan iklim. Relawan akan terlibat dalam penanaman pohon, pembersihan sungai/pantai, edukasi daur ulang kepada masyarakat, dan pemantauan ekosistem lokal.</p>
-                        <h3>Detail & Persyaratan:</h3>
-                        <ul>
-                            <li><strong>Durasi:</strong> 1 minggu - 1 bulan (tergantung proyek).</li>
-                            <li><strong>Lokasi:</strong> Kawasan hutan lindung, pesisir, dan daerah perkotaan (proyek spesifik).</li>
-                            <li><strong>Kualifikasi:</strong> Bersemangat terhadap isu lingkungan, fisik sehat, dan siap bekerja di lapangan. Tidak ada batas pendidikan khusus.</li>
-                            <li><strong>Benefit:</strong> Pengalaman langsung di lapangan, pelatihan konservasi, koneksi dengan aktivis lingkungan.</li>
-                            <li><strong>Jadwal Pendaftaran:</strong> Sesuai kebutuhan proyek (cek website secara berkala).</li>
-                        </ul>
-                        <p><strong>Kisah Sukses:</strong> Dalam 6 bulan terakhir, 2 hektar hutan mangrove telah berhasil direstorasi. Keterlibatan Anda sangat berarti bagi paru-paru bumi.</p>
-                        <button class="read-more-btn" onclick="openModal('modalProgram2')" style="margin-top: 10px;">Kisah Sukses (Modal)</button>
-                    </div>
-                </div>
-                
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span><i class="fas fa-hands-helping"></i> Aksi Cepat Tanggap (ACT) - Bantuan Kemanusiaan</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-body">
-                        <p><strong>Deskripsi:</strong> Tim siaga yang responsif terhadap bencana alam atau krisis kemanusiaan mendadak. Fokus pada distribusi logistik, pendirian posko darurat, dan dukungan psikososial (trauma *counseling*).</p>
-                        <h3>Detail & Persyaratan:</h3>
-                        <ul>
-                            <li><strong>Durasi:</strong> Sesuai masa tanggap darurat (biasanya 1-2 minggu).</li>
-                            <li><strong>Lokasi:</strong> Area terdampak bencana di Indonesia.</li>
-                            <li><strong>Kualifikasi:</strong> Prioritas bagi tenaga medis, psikolog, dan relawan logistik. Diperlukan sertifikat pelatihan P3K dasar.</li>
-                            <li><strong>Benefit:</strong> Asuransi penuh selama penugasan, pelatihan manajemen bencana.</li>
-                        </ul>
-                        <p><strong>Peringatan:</strong> Program ini membutuhkan kesiapan mental dan fisik yang tinggi. Relawan harus selalu siap siaga. Kami menyediakan pelatihan simulasi bencana setiap 3 bulan.</p>
-                    </div>
-                </div>
-
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span><i class="fas fa-laptop-code"></i> Mentoring Digital & Administrasi (Virtual)</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-body">
-                        <p><strong>Deskripsi:</strong> Sukarela dari rumah! Bantu kami dalam urusan administrasi, desain grafis, media sosial, atau menjadi mentor digital bagi anak muda. Kontribusi penting untuk efisiensi organisasi.</p>
-                        <h3>Detail & Persyaratan:</h3>
-                        <ul>
-                            <li><strong>Durasi:</strong> Minimal 4 jam per minggu.</li>
-                            <li><strong>Lokasi:</strong> Sepenuhnya virtual/online.</li>
-                            <li><strong>Kualifikasi:</strong> Keahlian di bidang IT, desain, penulisan (copywriting), atau manajemen data.</li>
-                        </ul>
-                        <p><strong>Keuntungan:</strong> Fleksibilitas waktu, pengalaman kerja organisasi nirlaba profesional, dan networking luas dengan relawan lain di seluruh dunia. Anda akan menjadi "Pahlawan Belakang Layar" kami!</p>
+                    <div class="stat-item">
+                        <h3 data-target="150">0</h3>
+                        <p>Kota</p>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <section id="impact" class="counter-section">
-            <h2>Dampak Positif yang Telah Kita Ciptakan</h2>
-            <div class="counter-grid">
-                
-                <div class="counter-item">
-                    <div class="count" data-target="2500">0</div>
-                    <div class="label">Relawan Terdaftar</div>
-                </div>
+        </div>
 
-                <div class="counter-item">
-                    <div class="count" data-target="15000">0</div>
-                    <div class="label">Jam Kebaikan Tersalurkan</div>
-                </div>
-
-                <div class="counter-item">
-                    <div class="count" data-target="75">0</div>
-                    <div class="label">Komunitas Terdampingi</div>
-                </div>
-
-                <div class="counter-item">
-                    <div class="count" data-target="100000">0</div>
-                    <div class="label">Penerima Manfaat Langsung</div>
+        <!-- Services Section -->
+        <div class="services">
+            <div class="container">
+                <h2 class="section-title">Kenali Layanan Satu Langkah Project</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>Jadi Relawan</h3>
+                        <p>Baru memulai untuk jadi relawan? Pelajari selengkapnya dan mulai cari aktivitas kerelawanan pertama kamu! Temukan passion dan buat perubahan nyata.</p>
+                        <a onclick="showPage('activities')" class="service-link">Pelajari Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Cari Relawan</h3>
+                        <p>Butuh bantuan relawan untuk komunitasmu? Pelajari selengkapnya dan temukan relawan yang tepat! Bangun tim solid untuk misi sosial Anda.</p>
+                        <a onclick="showPage('organizations')" class="service-link">Pelajari Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Kerjasama CSR</h3>
+                        <p>Tingkatkan dampak program CSR perusahaan bersama kami dengan melibatkan komunitas lokal dan relawan! Ciptakan nilai berkelanjutan.</p>
+                        <a onclick="showPage('contact')" class="service-link">Pelajari Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact" class="content-section">
-            <h2>Hubungi Kami & Salurkan Donasi Anda</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 40px; font-size: 1.1em;">Partisipasi Anda, baik waktu maupun dana, adalah denyut nadi pergerakan kami. Mari bersatu dalam langkah kebaikan.</p>
+    <!-- Activities Page -->
+    <section id="activities" class="page-section">
+        <div class="container">
+            <div class="page-header">
+                <h1>Cari Aktivitas</h1>
+                <p>Temukan berbagai aktivitas volunteer yang sesuai dengan minat dan keahlian Anda. Mulai perjalanan volunteer Anda hari ini!</p>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <i class="fas fa-filter"></i>
+                        <span>Filter:</span>
+                    </div>
+                    <div class="filter-group">
+                        <select class="filter-select" id="categoryFilter">
+                            <option>Semua Kategori</option>
+                            <option>Pendidikan</option>
+                            <option>Lingkungan</option>
+                            <option>Kesehatan</option>
+                            <option>Sosial</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <select class="filter-select" id="locationFilter">
+                            <option>Semua Lokasi</option>
+                            <option>Jakarta</option>
+                            <option>Bandung</option>
+                            <option>Surabaya</option>
+                            <option>Yogyakarta</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <select class="filter-select" id="timeFilter">
+                            <option>Semua Waktu</option>
+                            <option>Hari ini</option>
+                            <option>Minggu ini</option>
+                            <option>Bulan ini</option>
+                        </select>
+                    </div>
+                    <button class="filter-btn" onclick="filterActivities()">
+                        <i class="fas fa-search"></i> Cari
+                    </button>
+                </div>
+            </div>
+
+            <!-- Activities Grid -->
+            <div class="activity-grid" id="activitiesGrid">
+                <!-- Activities will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Organizations Page -->
+    <section id="organizations" class="page-section">
+        <div class="container">
+            <div class="page-header">
+                <h1>Cari Organisasi</h1>
+                <p>Temukan organisasi sosial yang membutuhkan bantuan relawan. Bergabunglah dengan misi yang sesuai dengan nilai-nilai Anda.</p>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <i class="fas fa-filter"></i>
+                        <span>Filter:</span>
+                    </div>
+                    <div class="filter-group">
+                        <select class="filter-select">
+                            <option>Semua Bidang</option>
+                            <option>Pendidikan</option>
+                            <option>Kesehatan</option>
+                            <option>Lingkungan</option>
+                            <option>Sosial Kemasyarakatan</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <select class="filter-select">
+                            <option>Semua Wilayah</option>
+                            <option>DKI Jakarta</option>
+                            <option>Jawa Barat</option>
+                            <option>Jawa Tengah</option>
+                            <option>Jawa Timur</option>
+                        </select>
+                    </div>
+                    <button class="filter-btn">
+                        <i class="fas fa-search"></i> Cari
+                    </button>
+                </div>
+            </div>
+
+            <!-- Organizations Grid -->
+            <div class="activity-grid" id="organizationsGrid">
+                <!-- Organizations will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Tentang Satu Langkah Project</h2>
+                    <p>Satu Langkah Project adalah platform yang menghubungkan organisasi sosial yang membutuhkan relawan dengan individu yang mencari kesempatan untuk berkontribusi. Misi utama kami adalah memudahkan relawan dan komunitas dengan misi sosial untuk saling menemukan dan berkolaborasi.</p>
+                    <p>Kami percaya bahwa setiap langkah kecil dapat menciptakan perubahan besar. Bergabunglah dengan kami untuk menjadi bagian dari gerakan positif di Indonesia dan wujudkan Indonesia yang lebih baik melalui aksi nyata.</p>
+                    <a onclick="showPage('contact')" class="btn btn-primary">Hubungi Kami</a>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-users"></i>
+                        <p>Gambar Komunitas Volunteer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Page -->
+    <section id="blog" class="page-section">
+        <div class="container">
+            <div class="page-header">
+                <h1>Blog Satu Langkah Project</h1>
+                <p>Baca artikel terbaru tentang volunteer, tips, dan kisah inspiratif dari para relawan di seluruh Indonesia.</p>
+            </div>
+
+            <div class="blog-grid" id="blogGrid">
+                <!-- Blog posts will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page-section">
+        <div class="container">
+            <div class="page-header">
+                <h1>Hubungi Kami</h1>
+                <p>Punya pertanyaan atau ingin berkolaborasi? Jangan ragu untuk menghubungi kami. Tim kami siap membantu Anda!</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Informasi Kontak</h2>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> info@satulangkahproject.org</p>
+                        <p><i class="fas fa-phone"></i> +62 21 1234 5678</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Jl. Sudirman No. 123, Jakarta Pusat 10220</p>
+                        <p><i class="fas fa-clock"></i> Senin - Jumat: 09:00 - 17:00 WIB</p>
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #FFD700; font-weight: 700;">Media Sosial</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-map"></i>
+                        <p>Peta Lokasi Kantor</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partners Section -->
+            <div class="partners" style="padding-top: 4rem;">
+                <h2 class="section-title">Mitra Kami</h2>
+                <div class="partners-grid">
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <i class="fas fa-building"></i>
+                            <p>Partner 1</p>
+                        </div>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <i class="fas fa-building"></i>
+                            <p>Partner 2</p>
+                        </div>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <i class="fas fa-building"></i>
+                            <p>Partner 3</p>
+                        </div>
+                    </div>
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <i class="fas fa-building"></i>
+                            <p>Partner 4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Satu Langkah Project</h3>
+                    <p>Platform volunteer terpercaya untuk menciptakan perubahan positif di Indonesia. Bergabunglah dengan ribuan relawan lainnya!</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a onclick="showPage('activities')">Jadi Relawan</a></li>
+                        <li><a onclick="showPage('organizations')">Cari Relawan</a></li>
+                        <li><a onclick="showPage('contact')">Kerjasama CSR</a></li>
+                        <li><a href="#">Pelatihan</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Tentang</h4>
+                    <ul>
+                        <li><a onclick="showPage('about')">Visi Misi</a></li>
+                        <li><a href="#">Tim Kami</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a onclick="showPage('contact')">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Kontak</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> info@satulangkahproject.org</p>
+                        <p><i class="fas fa-phone"></i> +62 21 1234 5678</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</p>
+                    </div>
+                </div>
+            </div>
             
-            <form id="contact-form" class="contact-form">
-                <h3>Pendaftaran Relawan/Kemitraan</h3>
-                
-                <div class="form-group">
-                    <label for="name">Nama Lengkap:</label>
-                    <input type="text" id="name" name="name" required data-validate="text">
-                    <span class="error-message">Nama harus diisi.</span>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Alamat Email:</label>
-                    <input type="email" id="email" name="email" required data-validate="email">
-                    <span class="error-message">Email harus format yang benar (contoh@domain.com).</span>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Nomor Telepon (WhatsApp):</label>
-                    <input type="tel" id="phone" name="phone" data-validate="phone">
-                    <span class="error-message">Nomor telepon harus format angka (minimal 8 digit).</span>
-                </div>
-
-                <div class="form-group">
-                    <label for="involvement">Bentuk Keterlibatan yang Diminati:</label>
-                    <select id="involvement" name="involvement" required data-validate="select">
-                        <option value="">-- Pilih Bentuk Keterlibatan --</option>
-                        <option value="volunteer">Daftar sebagai Relawan Aktif</option>
-                        <option value="corporate">Kemitraan Perusahaan (CSR)</option>
-                        <option value="media">Liputan/Kemitraan Media</option>
-                        <option value="question">Pertanyaan Umum</option>
-                    </select>
-                    <span class="error-message">Pilihan harus diisi.</span>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Pesan / Jelaskan minat spesifik Anda:</label>
-                    <textarea id="message" name="message" rows="6" required data-validate="message"></textarea>
-                    <span class="error-message">Pesan harus diisi (minimal 10 karakter).</span>
-                </div>
-                
-                <button type="submit" id="submit-btn">Kirim Permintaan Keterlibatan</button>
-
-                <p id="form-message" style="margin-top: 20px; font-weight: bold; text-align: center;"></p>
-            </form>
-
-            <div style="max-width: 600px; margin: 40px auto; padding: 20px; background: #fff3cd; border-radius: 8px; border: 2px solid var(--color-primary); text-align: center;">
-                <h3>Informasi Donasi Finansial 💳</h3>
-                <p>Setiap donasi Anda 100% dialokasikan untuk program lapangan. Mari dukung aksi nyata kami!</p>
-                <p style="font-size: 1.2em; font-weight: bold; color: var(--color-secondary);">Bank Kebaikan (BK) - A.N. Yayasan Satu Langkah</p>
-                <p style="font-size: 1.8em; font-weight: bold; color: var(--color-accent); margin: 10px 0;">7890 1234 5678</p>
-                <p><i class="fas fa-hand-holding-usd"></i> Kami menerbitkan laporan penggunaan dana bulanan secara terbuka.</p>
-                <a href="#" style="color: var(--color-secondary); text-decoration: none; font-weight: bold;"><i class="fas fa-file-pdf"></i> Unduh Laporan Audit Terbaru</a>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Satu Langkah Project. Semua hak dilindungi.</p>
             </div>
-        </section>
-
-    </main>
-    
-    <footer>
-        <p>&copy; 2025 Yayasan Satu Langkah. Bergerak Bersama untuk Indonesia yang Lebih Baik.</p>
-        <p>Kontak: info@satulangkah.org | Alamat: Jl. Kebaikan No. 1, Jakarta</p>
-        <p>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </p>
+        </div>
     </footer>
 
-    <div id="modalProgram1" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal('modalProgram1')">&times;</span>
-            <h3>Studi Kasus: Mentor Harapan</h3>
-            <p><strong>Lokasi:</strong> Desa Suka Maju, NTT</p>
-            <p><strong>Periode:</strong> 6 Bulan (Januari - Juni 2024)</p>
-            <p><strong>Dampak:</strong> 95 siswa SD/SMP berhasil melanjutkan ke jenjang berikutnya. Peningkatan rata-rata nilai Bahasa Indonesia dari 65 menjadi 80. Relawan berhasil mendirikan perpustakaan mini dengan donasi 500 buku.</p>
-            <button class="read-more-btn" style="margin-top: 15px;" onclick="closeModal('modalProgram1')">Tutup</button>
-        </div>
-    </div>
-
-    <div id="modalProgram2" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal('modalProgram2')">&times;</span>
-            <h3>Kisah Sukses: Penjaga Lingkungan</h3>
-            <p><strong>Lokasi:</strong> Pesisir Cilacap, Jawa Tengah</p>
-            <p><strong>Fokus:</strong> Restorasi Mangrove</p>
-            <p><strong>Hasil:</strong> 5.000 bibit mangrove ditanam oleh 150 relawan lokal dan luar. Program ini meningkatkan kesadaran masyarakat pesisir terhadap dampak abrasi dan pentingnya ekosistem mangrove. Kini, tingkat abrasi menurun signifikan.</p>
-            <button class="read-more-btn" style="margin-top: 15px;" onclick="closeModal('modalProgram2')">Tutup</button>
-        </div>
-    </div>
-
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script>
-        // === 1. Navbar Sticky & Toggle Responsif ===
-        const header = document.getElementById('main-header');
-        const navToggle = document.querySelector('.nav-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        // Sticky Navbar
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('sticky');
-            } else {
-                header.classList.remove('sticky');
+        // Data for activities and organizations
+        const activitiesData = [
+            {
+                title: "Mengajar Anak-anak di Desa Terpencil",
+                org: "Yayasan Pendidikan Nusantara",
+                category: "Pendidikan",
+                location: "Bogor",
+                date: "15 Januari 2025",
+                volunteers: "5 dari 20 relawan",
+                badge: "Event",
+                icon: "fas fa-graduation-cap"
+            },
+            {
+                title: "Penanaman Pohon Mangrove",
+                org: "Green Earth Indonesia",
+                category: "Lingkungan",
+                location: "Pantai Indah Kapuk",
+                date: "20 Januari 2025",
+                volunteers: "12 dari 30 relawan",
+                badge: "Project",
+                icon: "fas fa-leaf"
+            },
+            {
+                title: "Donor Darah Massal",
+                org: "PMI Jakarta Pusat",
+                category: "Kesehatan",
+                location: "Mall Central Park",
+                date: "25 Januari 2025",
+                volunteers: "8 dari 15 relawan",
+                badge: "Event",
+                icon: "fas fa-heart"
+            },
+            {
+                title: "Renovasi Rumah Yatim",
+                org: "Rumah Yatim Indonesia",
+                category: "Sosial",
+                location: "Depok",
+                date: "1 Februari 2025",
+                volunteers: "3 dari 25 relawan",
+                badge: "Project",
+                icon: "fas fa-home"
+            },
+            {
+                title: "Bagi Makanan untuk Tunawisma",
+                org: "Komunitas Berbagi Jakarta",
+                category: "Sosial",
+                location: "Stasiun Gambir",
+                date: "5 Februari 2025",
+                volunteers: "15 dari 20 relawan",
+                badge: "Event",
+                icon: "fas fa-utensils"
+            },
+            {
+                title: "Kampanye Zero Waste",
+                org: "EcoWarriors Indonesia",
+                category: "Lingkungan",
+                location: "Taman Suropati",
+                date: "10 Februari 2025",
+                volunteers: "7 dari 40 relawan",
+                badge: "Project",
+                icon: "fas fa-recycle"
             }
-        });
+        ];
 
-        // Toggle Menu
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            navToggle.querySelector('i').classList.toggle('fa-bars');
-            navToggle.querySelector('i').classList.toggle('fa-times');
-        });
-        
-        // Tutup menu saat klik nav item (hanya di mobile)
-        navMenu.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navMenu.classList.remove('active');
-                    navToggle.querySelector('i').classList.remove('fa-times');
-                    navToggle.querySelector('i').classList.add('fa-bars');
-                }
-            });
-        });
+        const organizationsData = [
+            {
+                title: "Yayasan Pendidikan Nusantara",
+                focus: "Fokus: Pendidikan Anak Kurang Mampu",
+                location: "Jakarta Selatan",
+                volunteers: "150+ relawan aktif",
+                established: "Berdiri sejak 2015",
+                badge: "NGO",
+                icon: "fas fa-graduation-cap"
+            },
+            {
+                title: "Green Earth Indonesia",
+                focus: "Fokus: Konservasi Lingkungan",
+                location: "Bogor, Jawa Barat",
+                volunteers: "200+ relawan aktif",
+                established: "Berdiri sejak 2012",
+                badge: "Foundation",
+                icon: "fas fa-leaf"
+            },
+            {
+                title: "Komunitas Berbagi Jakarta",
+                focus: "Fokus: Bantuan Sosial Masyarakat",
+                location: "Jakarta Pusat",
+                volunteers: "80+ relawan aktif",
+                established: "Berdiri sejak 2018",
+                badge: "Community",
+                icon: "fas fa-heart"
+            },
+            {
+                title: "Rumah Yatim Indonesia",
+                focus: "Fokus: Perlindungan Anak Yatim",
+                location: "Bandung, Jawa Barat",
+                volunteers: "300+ relawan aktif",
+                established: "Berdiri sejak 2010",
+                badge: "NGO",
+                icon: "fas fa-home"
+            }
+        ];
 
-        // === 2. Scroll Spy (Menandai Navbar yang Aktif) ===
-        const sections = document.querySelectorAll('main section, #home-more-content');
-        const navItems = document.querySelectorAll('.nav-item');
+        const blogData = [
+            {
+                title: "Tips Menjadi Volunteer yang Efektif",
+                excerpt: "Pelajari cara memaksimalkan kontribusi Anda sebagai volunteer dan menciptakan dampak positif yang berkelanjutan.",
+                category: "Tips Volunteer"
+            },
+            {
+                title: "Kisah Inspiratif Relawan Indonesia",
+                excerpt: "Temukan cerita-cerita menginspirasi dari para relawan yang telah membuat perubahan di komunitasnya.",
+                category: "Kisah Inspiratif"
+            },
+            {
+                title: "Panduan Memulai Program CSR",
+                excerpt: "Langkah-langkah praktis untuk perusahaan yang ingin memulai program Corporate Social Responsibility.",
+                category: "Panduan CSR"
+            },
+            {
+                title: "Dampak Positif Volunteer di Masa Pandemi",
+                excerpt: "Bagaimana para volunteer tetap berkontribusi dan membantu masyarakat di tengah pandemi COVID-19.",
+                category: "Berita Terkini"
+            },
+            {
+                title: "Membangun Komunitas Volunteer yang Solid",
+                excerpt: "Tips dan strategi untuk membangun dan mempertahankan komunitas volunteer yang aktif dan berkelanjutan.",
+                category: "Tips Volunteer"
+            },
+            {
+                title: "Teknologi untuk Kegiatan Sosial",
+                excerpt: "Pemanfaatan teknologi digital untuk meningkatkan efektivitas program-program sosial dan volunteer.",
+                category: "Berita Terkini"
+            }
+        ];
 
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const headerHeight = header.offsetHeight;
-            const scrollOffset = window.scrollY + headerHeight + 50; // Padding tambahan
+        // Sub navigation menus for different pages
+        const subMenus = {
+            activities: [
+                { text: 'Semua Aktivitas', active: true },
+                { text: 'Pendidikan' },
+                { text: 'Lingkungan' },
+                { text: 'Kesehatan' },
+                { text: 'Sosial' },
+                { text: 'Teknologi' },
+                { text: 'Olahraga' }
+            ],
+            organizations: [
+                { text: 'Semua Organisasi', active: true },
+                { text: 'NGO' },
+                { text: 'Yayasan' },
+                { text: 'Komunitas' },
+                { text: 'Perusahaan' },
+                { text: 'Pemerintah' }
+            ],
+            blog: [
+                { text: 'Semua Artikel', active: true },
+                { text: 'Tips Volunteer' },
+                { text: 'Kisah Inspiratif' },
+                { text: 'Panduan CSR' },
+                { text: 'Berita Terkini' }
+            ]
+        };
 
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (scrollOffset >= sectionTop && scrollOffset < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href').includes(current)) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
-        // === 3. Carousel/Slider Gambar Header ===
-        const track = document.querySelector('.carousel-track');
-        const slides = document.querySelectorAll('.carousel-slide');
-        const prevBtn = document.querySelector('.prev');
-        const nextBtn = document.querySelector('.next');
-        let currentIndex = 0;
-        const totalSlides = slides.length;
-
-        function updateCarousel() {
-            const slideWidth = slides[0].clientWidth;
-            track.style.transform = 'translateX(' + (-currentIndex * slideWidth) + 'px)';
+        // Welcome screen functionality
+        function hideWelcomeScreen() {
+            const welcomeScreen = document.getElementById('welcomeScreen');
+            setTimeout(() => {
+                welcomeScreen.classList.add('hidden');
+            }, 3500);
         }
 
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            updateCarousel();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        });
-
-        // Otomatis geser
-        let autoSlide = setInterval(() => {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            updateCarousel();
-        }, 5000);
-
-        // Hentikan otomatis saat hover
-        const carouselContainer = document.querySelector('.carousel-container');
-        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
-        carouselContainer.addEventListener('mouseleave', () => {
-             autoSlide = setInterval(() => {
-                currentIndex = (currentIndex + 1) % totalSlides;
-                updateCarousel();
-            }, 5000);
-        });
-
-        window.addEventListener('resize', updateCarousel);
-        window.addEventListener('load', updateCarousel);
-
-
-        // === 4. Accordion/Togglable Content (Program Relawan) ===
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-        accordionHeaders.forEach(header => {
-            header.addEventListener('click', () => {
-                const item = header.parentElement;
-                const body = header.nextElementSibling;
+        // Show page function
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update main navigation
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Find and activate the correct nav link
+            const targetLink = Array.from(navLinks).find(link => 
+                link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageId)
+            );
+            if (targetLink) {
+                targetLink.classList.add('active');
+            }
+            
+            // Handle sub navigation
+            const subNavbar = document.getElementById('subNavbar');
+            const subNavMenu = document.getElementById('subNavMenu');
+            
+            if (subMenus[pageId]) {
+                // Show sub navbar and populate menu
+                subNavbar.style.display = 'block';
+                setTimeout(() => {
+                    subNavbar.classList.add('show');
+                }, 100);
                 
-                // Tutup yang lain (opsional)
-                document.querySelectorAll('.accordion-item.active').forEach(activeItem => {
-                    if (activeItem !== item) {
-                        activeItem.classList.remove('active');
+                subNavMenu.innerHTML = '';
+                
+                subMenus[pageId].forEach(item => {
+                    const li = document.createElement('li');
+                    if (item.active) li.classList.add('active');
+                    
+                    const a = document.createElement('a');
+                    a.textContent = item.text;
+                    a.onclick = () => setActiveSubMenu(li);
+                    
+                    li.appendChild(a);
+                    subNavMenu.appendChild(li);
+                });
+            } else {
+                // Hide sub navbar
+                subNavbar.classList.remove('show');
+                setTimeout(() => {
+                    subNavbar.style.display = 'none';
+                }, 300);
+            }
+            
+            // Load page content
+            loadPageContent(pageId);
+            
+            // Close mobile menu if open
+            const navMenu = document.querySelector('.nav-menu');
+            const navToggle = document.querySelector('.nav-toggle');
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            
+            // Scroll to top with animation
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Load page content dynamically
+        function loadPageContent(pageId) {
+            switch(pageId) {
+                case 'activities':
+                    renderActivities(activitiesData);
+                    break;
+                case 'organizations':
+                    renderOrganizations(organizationsData);
+                    break;
+                case 'blog':
+                    renderBlogPosts(blogData);
+                    break;
+            }
+        }
+
+        // Render activities
+        function renderActivities(activities) {
+            const grid = document.getElementById('activitiesGrid');
+            grid.innerHTML = '';
+            
+            activities.forEach((activity, index) => {
+                const card = document.createElement('div');
+                card.className = 'activity-card slide-up';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="activity-image">
+                        <div class="activity-badge">${activity.badge}</div>
+                        <i class="${activity.icon}"></i>
+                    </div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">${activity.title}</h3>
+                        <p class="activity-org">${activity.org}</p>
+                        <div class="activity-meta">
+                            <div><i class="fas fa-calendar"></i> ${activity.date}</div>
+                            <div><i class="fas fa-map-marker-alt"></i> ${activity.location}</div>
+                            <div><i class="fas fa-users"></i> ${activity.volunteers}</div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add click event for activity details
+                card.addEventListener('click', () => {
+                    showActivityModal(activity);
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Render organizations
+        function renderOrganizations(organizations) {
+            const grid = document.getElementById('organizationsGrid');
+            grid.innerHTML = '';
+            
+            organizations.forEach((org, index) => {
+                const card = document.createElement('div');
+                card.className = 'activity-card slide-up';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="activity-image">
+                        <div class="activity-badge">${org.badge}</div>
+                        <i class="${org.icon}"></i>
+                    </div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">${org.title}</h3>
+                        <p class="activity-org">${org.focus}</p>
+                        <div class="activity-meta">
+                            <div><i class="fas fa-map-marker-alt"></i> ${org.location}</div>
+                            <div><i class="fas fa-users"></i> ${org.volunteers}</div>
+                            <div><i class="fas fa-calendar"></i> ${org.established}</div>
+                        </div>
+                    </div>
+                `;
+                
+                // Add click event for organization details
+                card.addEventListener('click', () => {
+                    showOrganizationModal(org);
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Render blog posts
+        function renderBlogPosts(posts) {
+            const grid = document.getElementById('blogGrid');
+            grid.innerHTML = '';
+            
+            posts.forEach((post, index) => {
+                const card = document.createElement('article');
+                card.className = 'blog-card slide-up';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="blog-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-image"></i>
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <h3>${post.title}</h3>
+                        <p>${post.excerpt}</p>
+                        <a href="#" class="blog-link">Baca Selengkapnya</a>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Set active sub menu
+        function setActiveSubMenu(selectedItem) {
+            const subMenuItems = document.querySelectorAll('.sub-nav-menu li');
+            subMenuItems.forEach(item => item.classList.remove('active'));
+            selectedItem.classList.add('active');
+            
+            // Filter content based on selected sub menu
+            const selectedText = selectedItem.textContent;
+            filterContentBySubMenu(selectedText);
+        }
+
+        // Filter content by sub menu selection
+        function filterContentBySubMenu(category) {
+            const currentPage = document.querySelector('.page-section.active').id;
+            
+            if (currentPage === 'activities') {
+                let filteredActivities = activitiesData;
+                if (category !== 'Semua Aktivitas') {
+                    filteredActivities = activitiesData.filter(activity => 
+                        activity.category === category
+                    );
+                }
+                renderActivities(filteredActivities);
+            } else if (currentPage === 'blog') {
+                let filteredPosts = blogData;
+                if (category !== 'Semua Artikel') {
+                    filteredPosts = blogData.filter(post => 
+                        post.category === category
+                    );
+                }
+                renderBlogPosts(filteredPosts);
+            }
+        }
+
+        // Filter activities function
+        function filterActivities() {
+            const category = document.getElementById('categoryFilter').value;
+            const location = document.getElementById('locationFilter').value;
+            const time = document.getElementById('timeFilter').value;
+            
+            let filteredActivities = activitiesData;
+            
+            if (category !== 'Semua Kategori') {
+                filteredActivities = filteredActivities.filter(activity => 
+                    activity.category === category
+                );
+            }
+            
+            if (location !== 'Semua Lokasi') {
+                filteredActivities = filteredActivities.filter(activity => 
+                    activity.location.includes(location)
+                );
+            }
+            
+            renderActivities(filteredActivities);
+            
+            // Show filter animation
+            const filterSection = document.querySelector('.filter-section');
+            filterSection.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                filterSection.style.transform = 'scale(1)';
+            }, 150);
+        }
+
+        // Show activity modal
+        function showActivityModal(activity) {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>${activity.title}</h2>
+                        <button class="modal-close" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Organisasi:</strong> ${activity.org}</p>
+                        <p><strong>Kategori:</strong> ${activity.category}</p>
+                        <p><strong>Lokasi:</strong> ${activity.location}</p>
+                        <p><strong>Tanggal:</strong> ${activity.date}</p>
+                        <p><strong>Status:</strong> ${activity.volunteers}</p>
+                        <div class="modal-buttons">
+                            <button class="btn btn-primary">Daftar Sekarang</button>
+                            <button class="btn btn-secondary" onclick="closeModal()">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        // Show organization modal
+        function showOrganizationModal(org) {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>${org.title}</h2>
+                        <button class="modal-close" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Fokus:</strong> ${org.focus}</p>
+                        <p><strong>Lokasi:</strong> ${org.location}</p>
+                        <p><strong>Relawan:</strong> ${org.volunteers}</p>
+                        <p><strong>Didirikan:</strong> ${org.established}</p>
+                        <div class="modal-buttons">
+                            <button class="btn btn-primary">Hubungi Organisasi</button>
+                            <button class="btn btn-secondary" onclick="closeModal()">Tutup</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.querySelector('.modal-overlay');
+            if (modal) {
+                modal.classList.remove('show');
+                setTimeout(() => modal.remove(), 300);
+            }
+        }
+
+        // Animate counter numbers
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current).toLocaleString();
+            }, 20);
+        }
+
+        // Parallax effect for hero section
+        function handleParallax() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && window.innerWidth > 768) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide welcome screen after animation
+            hideWelcomeScreen();
+            
+            // Initialize mobile navigation
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+            
+            // Header scroll effect with parallax
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                const scrollTop = window.pageYOffset;
+                
+                if (scrollTop > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.backdropFilter = 'blur(15px)';
+                    header.style.boxShadow = '0 4px 25px rgba(255, 215, 0, 0.2)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.backdropFilter = 'blur(15px)';
+                    header.style.boxShadow = '0 4px 25px rgba(255, 215, 0, 0.15)';
+                }
+                
+                // Parallax effect
+                handleParallax();
+                
+                // Show/hide scroll to top button
+                const scrollToTopBtn = document.getElementById('scrollToTop');
+                if (scrollTop > 300) {
+                    scrollToTopBtn.classList.add('show');
+                } else {
+                    scrollToTopBtn.classList.remove('show');
+                }
+            });
+            
+            // Scroll to top functionality
+            document.getElementById('scrollToTop').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Animate stats on scroll
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const statItems = entry.target.querySelectorAll('.stat-item h3');
+                        statItems.forEach(item => {
+                            const target = parseInt(item.getAttribute('data-target'));
+                            animateCounter(item, target);
+                        });
+                        observer.unobserve(entry.target);
                     }
                 });
-
-                // Toggle yang sedang diklik
-                item.classList.toggle('active');
-            });
-        });
-        
-        // === 5. "Read More/Read Less" Toggle ===
-        document.querySelectorAll('.read-more-btn[data-target]').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = e.target.getAttribute('data-target');
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    const isVisible = targetElement.style.display === 'block';
-                    targetElement.style.display = isVisible ? 'none' : 'block';
-                    e.target.textContent = isVisible ? 'Baca Lebih Lanjut' : 'Sembunyikan Konten';
-                }
-            });
-        });
-
-
-        // === 6. Counter Animasi (Dampak Kami) ===
-        function animateCounter(el) {
-            const target = +el.getAttribute('data-target');
-            const duration = 2000; // 2 detik
-            let start = 0;
-            const step = (target / duration) * 10;
+            }, observerOptions);
             
-            const timer = setInterval(() => {
-                start += step;
-                el.textContent = Math.floor(start).toLocaleString('id-ID');
-
-                if (start >= target) {
-                    clearInterval(timer);
-                    el.textContent = target.toLocaleString('id-ID'); // Pastikan nilai akhir tepat
-                }
-            }, 10);
-        }
-
-        const counterSection = document.getElementById('impact');
-        let counterExecuted = false;
-
-        function checkImpactSection() {
-            if (counterSection && !counterExecuted) {
-                const rect = counterSection.getBoundingClientRect();
-                // Eksekusi jika section terlihat
-                if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                    document.querySelectorAll('.counter-item .count').forEach(animateCounter);
-                    counterExecuted = true;
-                }
+            const statsSection = document.querySelector('.stats');
+            if (statsSection) {
+                observer.observe(statsSection);
             }
-        }
-        window.addEventListener('scroll', checkImpactSection);
-        window.addEventListener('load', checkImpactSection); // Cek saat load
-
-
-        // === 7. Form Validation Interaktif ===
-        const contactForm = document.getElementById('contact-form');
-        const formMessage = document.getElementById('form-message');
-
-        function validateInput(input) {
-            const parent = input.closest('.form-group');
-            let isValid = true;
-            const value = input.value.trim();
-            const type = input.getAttribute('data-validate');
-
-            parent.classList.remove('error');
-
-            if (input.required && value === '') {
-                isValid = false;
-            } else if (type === 'email' && value !== '' && !/\S+@\S+\.\S+/.test(value)) {
-                isValid = false;
-            } else if (type === 'phone' && value !== '' && !/^\d{8,}$/.test(value)) {
-                isValid = false;
-            } else if (type === 'message' && value !== '' && value.length < 10) {
-                isValid = false;
-            } else if (type === 'select' && value === '') {
-                 isValid = false;
-            }
-
-            if (!isValid) {
-                parent.classList.add('error');
-            }
-            return isValid;
-        }
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            let formIsValid = true;
-
-            contactForm.querySelectorAll('[data-validate]').forEach(input => {
-                if (!validateInput(input)) {
-                    formIsValid = false;
+            
+            // Add loading animation for cards
+            const cardObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Load initial content
+            loadPageContent('home');
+            
+            // Add keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeModal();
+                    // Close mobile menu
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
                 }
             });
-
-            if (formIsValid) {
-                const submitBtn = document.getElementById('submit-btn');
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Memproses Permintaan...';
-
-                const name = document.getElementById('name').value;
-                const involvement = document.getElementById('involvement').value;
+            
+            // Initialize theme switcher
+            const themeToggle = document.createElement('button');
+            themeToggle.className = 'theme-toggle';
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-theme');
+                const icon = themeToggle.querySelector('i');
+                icon.className = document.body.classList.contains('dark-theme') 
+                    ? 'fas fa-sun' : 'fas fa-moon';
+            });
+            
+            document.body.appendChild(themeToggle);
+            
+            // Add smooth page transitions
+            const style = document.createElement('style');
+            style.textContent = `
+                .page-section {
+                    transition: opacity 0.3s ease-in-out;
+                }
                 
-                // Simulasi pengiriman data dengan delay 2 detik
-                setTimeout(() => {
-                    console.log(`Permintaan Keterlibatan Dikirim oleh: ${name}. Minat: ${involvement}`);
-                    
-                    formMessage.style.color = 'green';
-                    formMessage.innerHTML = `✅ Sukses! Terima kasih, **${name}**. Kami akan segera menghubungi Anda mengenai minat (**${involvement}**).`;
-                    
-                    contactForm.reset();
-
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Kirim Permintaan Keterlibatan';
-                }, 2000);
-            } else {
-                formMessage.style.color = 'red';
-                formMessage.innerHTML = '❌ Harap perbaiki kesalahan pada formulir yang ditandai.';
-            }
-        });
-
-        // Live validation saat input blur
-        contactForm.querySelectorAll('[data-validate]').forEach(input => {
-            input.addEventListener('blur', () => validateInput(input));
-        });
-
-
-        // === 8. Modal Box ===
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-        }
-
-        function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
-        }
-
-        // Tutup modal jika user klik di luar kotak konten
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = "none";
-            }
-        }
-        
-        // === 9. Tombol Go To Top ===
-        const goToTopButton = document.createElement('button');
-        goToTopButton.innerHTML = '<i class="fas fa-heart"></i>';
-        goToTopButton.style.cssText = 'position: fixed; bottom: 30px; right: 30px; width: 55px; height: 55px; background-color: var(--color-accent); color: var(--color-white); border: none; border-radius: 50%; cursor: pointer; display: none; z-index: 9999; font-size: 1.5em; box-shadow: 0 4px 10px rgba(0,0,0,0.4); transition: all 0.3s;';
-        document.body.appendChild(goToTopButton);
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                goToTopButton.style.display = 'block';
-            } else {
-                goToTopButton.style.display = 'none';
-            }
-        });
-
-        goToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+                .page-section:not(.active) {
+                    opacity: 0;
+                }
+                
+                .page-section.active {
+                    opacity: 1;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Initialize floating animations with random delays
+            const floatingElements = document.querySelectorAll('.floating-element');
+            floatingElements.forEach((element, index) => {
+                const randomDelay = Math.random() * 3;
+                const randomDuration = 6 + Math.random() * 4;
+                
+                element.style.animationDelay = `${randomDelay}s`;
+                element.style.animationDuration = `${randomDuration}s`;
             });
+            
+            // Add click ripple effect to buttons
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn') || e.target.classList.contains('filter-btn')) {
+                    const ripple = document.createElement('span');
+                    const rect = e.target.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    const x = e.clientX - rect.left - size / 2;
+                    const y = e.clientY - rect.top - size / 2;
+                    
+                    ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.5);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s ease-out;
+                        pointer-events: none;
+                    `;
+                    
+                    e.target.style.position = 'relative';
+                    e.target.style.overflow = 'hidden';
+                    e.target.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 600);
+                }
+            });
+            
+            // Add ripple animation
+            const rippleStyle = document.createElement('style');
+            rippleStyle.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(rippleStyle);
         });
     </script>
 </body>
