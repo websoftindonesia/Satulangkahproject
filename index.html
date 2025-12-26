@@ -6,7 +6,6 @@
     <title>Satu Langkah Project - Platform Volunteer Indonesia</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
         /* Reset and Base Styles */
         * {
@@ -29,6 +28,87 @@
             padding: 0 20px;
         }
 
+        /* Image Styles */
+        .hero-image {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .about-image img,
+        .blog-image img,
+        .activity-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover img,
+        .blog-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .activity-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .blog-image {
+            height: 220px;
+            overflow: hidden;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        /* Image placeholder fallback */
+        .image-placeholder {
+            background: linear-gradient(135deg, #fff9e6, #fff3cc);
+            border: 3px dashed rgba(255, 215, 0, 0.4);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: #999;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .image-placeholder:hover {
+            border-color: #FFD700;
+            background: linear-gradient(135deg, #fff5e6, #ffe6b3);
+        }
+
+        .image-placeholder i {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            color: #FFD700;
+        }
+
+        /* Lazy loading animation */
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+
+        /* Rest of your existing CSS remains the same... */
         /* Welcome Screen */
         .welcome-screen {
             position: fixed;
@@ -311,7 +391,7 @@
         /* Hero Section with Background */
         .hero {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.9)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23228B22" width="1200" height="600"/><g fill="%23FFF" opacity="0.1"><circle cx="200" cy="150" r="80"/><circle cx="400" cy="300" r="60"/><circle cx="800" cy="200" r="70"/><circle cx="1000" cy="400" r="90"/><rect x="100" y="400" width="200" height="100" rx="10"/><rect x="600" y="100" width="150" height="80" rx="8"/></g><g fill="%23FFD700" opacity="0.2"><polygon points="300,500 350,400 400,500"/><polygon points="700,350 750,250 800,350"/></g></svg>');
+                        url('https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse2.mm.bing.net%2Fth%2Fid%2FOIP.0p-92ATo1-QirERlYm8JzgHaE7%3Fpid%3DApi&sp=1766724398T10464838d8387802903675cbbed5a800b3d70e2125df9e6c07f5e9913ef25ad2');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -499,34 +579,6 @@
             border-color: rgba(255, 215, 0, 0.3);
         }
 
-        .activity-image {
-            height: 220px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .activity-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.15"/><circle cx="80" cy="30" r="1.5" fill="white" opacity="0.15"/><circle cx="50" cy="70" r="2.5" fill="white" opacity="0.15"/></svg>');
-            animation: sparkle 4s ease-in-out infinite;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-
         .activity-badge {
             position: absolute;
             top: 1.5rem;
@@ -540,6 +592,7 @@
             animation: pulse 3s ease-in-out infinite;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            z-index: 10;
         }
 
         @keyframes pulse {
@@ -868,27 +921,6 @@
             line-height: 1.8;
         }
 
-        .image-placeholder {
-            background: linear-gradient(135deg, #fff9e6, #fff3cc);
-            border: 3px dashed rgba(255, 215, 0, 0.4);
-            border-radius: 20px;
-            padding: 4rem 2rem;
-            text-align: center;
-            color: #999;
-            transition: all 0.3s ease;
-        }
-
-        .image-placeholder:hover {
-            border-color: #FFD700;
-            background: linear-gradient(135deg, #fff5e6, #ffe6b3);
-        }
-
-        .image-placeholder i {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            color: #FFD700;
-        }
-
         /* Blog Section */
         .blog {
             padding: 100px 0;
@@ -914,20 +946,6 @@
             transform: translateY(-8px);
             box-shadow: 0 20px 50px rgba(255, 215, 0, 0.25);
             border-color: rgba(255, 215, 0, 0.3);
-        }
-
-        .blog-image {
-            height: 220px;
-            background: linear-gradient(135deg, #fff9e6, #fff3cc);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .blog-image .image-placeholder {
-            border: none;
-            padding: 2rem;
-            background: transparent;
         }
 
         .blog-content {
@@ -1140,15 +1158,15 @@
             .container {
                 padding: 0 30px;
             }
-            
+
             .hero h1 {
                 font-size: 3.2rem;
             }
-            
+
             .page-header h1 {
                 font-size: 2.5rem;
             }
-            
+
             .section-title {
                 font-size: 2.5rem;
             }
@@ -1170,38 +1188,38 @@
                 transition: left 0.4s ease;
                 box-shadow: 0 4px 25px rgba(255, 215, 0, 0.2);
             }
-            
+
             .nav-menu.active {
                 left: 0;
             }
-            
+
             .nav-menu li {
                 margin: 1.5rem 0;
             }
-            
+
             .nav-menu a {
                 font-size: 1.2rem;
                 padding: 1rem 2rem;
                 border-radius: 10px;
                 transition: all 0.3s ease;
             }
-            
+
             .nav-menu a:hover {
                 background: rgba(255, 215, 0, 0.1);
             }
-            
+
             .nav-toggle {
                 display: flex;
             }
-            
+
             .nav-toggle.active span:nth-child(1) {
                 transform: rotate(-45deg) translate(-6px, 7px);
             }
-            
+
             .nav-toggle.active span:nth-child(2) {
                 opacity: 0;
             }
-            
+
             .nav-toggle.active span:nth-child(3) {
                 transform: rotate(45deg) translate(-6px, -7px);
             }
@@ -1223,11 +1241,12 @@
             .welcome-content p {
                 font-size: 1.3rem;
             }
-            
+
             .hero {
                 padding: 120px 0 80px;
+                background-attachment: scroll;
             }
-            
+
             .hero h1 {
                 font-size: 2.5rem;
                 line-height: 1.3;
@@ -1237,7 +1256,7 @@
                 font-size: 1.2rem;
                 margin-bottom: 2rem;
             }
-            
+
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
@@ -1248,7 +1267,7 @@
                 padding: 12px 30px;
                 font-size: 1rem;
             }
-            
+
             .about-content {
                 grid-template-columns: 1fr;
                 gap: 3rem;
@@ -1257,7 +1276,7 @@
             .about-text h2 {
                 font-size: 2.2rem;
             }
-            
+
             .page-header h1 {
                 font-size: 2.2rem;
             }
@@ -1265,18 +1284,18 @@
             .page-header p {
                 font-size: 1.1rem;
             }
-            
+
             .section-title {
                 font-size: 2.2rem;
             }
-            
+
             .services-grid,
             .blog-grid,
             .activity-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            
+
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 2rem;
@@ -1338,11 +1357,11 @@
             .welcome-logo i {
                 font-size: 3rem;
             }
-            
+
             .hero {
                 padding: 100px 0 60px;
             }
-            
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -1362,7 +1381,7 @@
             .page-header p {
                 font-size: 1rem;
             }
-            
+
             .services,
             .about,
             .blog,
@@ -1374,7 +1393,7 @@
                 font-size: 1.8rem;
                 margin-bottom: 3rem;
             }
-            
+
             .stats-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
@@ -1458,11 +1477,11 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-        
+
         .modal-overlay.show {
             opacity: 1;
         }
-        
+
         .modal-content {
             background: white;
             border-radius: 20px;
@@ -1473,11 +1492,11 @@
             transition: transform 0.3s ease;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
-        
+
         .modal-overlay.show .modal-content {
             transform: scale(1);
         }
-        
+
         .modal-header {
             display: flex;
             justify-content: space-between;
@@ -1492,7 +1511,7 @@
             font-weight: 700;
             font-size: 1.8rem;
         }
-        
+
         .modal-close {
             background: none;
             border: none;
@@ -1502,7 +1521,7 @@
             transition: color 0.3s ease;
             padding: 0.5rem;
         }
-        
+
         .modal-close:hover {
             color: #FFD700;
         }
@@ -1517,7 +1536,7 @@
             color: #FFD700;
             font-weight: 700;
         }
-        
+
         .modal-buttons {
             display: flex;
             gap: 1.5rem;
@@ -1552,7 +1571,7 @@
             background: #1a1a1a;
             color: #fff;
         }
-        
+
         .dark-theme .header {
             background: rgba(26, 26, 26, 0.95);
             border-bottom-color: rgba(255, 215, 0, 0.2);
@@ -1561,7 +1580,7 @@
         .dark-theme .nav-menu a {
             color: #fff;
         }
-        
+
         .dark-theme .service-card,
         .dark-theme .activity-card,
         .dark-theme .blog-card {
@@ -1647,10 +1666,18 @@
         <!-- Hero Section -->
         <div class="hero">
             <div class="floating-elements">
-                <div class="floating-element"><i class="fas fa-heart" style="font-size: 2rem;"></i></div>
-                <div class="floating-element"><i class="fas fa-hands-helping" style="font-size: 1.5rem;"></i></div>
-                <div class="floating-element"><i class="fas fa-users" style="font-size: 2.5rem;"></i></div>
-                <div class="floating-element"><i class="fas fa-globe" style="font-size: 2rem;"></i></div>
+                <div class="floating-element">
+                    <i class="fas fa-heart" style="font-size: 2rem;"></i>
+                </div>
+                <div class="floating-element">
+                    <i class="fas fa-hands-helping" style="font-size: 1.5rem;"></i>
+                </div>
+                <div class="floating-element">
+                    <i class="fas fa-users" style="font-size: 2.5rem;"></i>
+                </div>
+                <div class="floating-element">
+                    <i class="fas fa-globe" style="font-size: 2rem;"></i>
+                </div>
             </div>
             <div class="container">
                 <div class="hero-content">
@@ -1701,7 +1728,6 @@
                         <p>Baru memulai untuk jadi relawan? Pelajari selengkapnya dan mulai cari aktivitas kerelawanan pertama kamu! Temukan passion dan buat perubahan nyata.</p>
                         <a onclick="showPage('activities')" class="service-link">Pelajari Selengkapnya <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-search"></i>
@@ -1710,7 +1736,6 @@
                         <p>Butuh bantuan relawan untuk komunitasmu? Pelajari selengkapnya dan temukan relawan yang tepat! Bangun tim solid untuk misi sosial Anda.</p>
                         <a onclick="showPage('organizations')" class="service-link">Pelajari Selengkapnya <i class="fas fa-arrow-right"></i></a>
                     </div>
-                    
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-handshake"></i>
@@ -1834,24 +1859,27 @@
                     <p>Kami percaya bahwa setiap langkah kecil dapat menciptakan perubahan besar. Bergabunglah dengan kami untuk menjadi bagian dari gerakan positif di Indonesia dan wujudkan Indonesia yang lebih baik melalui aksi nyata.</p>
                     <a onclick="showPage('contact')" class="btn btn-primary">Hubungi Kami</a>
                 </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
+                 <div class="about-image">
+                    <img src="https://media.licdn.com/dms/image/v2/D4E2DAQH3Ol00Hf6q1Q/profile-treasury-image-shrink_8192_8192/B4EZp2MMX6HUAg-/0/1762919500579?e=1767330000&v=beta&t=ZL3f-GcZAwzwAeAjcD7BDHA7V8M5ax-Y4AAzykfogCk" 
+                         alt="Komunitas Volunteer" 
+                         class="lazy-image"
+                           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder" style="display: none;">
                         <i class="fas fa-users"></i>
                         <p>Gambar Komunitas Volunteer</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section
 
-    <!-- Blog Page -->
+     <!-- Blog Page -->
     <section id="blog" class="page-section">
         <div class="container">
             <div class="page-header">
                 <h1>Blog Satu Langkah Project</h1>
                 <p>Baca artikel terbaru tentang volunteer, tips, dan kisah inspiratif dari para relawan di seluruh Indonesia.</p>
             </div>
-
             <div class="blog-grid" id="blogGrid">
                 <!-- Blog posts will be populated by JavaScript -->
             </div>
@@ -1865,7 +1893,6 @@
                 <h1>Hubungi Kami</h1>
                 <p>Punya pertanyaan atau ingin berkolaborasi? Jangan ragu untuk menghubungi kami. Tim kami siap membantu Anda!</p>
             </div>
-
             <div class="about-content">
                 <div class="about-text">
                     <h2>Informasi Kontak</h2>
@@ -1875,7 +1902,6 @@
                         <p><i class="fas fa-map-marker-alt"></i> Jl. Sudirman No. 123, Jakarta Pusat 10220</p>
                         <p><i class="fas fa-clock"></i> Senin - Jumat: 09:00 - 17:00 WIB</p>
                     </div>
-                    
                     <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #FFD700; font-weight: 700;">Media Sosial</h3>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
@@ -1885,7 +1911,11 @@
                     </div>
                 </div>
                 <div class="about-image">
-                    <div class="image-placeholder">
+                    <img src="https://media.licdn.com/dms/image/v2/D4E2DAQHHhJKKNAtM_A/profile-treasury-image-shrink_1280_1280/B4EZp2MIMzKcAQ-/0/1762919482945?e=1767330000&v=beta&t=_X2LCPguDkk1qVXaXrM8xUy5bl2Yzse7Wk5Z3jeGGD8" 
+                         alt="Peta Lokasi Kantor" 
+                         class="lazy-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="image-placeholder" style="display: none;">
                         <i class="fas fa-map"></i>
                         <p>Peta Lokasi Kantor</p>
                     </div>
@@ -1939,7 +1969,6 @@
                         <a href="#"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Layanan</h4>
                     <ul>
@@ -1949,7 +1978,6 @@
                         <li><a href="#">Pelatihan</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Tentang</h4>
                     <ul>
@@ -1959,7 +1987,6 @@
                         <li><a onclick="showPage('contact')">Kontak</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-section">
                     <h4>Kontak</h4>
                     <div class="contact-info">
@@ -1969,7 +1996,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="footer-bottom">
                 <p>&copy; 2024 Satu Langkah Project. Semua hak dilindungi.</p>
             </div>
@@ -1992,7 +2018,8 @@
                 date: "15 Januari 2025",
                 volunteers: "5 dari 20 relawan",
                 badge: "Event",
-                icon: "fas fa-graduation-cap"
+                icon: "fas fa-graduation-cap",
+                image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Penanaman Pohon Mangrove",
@@ -2002,7 +2029,8 @@
                 date: "20 Januari 2025",
                 volunteers: "12 dari 30 relawan",
                 badge: "Project",
-                icon: "fas fa-leaf"
+                icon: "fas fa-leaf",
+                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Donor Darah Massal",
@@ -2012,7 +2040,8 @@
                 date: "25 Januari 2025",
                 volunteers: "8 dari 15 relawan",
                 badge: "Event",
-                icon: "fas fa-heart"
+                icon: "fas fa-heart",
+                image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Renovasi Rumah Yatim",
@@ -2022,7 +2051,8 @@
                 date: "1 Februari 2025",
                 volunteers: "3 dari 25 relawan",
                 badge: "Project",
-                icon: "fas fa-home"
+                icon: "fas fa-home",
+                image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Bagi Makanan untuk Tunawisma",
@@ -2032,7 +2062,8 @@
                 date: "5 Februari 2025",
                 volunteers: "15 dari 20 relawan",
                 badge: "Event",
-                icon: "fas fa-utensils"
+                icon: "fas fa-utensils",
+                image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Kampanye Zero Waste",
@@ -2042,7 +2073,8 @@
                 date: "10 Februari 2025",
                 volunteers: "7 dari 40 relawan",
                 badge: "Project",
-                icon: "fas fa-recycle"
+                icon: "fas fa-recycle",
+                image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             }
         ];
 
@@ -2054,7 +2086,8 @@
                 volunteers: "150+ relawan aktif",
                 established: "Berdiri sejak 2015",
                 badge: "NGO",
-                icon: "fas fa-graduation-cap"
+                icon: "fas fa-graduation-cap",
+                image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Green Earth Indonesia",
@@ -2063,7 +2096,8 @@
                 volunteers: "200+ relawan aktif",
                 established: "Berdiri sejak 2012",
                 badge: "Foundation",
-                icon: "fas fa-leaf"
+                icon: "fas fa-leaf",
+                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Komunitas Berbagi Jakarta",
@@ -2072,7 +2106,8 @@
                 volunteers: "80+ relawan aktif",
                 established: "Berdiri sejak 2018",
                 badge: "Community",
-                icon: "fas fa-heart"
+                icon: "fas fa-heart",
+                image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Rumah Yatim Indonesia",
@@ -2081,7 +2116,8 @@
                 volunteers: "300+ relawan aktif",
                 established: "Berdiri sejak 2010",
                 badge: "NGO",
-                icon: "fas fa-home"
+                icon: "fas fa-home",
+                image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             }
         ];
 
@@ -2089,32 +2125,38 @@
             {
                 title: "Tips Menjadi Volunteer yang Efektif",
                 excerpt: "Pelajari cara memaksimalkan kontribusi Anda sebagai volunteer dan menciptakan dampak positif yang berkelanjutan.",
-                category: "Tips Volunteer"
+                category: "Tips Volunteer",
+                image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Kisah Inspiratif Relawan Indonesia",
                 excerpt: "Temukan cerita-cerita menginspirasi dari para relawan yang telah membuat perubahan di komunitasnya.",
-                category: "Kisah Inspiratif"
+                category: "Kisah Inspiratif",
+                image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Panduan Memulai Program CSR",
                 excerpt: "Langkah-langkah praktis untuk perusahaan yang ingin memulai program Corporate Social Responsibility.",
-                category: "Panduan CSR"
+                category: "Panduan CSR",
+                image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Dampak Positif Volunteer di Masa Pandemi",
                 excerpt: "Bagaimana para volunteer tetap berkontribusi dan membantu masyarakat di tengah pandemi COVID-19.",
-                category: "Berita Terkini"
+                category: "Berita Terkini",
+                image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Membangun Komunitas Volunteer yang Solid",
                 excerpt: "Tips dan strategi untuk membangun dan mempertahankan komunitas volunteer yang aktif dan berkelanjutan.",
-                category: "Tips Volunteer"
+                category: "Tips Volunteer",
+                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
                 title: "Teknologi untuk Kegiatan Sosial",
                 excerpt: "Pemanfaatan teknologi digital untuk meningkatkan efektivitas program-program sosial dan volunteer.",
-                category: "Berita Terkini"
+                category: "Berita Terkini",
+                image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             }
         ];
 
@@ -2159,14 +2201,14 @@
             // Hide all pages
             const pages = document.querySelectorAll('.page-section');
             pages.forEach(page => page.classList.remove('active'));
-            
+
             // Show selected page
             document.getElementById(pageId).classList.add('active');
-            
+
             // Update main navigation
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => link.classList.remove('active'));
-            
+
             // Find and activate the correct nav link
             const targetLink = Array.from(navLinks).find(link => 
                 link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageId)
@@ -2174,28 +2216,25 @@
             if (targetLink) {
                 targetLink.classList.add('active');
             }
-            
+
             // Handle sub navigation
             const subNavbar = document.getElementById('subNavbar');
             const subNavMenu = document.getElementById('subNavMenu');
-            
+
             if (subMenus[pageId]) {
                 // Show sub navbar and populate menu
                 subNavbar.style.display = 'block';
                 setTimeout(() => {
                     subNavbar.classList.add('show');
                 }, 100);
-                
+
                 subNavMenu.innerHTML = '';
-                
                 subMenus[pageId].forEach(item => {
                     const li = document.createElement('li');
                     if (item.active) li.classList.add('active');
-                    
                     const a = document.createElement('a');
                     a.textContent = item.text;
                     a.onclick = () => setActiveSubMenu(li);
-                    
                     li.appendChild(a);
                     subNavMenu.appendChild(li);
                 });
@@ -2206,16 +2245,16 @@
                     subNavbar.style.display = 'none';
                 }, 300);
             }
-            
+
             // Load page content
             loadPageContent(pageId);
-            
+
             // Close mobile menu if open
             const navMenu = document.querySelector('.nav-menu');
             const navToggle = document.querySelector('.nav-toggle');
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
-            
+
             // Scroll to top with animation
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -2239,7 +2278,7 @@
         function renderActivities(activities) {
             const grid = document.getElementById('activitiesGrid');
             grid.innerHTML = '';
-            
+
             activities.forEach((activity, index) => {
                 const card = document.createElement('div');
                 card.className = 'activity-card slide-up';
@@ -2248,7 +2287,13 @@
                 card.innerHTML = `
                     <div class="activity-image">
                         <div class="activity-badge">${activity.badge}</div>
-                        <i class="${activity.icon}"></i>
+                        <img src="${activity.image}" 
+                             alt="${activity.title}" 
+                             class="lazy-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display: none;">
+                            <i class="${activity.icon}"></i>
+                        </div>
                     </div>
                     <div class="activity-content">
                         <h3 class="activity-title">${activity.title}</h3>
@@ -2260,12 +2305,12 @@
                         </div>
                     </div>
                 `;
-                
+
                 // Add click event for activity details
                 card.addEventListener('click', () => {
                     showActivityModal(activity);
                 });
-                
+
                 grid.appendChild(card);
             });
         }
@@ -2274,7 +2319,7 @@
         function renderOrganizations(organizations) {
             const grid = document.getElementById('organizationsGrid');
             grid.innerHTML = '';
-            
+
             organizations.forEach((org, index) => {
                 const card = document.createElement('div');
                 card.className = 'activity-card slide-up';
@@ -2283,7 +2328,13 @@
                 card.innerHTML = `
                     <div class="activity-image">
                         <div class="activity-badge">${org.badge}</div>
-                        <i class="${org.icon}"></i>
+                        <img src="${org.image}" 
+                             alt="${org.title}" 
+                             class="lazy-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display: none;">
+                            <i class="${org.icon}"></i>
+                        </div>
                     </div>
                     <div class="activity-content">
                         <h3 class="activity-title">${org.title}</h3>
@@ -2295,12 +2346,12 @@
                         </div>
                     </div>
                 `;
-                
+
                 // Add click event for organization details
                 card.addEventListener('click', () => {
                     showOrganizationModal(org);
                 });
-                
+
                 grid.appendChild(card);
             });
         }
@@ -2309,7 +2360,7 @@
         function renderBlogPosts(posts) {
             const grid = document.getElementById('blogGrid');
             grid.innerHTML = '';
-            
+
             posts.forEach((post, index) => {
                 const card = document.createElement('article');
                 card.className = 'blog-card slide-up';
@@ -2317,7 +2368,11 @@
                 
                 card.innerHTML = `
                     <div class="blog-image">
-                        <div class="image-placeholder">
+                        <img src="${post.image}" 
+                             alt="${post.title}" 
+                             class="lazy-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display: none;">
                             <i class="fas fa-image"></i>
                         </div>
                     </div>
@@ -2327,7 +2382,7 @@
                         <a href="#" class="blog-link">Baca Selengkapnya</a>
                     </div>
                 `;
-                
+
                 grid.appendChild(card);
             });
         }
@@ -2337,7 +2392,7 @@
             const subMenuItems = document.querySelectorAll('.sub-nav-menu li');
             subMenuItems.forEach(item => item.classList.remove('active'));
             selectedItem.classList.add('active');
-            
+
             // Filter content based on selected sub menu
             const selectedText = selectedItem.textContent;
             filterContentBySubMenu(selectedText);
@@ -2346,7 +2401,7 @@
         // Filter content by sub menu selection
         function filterContentBySubMenu(category) {
             const currentPage = document.querySelector('.page-section.active').id;
-            
+
             if (currentPage === 'activities') {
                 let filteredActivities = activitiesData;
                 if (category !== 'Semua Aktivitas') {
@@ -2371,23 +2426,23 @@
             const category = document.getElementById('categoryFilter').value;
             const location = document.getElementById('locationFilter').value;
             const time = document.getElementById('timeFilter').value;
-            
+
             let filteredActivities = activitiesData;
-            
+
             if (category !== 'Semua Kategori') {
                 filteredActivities = filteredActivities.filter(activity => 
                     activity.category === category
                 );
             }
-            
+
             if (location !== 'Semua Lokasi') {
                 filteredActivities = filteredActivities.filter(activity => 
                     activity.location.includes(location)
                 );
             }
-            
+
             renderActivities(filteredActivities);
-            
+
             // Show filter animation
             const filterSection = document.querySelector('.filter-section');
             filterSection.style.transform = 'scale(0.98)';
@@ -2419,7 +2474,6 @@
                     </div>
                 </div>
             `;
-            
             document.body.appendChild(modal);
             setTimeout(() => modal.classList.add('show'), 10);
         }
@@ -2446,7 +2500,6 @@
                     </div>
                 </div>
             `;
-            
             document.body.appendChild(modal);
             setTimeout(() => modal.classList.add('show'), 10);
         }
@@ -2483,27 +2536,43 @@
             }
         }
 
+        // Lazy loading for images
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('.lazy-image');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Hide welcome screen after animation
             hideWelcomeScreen();
-            
+
             // Initialize mobile navigation
             const navToggle = document.querySelector('.nav-toggle');
             const navMenu = document.querySelector('.nav-menu');
-            
+
             if (navToggle && navMenu) {
                 navToggle.addEventListener('click', function() {
                     navMenu.classList.toggle('active');
                     navToggle.classList.toggle('active');
                 });
             }
-            
+
             // Header scroll effect with parallax
             window.addEventListener('scroll', function() {
                 const header = document.querySelector('.header');
                 const scrollTop = window.pageYOffset;
-                
+
                 if (scrollTop > 100) {
                     header.style.background = 'rgba(255, 255, 255, 0.98)';
                     header.style.backdropFilter = 'blur(15px)';
@@ -2513,10 +2582,10 @@
                     header.style.backdropFilter = 'blur(15px)';
                     header.style.boxShadow = '0 4px 25px rgba(255, 215, 0, 0.15)';
                 }
-                
+
                 // Parallax effect
                 handleParallax();
-                
+
                 // Show/hide scroll to top button
                 const scrollToTopBtn = document.getElementById('scrollToTop');
                 if (scrollTop > 300) {
@@ -2525,18 +2594,18 @@
                     scrollToTopBtn.classList.remove('show');
                 }
             });
-            
+
             // Scroll to top functionality
             document.getElementById('scrollToTop').addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-            
+
             // Animate stats on scroll
             const observerOptions = {
                 threshold: 0.5,
                 rootMargin: '0px 0px -100px 0px'
             };
-            
+
             const observer = new IntersectionObserver(function(entries) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -2549,12 +2618,12 @@
                     }
                 });
             }, observerOptions);
-            
+
             const statsSection = document.querySelector('.stats');
             if (statsSection) {
                 observer.observe(statsSection);
             }
-            
+
             // Add loading animation for cards
             const cardObserver = new IntersectionObserver(function(entries) {
                 entries.forEach(entry => {
@@ -2563,10 +2632,13 @@
                     }
                 });
             }, { threshold: 0.1 });
-            
+
             // Load initial content
             loadPageContent('home');
-            
+
+            // Initialize lazy loading
+            lazyLoadImages();
+
             // Add keyboard navigation
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
@@ -2576,48 +2648,43 @@
                     navToggle.classList.remove('active');
                 }
             });
-            
+
             // Initialize theme switcher
             const themeToggle = document.createElement('button');
             themeToggle.className = 'theme-toggle';
             themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            
             themeToggle.addEventListener('click', () => {
                 document.body.classList.toggle('dark-theme');
                 const icon = themeToggle.querySelector('i');
-                icon.className = document.body.classList.contains('dark-theme') 
-                    ? 'fas fa-sun' : 'fas fa-moon';
+                icon.className = document.body.classList.contains('dark-theme') ? 
+                    'fas fa-sun' : 'fas fa-moon';
             });
-            
             document.body.appendChild(themeToggle);
-            
+
             // Add smooth page transitions
             const style = document.createElement('style');
             style.textContent = `
                 .page-section {
                     transition: opacity 0.3s ease-in-out;
                 }
-                
                 .page-section:not(.active) {
                     opacity: 0;
                 }
-                
                 .page-section.active {
                     opacity: 1;
                 }
             `;
             document.head.appendChild(style);
-            
+
             // Initialize floating animations with random delays
             const floatingElements = document.querySelectorAll('.floating-element');
             floatingElements.forEach((element, index) => {
                 const randomDelay = Math.random() * 3;
                 const randomDuration = 6 + Math.random() * 4;
-                
                 element.style.animationDelay = `${randomDelay}s`;
                 element.style.animationDuration = `${randomDuration}s`;
             });
-            
+
             // Add click ripple effect to buttons
             document.addEventListener('click', function(e) {
                 if (e.target.classList.contains('btn') || e.target.classList.contains('filter-btn')) {
@@ -2626,7 +2693,7 @@
                     const size = Math.max(rect.width, rect.height);
                     const x = e.clientX - rect.left - size / 2;
                     const y = e.clientY - rect.top - size / 2;
-                    
+
                     ripple.style.cssText = `
                         position: absolute;
                         width: ${size}px;
@@ -2639,15 +2706,15 @@
                         animation: ripple 0.6s ease-out;
                         pointer-events: none;
                     `;
-                    
+
                     e.target.style.position = 'relative';
                     e.target.style.overflow = 'hidden';
                     e.target.appendChild(ripple);
-                    
+
                     setTimeout(() => ripple.remove(), 600);
                 }
             });
-            
+
             // Add ripple animation
             const rippleStyle = document.createElement('style');
             rippleStyle.textContent = `
