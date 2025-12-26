@@ -30,8 +30,7 @@
 
         /* Image Styles */
         .hero-image {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.9)), 
-                        url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.9)), url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -108,7 +107,6 @@
             opacity: 1;
         }
 
-        /* Rest of your existing CSS remains the same... */
         /* Welcome Screen */
         .welcome-screen {
             position: fixed;
@@ -345,6 +343,17 @@
             color: #FFD700;
         }
 
+        /* Special styling for SL Feed */
+        .sub-nav-menu li.sl-feed {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .sub-nav-menu li.sl-feed:hover {
+            background: linear-gradient(135deg, #FF5252, #FF7043);
+            transform: translateY(-3px) scale(1.05);
+        }
+
         /* Page Sections */
         .page-section {
             display: none;
@@ -388,10 +397,9 @@
             line-height: 1.8;
         }
 
-        /* Hero Section with Background */
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.9)), 
-                        url('https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse2.mm.bing.net%2Fth%2Fid%2FOIP.0p-92ATo1-QirERlYm8JzgHaE7%3Fpid%3DApi&sp=1766724398T10464838d8387802903675cbbed5a800b3d70e2125df9e6c07f5e9913ef25ad2');
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.9)), url('https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse2.mm.bing.net%2Fth%2Fid%2FOIP.0p-92ATo1-QirERlYm8JzgHaE7%3Fpid%3DApi&sp=1766724398T10464838d8387802903675cbbed5a800b3d70e2125df9e6c07f5e9913ef25ad2');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -595,6 +603,12 @@
             z-index: 10;
         }
 
+        /* Special badge for SL Feed */
+        .activity-badge.sl-feed {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
+            color: white;
+        }
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -642,6 +656,61 @@
             color: #FFD700;
             width: 18px;
             font-size: 1rem;
+        }
+
+        /* Points Balance Section */
+        .points-balance {
+            background: linear-gradient(135deg, #fff9e6, #fff3cc);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15);
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+        }
+
+        .points-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .points-card {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            padding: 2rem;
+            border-radius: 20px;
+            color: white;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .points-card h3 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .points-card p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .points-info {
+            text-align: left;
+        }
+
+        .points-info h4 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .points-info ul {
+            color: #666;
+            line-height: 1.8;
+            list-style-position: inside;
         }
 
         /* Filter Section */
@@ -1153,6 +1222,88 @@
             box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
         }
 
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .modal-header h2 {
+            color: #333;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        .modal-close:hover {
+            color: #FFD700;
+        }
+
+        .modal-body p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .modal-body strong {
+            color: #FFD700;
+            font-weight: 700;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            justify-content: flex-end;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             .container {
@@ -1234,14 +1385,6 @@
                 justify-content: flex-start;
             }
 
-            .welcome-content h1 {
-                font-size: 2.8rem;
-            }
-
-            .welcome-content p {
-                font-size: 1.3rem;
-            }
-
             .hero {
                 padding: 120px 0 80px;
                 background-attachment: scroll;
@@ -1320,6 +1463,11 @@
                 width: 100%;
             }
 
+            .points-display {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
             .services,
             .about,
             .blog,
@@ -1339,23 +1487,6 @@
 
             .nav-brand h2 {
                 font-size: 1.5rem;
-            }
-
-            .welcome-content h1 {
-                font-size: 2.2rem;
-            }
-
-            .welcome-content p {
-                font-size: 1.1rem;
-            }
-
-            .welcome-logo {
-                width: 100px;
-                height: 100px;
-            }
-
-            .welcome-logo i {
-                font-size: 3rem;
             }
 
             .hero {
@@ -1461,156 +1592,6 @@
             0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.show {
-            opacity: 1;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 600px;
-            width: 90%;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .modal-overlay.show .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .modal-header h2 {
-            color: #333;
-            font-weight: 700;
-            font-size: 1.8rem;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 2.5rem;
-            cursor: pointer;
-            color: #999;
-            transition: color 0.3s ease;
-            padding: 0.5rem;
-        }
-
-        .modal-close:hover {
-            color: #FFD700;
-        }
-
-        .modal-body p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .modal-body strong {
-            color: #FFD700;
-            font-weight: 700;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-            justify-content: flex-end;
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 120px;
-            right: 30px;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            border: none;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: white;
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .theme-toggle:hover {
-            transform: translateY(-3px) scale(1.1);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        /* Dark Theme */
-        .dark-theme {
-            background: #1a1a1a;
-            color: #fff;
-        }
-
-        .dark-theme .header {
-            background: rgba(26, 26, 26, 0.95);
-            border-bottom-color: rgba(255, 215, 0, 0.2);
-        }
-
-        .dark-theme .nav-menu a {
-            color: #fff;
-        }
-
-        .dark-theme .service-card,
-        .dark-theme .activity-card,
-        .dark-theme .blog-card {
-            background: #2a2a2a;
-            color: #fff;
-            border-color: rgba(255, 215, 0, 0.2);
-        }
-
-        .dark-theme .filter-section {
-            background: linear-gradient(135deg, #2a2a2a, #333);
-            border-color: rgba(255, 215, 0, 0.3);
-        }
-
-        .dark-theme .filter-select {
-            background: #333;
-            color: #fff;
-            border-color: rgba(255, 215, 0, 0.3);
-        }
-
-        .dark-theme .page-header h1,
-        .dark-theme .section-title,
-        .dark-theme .about-text h2 {
-            color: #fff;
-        }
-
-        .dark-theme .services,
-        .dark-theme .blog,
-        .dark-theme .about {
-            background: #1a1a1a;
-        }
     </style>
 </head>
 <body>
@@ -1638,7 +1619,7 @@
                 <ul class="nav-menu">
                     <li><a onclick="showPage('home')" class="nav-link active">Beranda</a></li>
                     <li><a onclick="showPage('activities')" class="nav-link">Cari Aktivitas</a></li>
-                    <li><a onclick="showPage('organizations')" class="nav-link">Cari Organisasi</a></li>
+                    <li><a onclick="showPage('points')" class="nav-link">Penukaran Poin Langkah</a></li>
                     <li><a onclick="showPage('about')" class="nav-link">Tentang Kami</a></li>
                     <li><a onclick="showPage('blog')" class="nav-link">Blog</a></li>
                     <li><a onclick="showPage('contact')" class="nav-link">Kontak</a></li>
@@ -1730,11 +1711,11 @@
                     </div>
                     <div class="service-card">
                         <div class="service-icon">
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-coins"></i>
                         </div>
-                        <h3>Cari Relawan</h3>
-                        <p>Butuh bantuan relawan untuk komunitasmu? Pelajari selengkapnya dan temukan relawan yang tepat! Bangun tim solid untuk misi sosial Anda.</p>
-                        <a onclick="showPage('organizations')" class="service-link">Pelajari Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                        <h3>Penukaran Poin Langkah</h3>
+                        <p>Tukarkan poin yang kamu kumpulkan dari aktivitas volunteer dengan berbagai reward menarik! Dapatkan sertifikat, merchandise, dan voucher pelatihan.</p>
+                        <a onclick="showPage('points')" class="service-link">Pelajari Selengkapnya <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="service-card">
                         <div class="service-icon">
@@ -1803,48 +1784,36 @@
         </div>
     </section>
 
-    <!-- Organizations Page -->
-    <section id="organizations" class="page-section">
+    <!-- Points Exchange Page -->
+    <section id="points" class="page-section">
         <div class="container">
             <div class="page-header">
-                <h1>Cari Organisasi</h1>
-                <p>Temukan organisasi sosial yang membutuhkan bantuan relawan. Bergabunglah dengan misi yang sesuai dengan nilai-nilai Anda.</p>
+                <h1>Penukaran Poin Langkah</h1>
+                <p>Tukarkan poin yang Anda kumpulkan dari aktivitas volunteer dengan berbagai reward menarik!</p>
             </div>
 
-            <!-- Filter Section -->
-            <div class="filter-section">
-                <div class="filter-row">
-                    <div class="filter-group">
-                        <i class="fas fa-filter"></i>
-                        <span>Filter:</span>
+            <!-- Points Balance Section -->
+            <div class="points-balance">
+                <div class="points-display">
+                    <div class="points-card">
+                        <h3>1,250</h3>
+                        <p>Poin Anda</p>
                     </div>
-                    <div class="filter-group">
-                        <select class="filter-select">
-                            <option>Semua Bidang</option>
-                            <option>Pendidikan</option>
-                            <option>Kesehatan</option>
-                            <option>Lingkungan</option>
-                            <option>Sosial Kemasyarakatan</option>
-                        </select>
+                    <div class="points-info">
+                        <h4>Cara Mendapat Poin:</h4>
+                        <ul>
+                            <li>Mengikuti aktivitas volunteer: +100 poin</li>
+                            <li>Menyelesaikan project: +200 poin</li>
+                            <li>Mengajak teman bergabung: +50 poin</li>
+                            <li>Review aktivitas: +25 poin</li>
+                        </ul>
                     </div>
-                    <div class="filter-group">
-                        <select class="filter-select">
-                            <option>Semua Wilayah</option>
-                            <option>DKI Jakarta</option>
-                            <option>Jawa Barat</option>
-                            <option>Jawa Tengah</option>
-                            <option>Jawa Timur</option>
-                        </select>
-                    </div>
-                    <button class="filter-btn">
-                        <i class="fas fa-search"></i> Cari
-                    </button>
                 </div>
             </div>
 
-            <!-- Organizations Grid -->
-            <div class="activity-grid" id="organizationsGrid">
-                <!-- Organizations will be populated by JavaScript -->
+            <!-- Rewards Grid -->
+            <div class="activity-grid" id="rewardsGrid">
+                <!-- Rewards will be populated by JavaScript -->
             </div>
         </div>
     </section>
@@ -1859,11 +1828,8 @@
                     <p>Kami percaya bahwa setiap langkah kecil dapat menciptakan perubahan besar. Bergabunglah dengan kami untuk menjadi bagian dari gerakan positif di Indonesia dan wujudkan Indonesia yang lebih baik melalui aksi nyata.</p>
                     <a onclick="showPage('contact')" class="btn btn-primary">Hubungi Kami</a>
                 </div>
-                 <div class="about-image">
-                    <img src="https://media.licdn.com/dms/image/v2/D4E2DAQH3Ol00Hf6q1Q/profile-treasury-image-shrink_8192_8192/B4EZp2MMX6HUAg-/0/1762919500579?e=1767330000&v=beta&t=ZL3f-GcZAwzwAeAjcD7BDHA7V8M5ax-Y4AAzykfogCk" 
-                         alt="Komunitas Volunteer" 
-                         class="lazy-image"
-                           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="about-image">
+                    <img src="https://media.licdn.com/dms/image/v2/D4E2DAQH3Ol00Hf6q1Q/profile-treasury-image-shrink_8192_8192/B4EZp2MMX6HUAg-/0/1762919500579?e=1767330000&v=beta&t=ZL3f-GcZAwzwAeAjcD7BDHA7V8M5ax-Y4AAzykfogCk" alt="Komunitas Volunteer" class="lazy-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="image-placeholder" style="display: none;">
                         <i class="fas fa-users"></i>
                         <p>Gambar Komunitas Volunteer</p>
@@ -1871,16 +1837,16 @@
                 </div>
             </div>
         </div>
-    </section
+    </section>
 
-     <!-- Blog Page -->
+    <!-- Blog Page -->
     <section id="blog" class="page-section">
         <div class="container">
             <div class="page-header">
                 <h1>Blog Satu Langkah Project</h1>
                 <p>Baca artikel terbaru tentang volunteer, tips, dan kisah inspiratif dari para relawan di seluruh Indonesia.</p>
             </div>
-            <div class="blog-grid" id="blogGrid">
+                        <div class="blog-grid" id="blogGrid">
                 <!-- Blog posts will be populated by JavaScript -->
             </div>
         </div>
@@ -1911,10 +1877,7 @@
                     </div>
                 </div>
                 <div class="about-image">
-                    <img src="https://media.licdn.com/dms/image/v2/D4E2DAQHHhJKKNAtM_A/profile-treasury-image-shrink_1280_1280/B4EZp2MIMzKcAQ-/0/1762919482945?e=1767330000&v=beta&t=_X2LCPguDkk1qVXaXrM8xUy5bl2Yzse7Wk5Z3jeGGD8" 
-                         alt="Peta Lokasi Kantor" 
-                         class="lazy-image"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <img src="https://media.licdn.com/dms/image/v2/D4E2DAQHHhJKKNAtM_A/profile-treasury-image-shrink_1280_1280/B4EZp2MIMzKcAQ-/0/1762919482945?e=1767330000&v=beta&t=_X2LCPguDkk1qVXaXrM8xUy5bl2Yzse7Wk5Z3jeGGD8" alt="Peta Lokasi Kantor" class="lazy-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div class="image-placeholder" style="display: none;">
                         <i class="fas fa-map"></i>
                         <p>Peta Lokasi Kantor</p>
@@ -1973,7 +1936,7 @@
                     <h4>Layanan</h4>
                     <ul>
                         <li><a onclick="showPage('activities')">Jadi Relawan</a></li>
-                        <li><a onclick="showPage('organizations')">Cari Relawan</a></li>
+                        <li><a onclick="showPage('points')">Penukaran Poin Langkah</a></li>
                         <li><a onclick="showPage('contact')">Kerjasama CSR</a></li>
                         <li><a href="#">Pelatihan</a></li>
                     </ul>
@@ -2008,7 +1971,7 @@
     </button>
 
     <script>
-        // Data for activities and organizations
+        // Data for activities, SL Feed, rewards, and blog posts
         const activitiesData = [
             {
                 title: "Mengajar Anak-anak di Desa Terpencil",
@@ -2078,46 +2041,105 @@
             }
         ];
 
-        const organizationsData = [
+        // SL Feed data from Kak Ghanny
+        const slFeedData = [
             {
-                title: "Yayasan Pendidikan Nusantara",
-                focus: "Fokus: Pendidikan Anak Kurang Mampu",
-                location: "Jakarta Selatan",
-                volunteers: "150+ relawan aktif",
-                established: "Berdiri sejak 2015",
-                badge: "NGO",
-                icon: "fas fa-graduation-cap",
-                image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                title: "Dampak Positif Volunteer di Masa Pandemi COVID-19",
+                excerpt: "Bagaimana para volunteer tetap berkontribusi dan membantu masyarakat di tengah pandemi COVID-19.",
+                author: "Kak Ghanny",
+                date: "26 Desember 2024",
+                category: "Insight",
+                badge: "SL Feed",
+                icon: "fas fa-lightbulb",
+                image: "https://images.unsplash.com/photo-1584515933487-779824d29309?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
-                title: "Green Earth Indonesia",
-                focus: "Fokus: Konservasi Lingkungan",
-                location: "Bogor, Jawa Barat",
-                volunteers: "200+ relawan aktif",
-                established: "Berdiri sejak 2012",
-                badge: "Foundation",
-                icon: "fas fa-leaf",
-                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                title: "Membangun Komunitas Volunteer yang Solid",
+                excerpt: "Tips dan strategi untuk membangun dan mempertahankan komunitas volunteer yang aktif dan berkelanjutan.",
+                author: "Kak Ghanny",
+                date: "25 Desember 2024",
+                category: "Tips",
+                badge: "SL Feed",
+                icon: "fas fa-users",
+                image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
-                title: "Komunitas Berbagi Jakarta",
-                focus: "Fokus: Bantuan Sosial Masyarakat",
-                location: "Jakarta Pusat",
-                volunteers: "80+ relawan aktif",
-                established: "Berdiri sejak 2018",
-                badge: "Community",
+                title: "Teknologi untuk Kegiatan Sosial",
+                excerpt: "Pemanfaatan teknologi digital untuk meningkatkan efektivitas program-program sosial dan volunteer.",
+                author: "Kak Ghanny",
+                date: "24 Desember 2024",
+                category: "Teknologi",
+                badge: "SL Feed",
+                icon: "fas fa-laptop",
+                image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Pentingnya Empati dalam Kegiatan Volunteer",
+                excerpt: "Mengapa empati menjadi kunci sukses dalam setiap kegiatan volunteer dan bagaimana mengembangkannya.",
+                author: "Kak Ghanny",
+                date: "23 Desember 2024",
+                category: "Insight",
+                badge: "SL Feed",
                 icon: "fas fa-heart",
-                image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            }
+        ];
+
+        // Rewards data for points exchange
+        const rewardsData = [
+            {
+                title: "Sertifikat Volunteer Digital",
+                description: "Sertifikat resmi untuk portofolio karir Anda",
+                points: "500 Poin",
+                category: "Sertifikat",
+                badge: "Popular",
+                icon: "fas fa-certificate",
+                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             {
-                title: "Rumah Yatim Indonesia",
-                focus: "Fokus: Perlindungan Anak Yatim",
-                location: "Bandung, Jawa Barat",
-                volunteers: "300+ relawan aktif",
-                established: "Berdiri sejak 2010",
-                badge: "NGO",
-                icon: "fas fa-home",
-                image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                title: "Kaos Satu Langkah Project",
+                description: "Kaos eksklusif dengan desain limited edition",
+                points: "800 Poin",
+                category: "Merchandise",
+                badge: "Limited",
+                icon: "fas fa-tshirt",
+                image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Voucher Pelatihan Online",
+                description: "Akses ke berbagai kursus pengembangan diri",
+                points: "1000 Poin",
+                category: "Pelatihan",
+                badge: "New",
+                icon: "fas fa-graduation-cap",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Tumbler Ramah Lingkungan",
+                description: "Tumbler berkualitas untuk gaya hidup sustainable",
+                points: "600 Poin",
+                category: "Merchandise",
+                badge: "Eco",
+                icon: "fas fa-leaf",
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Tas Volunteer Kit",
+                description: "Tas lengkap dengan perlengkapan volunteer",
+                points: "750 Poin",
+                category: "Merchandise",
+                badge: "Essential",
+                icon: "fas fa-backpack",
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            {
+                title: "Workshop Leadership",
+                description: "Pelatihan kepemimpinan untuk volunteer",
+                points: "1200 Poin",
+                category: "Pelatihan",
+                badge: "Premium",
+                icon: "fas fa-users-cog",
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             }
         ];
 
@@ -2164,6 +2186,7 @@
         const subMenus = {
             activities: [
                 { text: 'Semua Aktivitas', active: true },
+                { text: 'SL Feed Insights', special: true },
                 { text: 'Pendidikan' },
                 { text: 'Lingkungan' },
                 { text: 'Kesehatan' },
@@ -2171,13 +2194,12 @@
                 { text: 'Teknologi' },
                 { text: 'Olahraga' }
             ],
-            organizations: [
-                { text: 'Semua Organisasi', active: true },
-                { text: 'NGO' },
-                { text: 'Yayasan' },
-                { text: 'Komunitas' },
-                { text: 'Perusahaan' },
-                { text: 'Pemerintah' }
+            points: [
+                { text: 'Semua Reward', active: true },
+                { text: 'Sertifikat' },
+                { text: 'Merchandise' },
+                { text: 'Pelatihan' },
+                { text: 'Voucher' }
             ],
             blog: [
                 { text: 'Semua Artikel', active: true },
@@ -2232,6 +2254,8 @@
                 subMenus[pageId].forEach(item => {
                     const li = document.createElement('li');
                     if (item.active) li.classList.add('active');
+                    if (item.special) li.classList.add('sl-feed');
+                    
                     const a = document.createElement('a');
                     a.textContent = item.text;
                     a.onclick = () => setActiveSubMenu(li);
@@ -2265,8 +2289,8 @@
                 case 'activities':
                     renderActivities(activitiesData);
                     break;
-                case 'organizations':
-                    renderOrganizations(organizationsData);
+                case 'points':
+                    renderRewards(rewardsData);
                     break;
                 case 'blog':
                     renderBlogPosts(blogData);
@@ -2283,13 +2307,10 @@
                 const card = document.createElement('div');
                 card.className = 'activity-card slide-up';
                 card.style.animationDelay = `${index * 0.1}s`;
-                
                 card.innerHTML = `
                     <div class="activity-image">
                         <div class="activity-badge">${activity.badge}</div>
-                        <img src="${activity.image}" 
-                             alt="${activity.title}" 
-                             class="lazy-image"
+                        <img src="${activity.image}" alt="${activity.title}" class="lazy-image"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="image-placeholder" style="display: none;">
                             <i class="${activity.icon}"></i>
@@ -2315,42 +2336,75 @@
             });
         }
 
-        // Render organizations
-        function renderOrganizations(organizations) {
-            const grid = document.getElementById('organizationsGrid');
+        // Render SL Feed
+        function renderSLFeed(feedPosts) {
+            const grid = document.getElementById('activitiesGrid');
             grid.innerHTML = '';
 
-            organizations.forEach((org, index) => {
+            feedPosts.forEach((post, index) => {
                 const card = document.createElement('div');
                 card.className = 'activity-card slide-up';
                 card.style.animationDelay = `${index * 0.1}s`;
-                
                 card.innerHTML = `
                     <div class="activity-image">
-                        <div class="activity-badge">${org.badge}</div>
-                        <img src="${org.image}" 
-                             alt="${org.title}" 
-                             class="lazy-image"
+                        <div class="activity-badge sl-feed">${post.badge}</div>
+                        <img src="${post.image}" alt="${post.title}" class="lazy-image"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="image-placeholder" style="display: none;">
-                            <i class="${org.icon}"></i>
+                            <i class="${post.icon}"></i>
                         </div>
                     </div>
                     <div class="activity-content">
-                        <h3 class="activity-title">${org.title}</h3>
-                        <p class="activity-org">${org.focus}</p>
+                        <h3 class="activity-title">${post.title}</h3>
+                        <p class="activity-org">By ${post.author}</p>
                         <div class="activity-meta">
-                            <div><i class="fas fa-map-marker-alt"></i> ${org.location}</div>
-                            <div><i class="fas fa-users"></i> ${org.volunteers}</div>
-                            <div><i class="fas fa-calendar"></i> ${org.established}</div>
+                            <div><i class="fas fa-calendar"></i> ${post.date}</div>
+                            <div><i class="fas fa-tag"></i> ${post.category}</div>
+                            <div><i class="fas fa-eye"></i> Baca Insight</div>
                         </div>
                     </div>
                 `;
 
-                // Add click event for organization details
                 card.addEventListener('click', () => {
-                    showOrganizationModal(org);
+                    showSLFeedModal(post);
                 });
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Render rewards for points exchange
+        function renderRewards(rewards) {
+            const grid = document.getElementById('rewardsGrid');
+            grid.innerHTML = '';
+
+            rewards.forEach((reward, index) => {
+                const card = document.createElement('div');
+                card.className = 'activity-card slide-up';
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.innerHTML = `
+                    <div class="activity-image">
+                        <div class="activity-badge">${reward.badge}</div>
+                        <img src="${reward.image}" alt="${reward.title}" class="lazy-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display: none;">
+                            <i class="${reward.icon}"></i>
+                        </div>
+                    </div>
+                    <div class="activity-content">
+                        <h3 class="activity-title">${reward.title}</h3>
+                        <p class="activity-org">${reward.description}</p>
+                        <div class="activity-meta">
+                            <div><i class="fas fa-coins"></i> ${reward.points}</div>
+                            <div><i class="fas fa-tag"></i> ${reward.category}</div>
+                            <div style="margin-top: 1rem;">
+                                <button class="btn btn-primary" style="width: 100%; padding: 0.8rem;" onclick="exchangeReward('${reward.title}')">
+                                    Tukar Sekarang
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
 
                 grid.appendChild(card);
             });
@@ -2365,12 +2419,9 @@
                 const card = document.createElement('article');
                 card.className = 'blog-card slide-up';
                 card.style.animationDelay = `${index * 0.1}s`;
-                
                 card.innerHTML = `
                     <div class="blog-image">
-                        <img src="${post.image}" 
-                             alt="${post.title}" 
-                             class="lazy-image"
+                        <img src="${post.image}" alt="${post.title}" class="lazy-image"
                              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="image-placeholder" style="display: none;">
                             <i class="fas fa-image"></i>
@@ -2382,7 +2433,6 @@
                         <a href="#" class="blog-link">Baca Selengkapnya</a>
                     </div>
                 `;
-
                 grid.appendChild(card);
             });
         }
@@ -2403,6 +2453,11 @@
             const currentPage = document.querySelector('.page-section.active').id;
 
             if (currentPage === 'activities') {
+                if (category === 'SL Feed Insights') {
+                    renderSLFeed(slFeedData);
+                    return;
+                }
+                
                 let filteredActivities = activitiesData;
                 if (category !== 'Semua Aktivitas') {
                     filteredActivities = activitiesData.filter(activity => 
@@ -2410,6 +2465,14 @@
                     );
                 }
                 renderActivities(filteredActivities);
+            } else if (currentPage === 'points') {
+                let filteredRewards = rewardsData;
+                if (category !== 'Semua Reward') {
+                    filteredRewards = rewardsData.filter(reward => 
+                        reward.category === category
+                    );
+                }
+                renderRewards(filteredRewards);
             } else if (currentPage === 'blog') {
                 let filteredPosts = blogData;
                 if (category !== 'Semua Artikel') {
@@ -2451,6 +2514,55 @@
             }, 150);
         }
 
+        // Exchange reward function
+        function exchangeReward(rewardTitle) {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Konfirmasi Penukaran</h2>
+                        <button class="modal-close" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin ingin menukar poin untuk <strong>${rewardTitle}</strong>?</p>
+                        <p>Poin akan dipotong dari saldo Anda setelah konfirmasi.</p>
+                        <div class="modal-buttons">
+                            <button class="btn btn-primary" onclick="confirmExchange('${rewardTitle}')">Konfirmasi</button>
+                            <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            setTimeout(() => modal.classList.add('show'), 10);
+        }
+
+        // Confirm exchange
+        function confirmExchange(rewardTitle) {
+            closeModal();
+            // Show success message
+            const successModal = document.createElement('div');
+            successModal.className = 'modal-overlay';
+            successModal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Penukaran Berhasil!</h2>
+                        <button class="modal-close" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Selamat! Anda berhasil menukar <strong>${rewardTitle}</strong>.</p>
+                        <p>Reward akan dikirim ke alamat yang terdaftar dalam 3-5 hari kerja.</p>
+                        <div class="modal-buttons">
+                            <button class="btn btn-primary" onclick="closeModal()">OK</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(successModal);
+            setTimeout(() => successModal.classList.add('show'), 10);
+        }
+
         // Show activity modal
         function showActivityModal(activity) {
             const modal = document.createElement('div');
@@ -2478,23 +2590,23 @@
             setTimeout(() => modal.classList.add('show'), 10);
         }
 
-        // Show organization modal
-        function showOrganizationModal(org) {
+        // Show SL Feed modal
+        function showSLFeedModal(post) {
             const modal = document.createElement('div');
             modal.className = 'modal-overlay';
             modal.innerHTML = `
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2>${org.title}</h2>
+                        <h2>${post.title}</h2>
                         <button class="modal-close" onclick="closeModal()">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <p><strong>Fokus:</strong> ${org.focus}</p>
-                        <p><strong>Lokasi:</strong> ${org.location}</p>
-                        <p><strong>Relawan:</strong> ${org.volunteers}</p>
-                        <p><strong>Didirikan:</strong> ${org.established}</p>
+                        <p><strong>Penulis:</strong> ${post.author}</p>
+                        <p><strong>Tanggal:</strong> ${post.date}</p>
+                        <p><strong>Kategori:</strong> ${post.category}</p>
+                        <p style="margin-top: 1.5rem;">${post.excerpt}</p>
                         <div class="modal-buttons">
-                            <button class="btn btn-primary">Hubungi Organisasi</button>
+                            <button class="btn btn-primary">Baca Selengkapnya</button>
                             <button class="btn btn-secondary" onclick="closeModal()">Tutup</button>
                         </div>
                     </div>
@@ -2624,15 +2736,6 @@
                 observer.observe(statsSection);
             }
 
-            // Add loading animation for cards
-            const cardObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in');
-                    }
-                });
-            }, { threshold: 0.1 });
-
             // Load initial content
             loadPageContent('home');
 
@@ -2647,42 +2750,6 @@
                     navMenu.classList.remove('active');
                     navToggle.classList.remove('active');
                 }
-            });
-
-            // Initialize theme switcher
-            const themeToggle = document.createElement('button');
-            themeToggle.className = 'theme-toggle';
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            themeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark-theme');
-                const icon = themeToggle.querySelector('i');
-                icon.className = document.body.classList.contains('dark-theme') ? 
-                    'fas fa-sun' : 'fas fa-moon';
-            });
-            document.body.appendChild(themeToggle);
-
-            // Add smooth page transitions
-            const style = document.createElement('style');
-            style.textContent = `
-                .page-section {
-                    transition: opacity 0.3s ease-in-out;
-                }
-                .page-section:not(.active) {
-                    opacity: 0;
-                }
-                .page-section.active {
-                    opacity: 1;
-                }
-            `;
-            document.head.appendChild(style);
-
-            // Initialize floating animations with random delays
-            const floatingElements = document.querySelectorAll('.floating-element');
-            floatingElements.forEach((element, index) => {
-                const randomDelay = Math.random() * 3;
-                const randomDuration = 6 + Math.random() * 4;
-                element.style.animationDelay = `${randomDelay}s`;
-                element.style.animationDuration = `${randomDuration}s`;
             });
 
             // Add click ripple effect to buttons
@@ -2730,3 +2797,5 @@
     </script>
 </body>
 </html>
+Perfect! I've created a complete updated HTML file with all the requested changes:
+
