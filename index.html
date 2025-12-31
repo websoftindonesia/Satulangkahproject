@@ -3,2799 +3,1547 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Satu Langkah Project - Platform Volunteer Indonesia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>satulangkah.ac.id</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-            background: #fefefe;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Image Styles */
-        .hero-image {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.9)), url('https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse4.mm.bing.net%2Fth%2Fid%2FOIP.8YUwI8fdjDNHbpMEVqlDYAHaE8%3Fpid%3DApi&sp=1766749133T55e164f57d086e77284560a5e4ab6612a19988f84fc14c5dc2848a0e319133c9');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .about-image img,
-        .blog-image img,
-        .activity-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .about-image:hover img,
-        .blog-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .activity-image {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .blog-image {
-            height: 220px;
-            overflow: hidden;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .about-image {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
-        }
-
-        /* Image placeholder fallback */
-        .image-placeholder {
-            background: linear-gradient(135deg, #fff9e6, #fff3cc);
-            border: 3px dashed rgba(255, 215, 0, 0.4);
-            border-radius: 20px;
-            padding: 4rem 2rem;
-            text-align: center;
-            color: #999;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-        }
-
-        .image-placeholder:hover {
-            border-color: #FFD700;
-            background: linear-gradient(135deg, #fff5e6, #ffe6b3);
-        }
-
-        .image-placeholder i {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            color: #FFD700;
-        }
-
-        /* Lazy loading animation */
-        .lazy-image {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .lazy-image.loaded {
-            opacity: 1;
-        }
-
-        /* Welcome Screen */
-        .welcome-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-
-        .welcome-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .welcome-content {
-            text-align: center;
-            color: white;
-            animation: welcomeAnimation 2s ease-in-out;
-        }
-
-        .welcome-content h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .welcome-content p {
-            font-size: 1.5rem;
-            opacity: 0.95;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .welcome-logo {
-            width: 120px;
-            height: 120px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            animation: logoSpin 2s ease-in-out;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .welcome-logo i {
-            font-size: 4rem;
-            color: #FFD700;
-        }
-
-        @keyframes welcomeAnimation {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes logoSpin {
-            0% { transform: rotate(0deg) scale(0.5); }
-            50% { transform: rotate(180deg) scale(1.1); }
-            100% { transform: rotate(360deg) scale(1); }
-        }
-
-        /* Loading Bar */
-        .loading-bar {
-            width: 300px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 3px;
-            margin: 2rem auto;
-            overflow: hidden;
-        }
-
-        .loading-progress {
-            width: 0%;
-            height: 100%;
-            background: white;
-            border-radius: 3px;
-            animation: loadingProgress 3s ease-in-out forwards;
-        }
-
-        @keyframes loadingProgress {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
-
-        /* Header */
-        .header {
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(15px);
-            box-shadow: 0 4px 25px rgba(255, 215, 0, 0.15);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.1);
-        }
-
-        .navbar {
-            padding: 1.2rem 0;
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-brand h2 {
-            color: #FFD700;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.8rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .nav-brand h2:hover {
-            transform: scale(1.05);
-            color: #FFA500;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            padding: 0.8rem 0;
-            font-size: 1rem;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #FFD700, #FFA500);
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .nav-menu a:hover::after,
-        .nav-menu a.active::after {
-            width: 100%;
-        }
-
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            color: #FFD700;
-        }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .nav-toggle span {
-            width: 28px;
-            height: 3px;
-            background: #333;
-            margin: 4px 0;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
-
-        /* Sub Navbar */
-        .sub-navbar {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            padding: 1rem 0;
-            margin-top: 80px;
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .sub-navbar.show {
-            transform: translateY(0);
-        }
-
-        .sub-nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .sub-nav-menu li {
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 25px;
-            padding: 0.7rem 1.5rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .sub-nav-menu li:hover,
-        .sub-nav-menu li.active {
-            background: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .sub-nav-menu li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-        }
-
-        .sub-nav-menu li:hover a,
-        .sub-nav-menu li.active a {
-            color: #FFD700;
-        }
-
-        /* Special styling for SL Feed */
-        .sub-nav-menu li.sl-feed {
-            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .sub-nav-menu li.sl-feed:hover {
-            background: linear-gradient(135deg, #FF5252, #FF7043);
-            transform: translateY(-3px) scale(1.05);
-        }
-
-        /* Page Sections */
-        .page-section {
-            display: none;
-            min-height: calc(100vh - 160px);
-            padding: 3rem 0;
-            animation: fadeInUp 0.6s ease-in-out;
-        }
-
-        .page-section.active {
-            display: block;
-        }
-
-        @keyframes fadeInUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            animation: slideInDown 0.8s ease-in-out;
-        }
-
-        @keyframes slideInDown {
-            0% { opacity: 0; transform: translateY(-30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        .page-header h1 {
-            font-size: 3rem;
-            color: #333;
-            margin-bottom: 1.5rem;
-            font-weight: 800;
-        }
-
-        .page-header p {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9), rgba(255, 165, 0, 0.9)), url('https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Ftse4.mm.bing.net%2Fth%2Fid%2FOIP.8YUwI8fdjDNHbpMEVqlDYAHaE8%3Fpid%3DApi&sp=1766749133T55e164f57d086e77284560a5e4ab6612a19988f84fc14c5dc2848a0e319133c9');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            padding: 140px 0 100px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="volunteers" patternUnits="userSpaceOnUse" width="100" height="100"><g fill="%23FFF" opacity="0.08"><circle cx="20" cy="20" r="3"/><circle cx="50" cy="30" r="2"/><circle cx="80" cy="15" r="2.5"/><circle cx="30" cy="60" r="2"/><circle cx="70" cy="70" r="3"/><circle cx="15" cy="80" r="2.5"/></g></pattern></defs><rect width="100" height="100" fill="url(%23volunteers)"/></svg>');
-            animation: floatingPattern 25s linear infinite;
-        }
-
-        @keyframes floatingPattern {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100px); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            animation: heroTitleAnimation 1s ease-in-out;
-            line-height: 1.2;
-        }
-
-        @keyframes heroTitleAnimation {
-            0% { opacity: 0; transform: translateY(50px) scale(0.9); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            animation: heroTextAnimation 1s ease-in-out 0.3s both;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-            font-weight: 500;
-        }
-
-        @keyframes heroTextAnimation {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 0.95; transform: translateY(0); }
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: heroButtonsAnimation 1s ease-in-out 0.6s both;
-        }
-
-        @keyframes heroButtonsAnimation {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Floating Elements */
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .floating-element {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.15);
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
-        .floating-element:nth-child(2) { top: 65%; left: 85%; animation-delay: 2s; }
-        .floating-element:nth-child(3) { top: 35%; left: 15%; animation-delay: 4s; }
-        .floating-element:nth-child(4) { top: 75%; left: 70%; animation-delay: 1s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(180deg); }
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #FFD700;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            border-color: white;
-        }
-
-        .btn-primary:hover {
-            background: transparent;
-            color: white;
-            border-color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border-color: white;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-        }
-
-        .btn-secondary:hover {
-            background: white;
-            color: #FFD700;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        /* Activity Cards */
-        .activity-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .activity-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.15);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            border: 2px solid rgba(255, 215, 0, 0.1);
-        }
-
-        .activity-card:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.25);
-            border-color: rgba(255, 215, 0, 0.3);
-        }
-
-        .activity-badge {
-            position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
-            background: rgba(255, 255, 255, 0.95);
-            color: #FFD700;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            animation: pulse 3s ease-in-out infinite;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            z-index: 10;
-        }
-
-        /* Special badge for SL Feed */
-        .activity-badge.sl-feed {
-            background: linear-gradient(135deg, #FF6B6B, #FF8E53);
-            color: white;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .activity-content {
-            padding: 2rem;
-        }
-
-        .activity-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            color: #333;
-            transition: color 0.3s ease;
-            line-height: 1.4;
-        }
-
-        .activity-card:hover .activity-title {
-            color: #FFD700;
-        }
-
-        .activity-org {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .activity-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            font-size: 0.95rem;
-            color: #666;
-        }
-
-        .activity-meta div {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .activity-meta i {
-            color: #FFD700;
-            width: 18px;
-            font-size: 1rem;
-        }
-
-        /* Points Balance Section */
-        .points-balance {
-            background: linear-gradient(135deg, #fff9e6, #fff3cc);
-            padding: 2rem;
-            border-radius: 20px;
-            margin-bottom: 3rem;
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15);
-            border: 2px solid rgba(255, 215, 0, 0.2);
-            text-align: center;
-        }
-
-        .points-display {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .points-card {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            padding: 2rem;
-            border-radius: 20px;
-            color: white;
-            min-width: 200px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-        }
-
-        .points-card h3 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: 800;
-        }
-
-        .points-card p {
-            margin: 0.5rem 0 0 0;
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .points-info {
-            text-align: left;
-        }
-
-        .points-info h4 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-
-        .points-info ul {
-            color: #666;
-            line-height: 1.8;
-            list-style-position: inside;
-        }
-
-        /* Filter Section */
-        .filter-section {
-            background: linear-gradient(135deg, #fff9e6, #fff3cc);
-            padding: 2rem;
-            border-radius: 20px;
-            margin-bottom: 3rem;
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.15);
-            animation: slideInLeft 0.8s ease-in-out;
-            border: 2px solid rgba(255, 215, 0, 0.2);
-        }
-
-        @keyframes slideInLeft {
-            0% { opacity: 0; transform: translateX(-50px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-
-        .filter-row {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .filter-group i {
-            color: #FFD700;
-            font-size: 1.2rem;
-        }
-
-        .filter-group span {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .filter-select {
-            padding: 0.8rem 1.2rem;
-            border: 2px solid rgba(255, 215, 0, 0.3);
-            border-radius: 12px;
-            background: white;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            min-width: 150px;
-        }
-
-        .filter-select:focus {
-            outline: none;
-            border-color: #FFD700;
-            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.1);
-        }
-
-        .filter-btn {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .filter-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #fff9e6, #ffffff);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 800;
-            color: #333;
-            margin-bottom: 4rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 5px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border-radius: 3px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 35px rgba(255, 215, 0, 0.15);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid rgba(255, 215, 0, 0.1);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.08), transparent);
-            transition: left 0.6s;
-        }
-
-        .service-card:hover::before {
-            left: 100%;
-        }
-
-        .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.25);
-            border-color: rgba(255, 215, 0, 0.3);
-        }
-
-        .service-icon {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.15) rotate(360deg);
-            box-shadow: 0 12px 35px rgba(255, 215, 0, 0.4);
-        }
-
-        .service-icon i {
-            font-size: 2.2rem;
-            color: white;
-        }
-
-        .service-card h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #333;
-        }
-
-        .service-card p {
-            color: #666;
-            margin-bottom: 2rem;
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
-
-        .service-link {
-            color: #FFD700;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-        }
-
-        .service-link:hover {
-            color: #FFA500;
-            transform: translateX(8px);
-        }
-
-        /* Stats Section */
-        .stats {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            padding: 80px 0;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stats::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="0,0 100,0 80,100 0,80" fill="white" opacity="0.08"/></svg>');
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .stat-item {
-            padding: 2rem 1rem;
-            transition: transform 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat-item:hover {
-            transform: scale(1.08);
-        }
-
-        .stat-item h3 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .stat-item p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            font-weight: 600;
-        }
-
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background: #fefefe;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-        }
-
-        .about-text h2 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #333;
-            margin-bottom: 2rem;
-            line-height: 1.3;
-        }
-
-        .about-text p {
-            color: #666;
-            margin-bottom: 2rem;
-            font-size: 1.15rem;
-            line-height: 1.8;
-        }
-
-        /* Blog Section */
-        .blog {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #fff9e6, #ffffff);
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 3rem;
-        }
-
-        .blog-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 35px rgba(255, 215, 0, 0.15);
-            transition: all 0.4s ease;
-            border: 2px solid rgba(255, 215, 0, 0.1);
-        }
-
-        .blog-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.25);
-            border-color: rgba(255, 215, 0, 0.3);
-        }
-
-        .blog-content {
-            padding: 2rem;
-        }
-
-        .blog-content h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            color: #333;
-            transition: color 0.3s ease;
-            line-height: 1.4;
-        }
-
-        .blog-card:hover .blog-content h3 {
-            color: #FFD700;
-        }
-
-        .blog-content p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
-
-        .blog-link {
-            color: #FFD700;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            font-size: 1.05rem;
-        }
-
-        .blog-link:hover {
-            color: #FFA500;
-            text-decoration: underline;
-        }
-
-        /* Partners Section */
-        .partners {
-            padding: 100px 0;
-        }
-
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 3rem;
-        }
-
-        .partner-item {
-            text-align: center;
-            padding: 2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .partner-item:hover {
-            transform: scale(1.08);
-        }
-
-        .partner-logo {
-            background: linear-gradient(135deg, #fff9e6, #fff3cc);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            color: #999;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .partner-item:hover .partner-logo {
-            background: linear-gradient(135deg, #fff5e6, #ffe6b3);
-            border-color: #FFD700;
-        }
-
-        .partner-logo i {
-            font-size: 3.5rem;
-            color: #FFD700;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, #333, #2c2c2c);
-            color: white;
-            padding: 80px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3,
-        .footer-section h4 {
-            margin-bottom: 1.5rem;
-            color: #FFD700;
-            font-weight: 700;
-        }
-
-        .footer-section p {
-            color: #ccc;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section ul li a {
-            color: #ccc;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .footer-section ul li a:hover {
-            color: #FFD700;
-            padding-left: 8px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-4px) scale(1.15);
-            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
-        }
-
-        .contact-info p {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .contact-info p:hover {
-            transform: translateX(8px);
-        }
-
-        .contact-info i {
-            color: #FFD700;
-            font-size: 1.1rem;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #555;
-            padding-top: 2.5rem;
-            text-align: center;
-            color: #ccc;
-            font-size: 1.05rem;
-        }
-
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.3rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .scroll-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-to-top:hover {
-            transform: translateY(-4px) scale(1.1);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
-        }
-
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.show {
-            opacity: 1;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 600px;
-            width: 90%;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .modal-overlay.show .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .modal-header h2 {
-            color: #333;
-            font-weight: 700;
-            font-size: 1.8rem;
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 2.5rem;
-            cursor: pointer;
-            color: #999;
-            transition: color 0.3s ease;
-            padding: 0.5rem;
-        }
-
-        .modal-close:hover {
-            color: #FFD700;
-        }
-
-        .modal-body p {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .modal-body strong {
-            color: #FFD700;
-            font-weight: 700;
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2.5rem;
-            justify-content: flex-end;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .container {
-                padding: 0 30px;
-            }
-
-            .hero h1 {
-                font-size: 3.2rem;
-            }
-
-            .page-header h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 85px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 85px);
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(15px);
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: center;
-                padding-top: 3rem;
-                transition: left 0.4s ease;
-                box-shadow: 0 4px 25px rgba(255, 215, 0, 0.2);
-            }
-
-            .nav-menu.active {
-                left: 0;
-            }
-
-            .nav-menu li {
-                margin: 1.5rem 0;
-            }
-
-            .nav-menu a {
-                font-size: 1.2rem;
-                padding: 1rem 2rem;
-                border-radius: 10px;
-                transition: all 0.3s ease;
-            }
-
-            .nav-menu a:hover {
-                background: rgba(255, 215, 0, 0.1);
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-toggle.active span:nth-child(1) {
-                transform: rotate(-45deg) translate(-6px, 7px);
-            }
-
-            .nav-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .nav-toggle.active span:nth-child(3) {
-                transform: rotate(45deg) translate(-6px, -7px);
-            }
-
-            .sub-navbar {
-                margin-top: 0;
-                padding: 1.5rem 0;
-            }
-
-            .sub-nav-menu {
-                gap: 1rem;
-                justify-content: flex-start;
-            }
-
-            .hero {
-                padding: 120px 0 80px;
-                background-attachment: scroll;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-                line-height: 1.3;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-                margin-bottom: 2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .btn {
-                padding: 12px 30px;
-                font-size: 1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .about-text h2 {
-                font-size: 2.2rem;
-            }
-
-            .page-header h1 {
-                font-size: 2.2rem;
-            }
-
-            .page-header p {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 2.2rem;
-            }
-
-            .services-grid,
-            .blog-grid,
-            .activity-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-
-            .stat-item h3 {
-                font-size: 2.8rem;
-            }
-
-            .filter-row {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 1rem;
-            }
-
-            .filter-group {
-                justify-content: space-between;
-            }
-
-            .filter-select {
-                min-width: auto;
-                width: 100%;
-            }
-
-            .points-display {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .services,
-            .about,
-            .blog,
-            .partners {
-                padding: 80px 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 20px;
-            }
-
-            .navbar {
-                padding: 1rem 0;
-            }
-
-            .nav-brand h2 {
-                font-size: 1.5rem;
-            }
-
-            .hero {
-                padding: 100px 0 60px;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .page-header {
-                margin-bottom: 3rem;
-            }
-
-            .page-header h1 {
-                font-size: 1.8rem;
-            }
-
-            .page-header p {
-                font-size: 1rem;
-            }
-
-            .services,
-            .about,
-            .blog,
-            .partners {
-                padding: 60px 0;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-                margin-bottom: 3rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .stat-item h3 {
-                font-size: 2.2rem;
-            }
-
-            .sub-nav-menu {
-                gap: 0.8rem;
-            }
-
-            .sub-nav-menu li {
-                padding: 0.5rem 1rem;
-                font-size: 0.85rem;
-            }
-
-            .activity-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .activity-card {
-                margin: 0 10px;
-            }
-
-            .filter-section {
-                padding: 1.5rem;
-                margin-bottom: 2rem;
-            }
-
-            .service-card,
-            .blog-card {
-                margin: 0 10px;
-            }
-
-            .about-text h2 {
-                font-size: 1.8rem;
-            }
-
-            .scroll-to-top {
-                width: 50px;
-                height: 50px;
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-
-        /* Additional Animations */
-        .fade-in {
-            animation: fadeIn 0.6s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .slide-up {
-            animation: slideUp 0.6s ease-in-out;
-        }
-
-        @keyframes slideUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+        :root {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --primary-light: #fbbf24;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --bg: #fffbeb;
+            --bg-white: #ffffff;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --gradient: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #f97316 100%);
+            --gradient-hero: linear-gradient(135deg, rgba(245, 158, 11, 0.92), rgba(251, 191, 36, 0.88));
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --shadow-xl: 0 25px 50px -12px rgba(0,0,0,0.15);
+            --shadow-glow: 0 0 40px rgba(245, 158, 11, 0.3);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; overflow-x: hidden; }
+</style>
 </head>
 <body>
-    <!-- Welcome Screen -->
-    <div class="welcome-screen" id="welcomeScreen">
-        <div class="welcome-content">
-            <div class="welcome-logo">
-                <i class="fas fa-hands-helping"></i>
+
+<style>
+/* PRELOADER - CLEAN VERSION */
+.preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s, visibility 0.8s;
+    overflow: hidden;
+}
+.preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* Sky gradient */
+.preloader-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 40%, #98D8AA 70%, #4ade80 100%);
+}
+
+/* Sun */
+.sun {
+    position: absolute;
+    top: 60px;
+    right: 80px;
+    width: 70px;
+    height: 70px;
+    background: #FFD93D;
+    border-radius: 50%;
+    box-shadow: 0 0 50px #FFD93D, 0 0 100px rgba(255,217,61,0.4);
+}
+.sun::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    background: rgba(255,217,61,0.3);
+    border-radius: 50%;
+    animation: sunGlow 2s ease-in-out infinite;
+}
+@keyframes sunGlow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+
+/* Clouds */
+.clouds { position: absolute; top: 0; left: 0; right: 0; height: 200px; }
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 100px;
+    opacity: 0.9;
+}
+.cloud::before, .cloud::after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+}
+.cloud-1 { width: 80px; height: 30px; top: 40px; left: 10%; animation: cloudFloat 25s linear infinite; }
+.cloud-1::before { width: 40px; height: 40px; top: -20px; left: 10px; }
+.cloud-1::after { width: 30px; height: 30px; top: -15px; left: 40px; }
+.cloud-2 { width: 100px; height: 35px; top: 80px; left: 60%; animation: cloudFloat 30s linear infinite reverse; }
+.cloud-2::before { width: 50px; height: 50px; top: -25px; left: 15px; }
+.cloud-2::after { width: 35px; height: 35px; top: -18px; left: 55px; }
+.cloud-3 { width: 60px; height: 25px; top: 30px; left: 35%; animation: cloudFloat 20s linear infinite; }
+.cloud-3::before { width: 30px; height: 30px; top: -15px; left: 8px; }
+.cloud-3::after { width: 25px; height: 25px; top: -12px; left: 30px; }
+@keyframes cloudFloat { 0% { transform: translateX(-50px); } 100% { transform: translateX(50px); } }
+
+/* Ground with grass */
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    background: linear-gradient(180deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+    border-radius: 100% 100% 0 0 / 30px 30px 0 0;
+}
+
+/* Cartoon Kids Container */
+.kids-scene {
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 25px;
+    z-index: 10;
+}
+
+/* Individual Kid */
+.cartoon-kid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: kidJump 0.8s ease-in-out infinite;
+}
+.cartoon-kid:nth-child(1) { animation-delay: 0s; }
+.cartoon-kid:nth-child(2) { animation-delay: 0.15s; }
+.cartoon-kid:nth-child(3) { animation-delay: 0.3s; }
+.cartoon-kid:nth-child(4) { animation-delay: 0.45s; }
+@keyframes kidJump { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+/* Kid Head */
+.kid-head {
+    width: 40px;
+    height: 40px;
+    background: #FFDAB9;
+    border-radius: 50%;
+    position: relative;
+    border: 2px solid #DEB887;
+}
+/* Hair styles */
+.kid-hair {
+    position: absolute;
+    top: -3px;
+    left: 3px;
+    right: 3px;
+    height: 18px;
+    border-radius: 20px 20px 0 0;
+}
+.cartoon-kid:nth-child(1) .kid-hair { background: #2D2D2D; }
+.cartoon-kid:nth-child(2) .kid-hair { background: #8B4513; height: 22px; top: -6px; border-radius: 50% 50% 0 0; }
+.cartoon-kid:nth-child(3) .kid-hair { background: #1a1a1a; }
+.cartoon-kid:nth-child(4) .kid-hair { background: #654321; height: 20px; top: -4px; }
+
+/* Eyes */
+.kid-eyes {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+.kid-eye {
+    width: 6px;
+    height: 8px;
+    background: #1f2937;
+    border-radius: 50%;
+    animation: blink 3s infinite;
+}
+@keyframes blink { 0%, 90%, 100% { transform: scaleY(1); } 95% { transform: scaleY(0.1); } }
+
+/* Smile */
+.kid-smile {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 6px;
+    border: 2px solid #e11d48;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}
+
+/* Body */
+.kid-body {
+    width: 28px;
+    height: 30px;
+    border-radius: 8px 8px 4px 4px;
+    margin-top: -2px;
+    position: relative;
+}
+.cartoon-kid:nth-child(1) .kid-body { background: #ef4444; }
+.cartoon-kid:nth-child(2) .kid-body { background: #3b82f6; }
+.cartoon-kid:nth-child(3) .kid-body { background: #22c55e; }
+.cartoon-kid:nth-child(4) .kid-body { background: #a855f7; }
+
+/* Arms */
+.kid-arms {
+    position: absolute;
+    top: 3px;
+    left: -10px;
+    right: -10px;
+    display: flex;
+    justify-content: space-between;
+}
+.kid-arm {
+    width: 10px;
+    height: 20px;
+    background: #FFDAB9;
+    border-radius: 5px;
+    border: 1px solid #DEB887;
+}
+.kid-arm.left { transform-origin: top center; animation: waveArm 0.6s ease-in-out infinite; }
+.kid-arm.right { transform-origin: top center; animation: waveArm 0.6s ease-in-out infinite 0.3s; }
+@keyframes waveArm { 0%, 100% { transform: rotate(-15deg); } 50% { transform: rotate(15deg); } }
+
+/* Legs */
+.kid-legs {
+    display: flex;
+    gap: 4px;
+    margin-top: -2px;
+}
+.kid-leg {
+    width: 10px;
+    height: 18px;
+    background: #374151;
+    border-radius: 0 0 4px 4px;
+}
+
+/* Shoes */
+.kid-shoes {
+    display: flex;
+    gap: 4px;
+}
+.kid-shoe {
+    width: 14px;
+    height: 8px;
+    background: #1f2937;
+    border-radius: 8px 8px 4px 4px;
+}
+
+/* Floating decorations */
+.float-deco {
+    position: absolute;
+    font-size: 24px;
+    animation: floatDeco 3s ease-in-out infinite;
+    opacity: 0.8;
+}
+.float-deco:nth-child(1) { top: 150px; left: 15%; color: #ef4444; animation-delay: 0s; }
+.float-deco:nth-child(2) { top: 200px; right: 20%; color: #fbbf24; animation-delay: 0.5s; }
+.float-deco:nth-child(3) { top: 120px; right: 30%; color: #ec4899; animation-delay: 1s; }
+.float-deco:nth-child(4) { top: 180px; left: 25%; color: #8b5cf6; animation-delay: 1.5s; }
+@keyframes floatDeco { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-15px) scale(1.1); } }
+
+/* Preloader Content */
+.preloader-content {
+    position: relative;
+    z-index: 20;
+    text-align: center;
+    margin-bottom: 80px;
+}
+.preloader-logo {
+    width: 90px;
+    height: 90px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    animation: logoFloat 2s ease-in-out infinite;
+}
+.preloader-logo i { font-size: 42px; color: var(--primary); }
+@keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.preloader h2 {
+    color: #1f2937;
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    text-shadow: 1px 1px 0 white;
+}
+.preloader p {
+    color: #374151;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.loader-container {
+    width: 220px;
+    margin: 0 auto;
+}
+.loader-bar {
+    height: 10px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.loader-progress {
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 8px;
+    animation: loading 2.5s ease-out forwards;
+}
+@keyframes loading { from { width: 0; } to { width: 100%; } }
+.loader-text {
+    margin-top: 12px;
+    font-size: 13px;
+    color: #374151;
+    font-weight: 600;
+}
+.loader-text span::after { content: ''; animation: dots 1.5s infinite; }
+@keyframes dots { 0% { content: '.'; } 33% { content: '..'; } 66% { content: '...'; } }
+</style>
+
+<style>
+/* HEADER */
+.header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(245,158,11,0.1); transition: all 0.3s; }
+.header.scrolled { box-shadow: var(--shadow-lg); }
+.nav-container { max-width: 1320px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 76px; }
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-icon { width: 48px; height: 48px; background: var(--gradient); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 22px; box-shadow: var(--shadow); transition: transform 0.3s; }
+.logo:hover .logo-icon { transform: rotate(-10deg) scale(1.05); }
+.logo-text { font-size: 22px; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.nav-menu { display: flex; gap: 6px; list-style: none; }
+.nav-menu a { padding: 10px 16px; color: var(--text); text-decoration: none; font-weight: 600; font-size: 15px; border-radius: var(--radius); transition: all 0.3s; position: relative; }
+.nav-menu a::after { content: ''; position: absolute; bottom: 4px; left: 50%; width: 0; height: 3px; background: var(--gradient); border-radius: 2px; transition: all 0.3s; transform: translateX(-50%); }
+.nav-menu a:hover::after, .nav-menu a.active::after { width: 24px; }
+.nav-menu a:hover, .nav-menu a.active { color: var(--primary-dark); }
+.nav-cta { background: var(--gradient); color: white; padding: 12px 24px; border-radius: var(--radius); font-weight: 700; text-decoration: none; transition: all 0.3s; box-shadow: var(--shadow); }
+.nav-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg), var(--shadow-glow); }
+.mobile-toggle { display: none; background: none; border: none; font-size: 24px; color: var(--text); cursor: pointer; }
+
+/* HERO */
+.hero { min-height: 100vh; background: var(--gradient-hero), url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&q=80') center/cover fixed; display: flex; align-items: center; padding: 120px 24px 80px; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+.hero-container { max-width: 1320px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+.hero-content { color: white; }
+.hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 600; margin-bottom: 28px; border: 1px solid rgba(255,255,255,0.3); animation: fadeInUp 0.8s ease; }
+.hero-badge i { color: #fef3c7; animation: sparkle 2s ease-in-out infinite; }
+@keyframes sparkle { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+.hero h1 { font-size: clamp(40px, 5vw, 60px); font-weight: 800; line-height: 1.12; margin-bottom: 24px; animation: fadeInUp 0.8s ease 0.1s both; }
+.hero h1 span { display: inline-block; position: relative; }
+.hero h1 span::after { content: ''; position: absolute; bottom: 5px; left: 0; right: 0; height: 12px; background: rgba(255,255,255,0.3); border-radius: 4px; z-index: -1; }
+.hero p { font-size: 19px; opacity: 0.95; margin-bottom: 36px; max-width: 520px; line-height: 1.8; animation: fadeInUp 0.8s ease 0.2s both; }
+.hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeInUp 0.8s ease 0.3s both; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; border-radius: 50px; font-weight: 700; font-size: 16px; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; font-family: inherit; }
+.btn-white { background: white; color: var(--primary-dark); box-shadow: var(--shadow-lg); }
+.btn-white:hover { transform: translateY(-3px); box-shadow: var(--shadow-xl); }
+.btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5); }
+.btn-outline:hover { background: white; color: var(--primary-dark); border-color: white; }
+.hero-visual { position: relative; animation: fadeInRight 1s ease 0.4s both; }
+.hero-main-image { width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); }
+.hero-float-1, .hero-float-2, .hero-float-3 { position: absolute; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); overflow: hidden; border: 4px solid white; }
+.hero-float-1 { width: 130px; height: 130px; top: -15px; right: -15px; z-index: 3; animation: floatImage 4s ease-in-out infinite; }
+.hero-float-2 { width: 110px; height: 110px; bottom: 50px; left: -30px; z-index: 3; animation: floatImage 4s ease-in-out infinite 1s; }
+.hero-float-3 { width: 90px; height: 90px; bottom: -15px; right: 50px; z-index: 3; animation: floatImage 4s ease-in-out infinite 2s; }
+.hero-float-1 img, .hero-float-2 img, .hero-float-3 img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes floatImage { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+.hero-stats-row { display: flex; gap: 24px; margin-top: 48px; animation: fadeInUp 0.8s ease 0.5s both; }
+.hero-stat { display: flex; align-items: center; gap: 12px; }
+.hero-stat-icon { width: 48px; height: 48px; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.hero-stat-text h4 { font-size: 22px; font-weight: 800; }
+.hero-stat-text p { font-size: 13px; opacity: 0.9; }
+.floating { position: absolute; color: rgba(255,255,255,0.12); animation: float 6s ease-in-out infinite; pointer-events: none; }
+.floating:nth-child(1) { top: 12%; left: 5%; font-size: 50px; }
+.floating:nth-child(2) { top: 55%; right: 6%; font-size: 40px; animation-delay: 2s; }
+.floating:nth-child(3) { bottom: 18%; left: 8%; font-size: 35px; animation-delay: 4s; }
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-25px) rotate(10deg); } }
+
+/* SECTIONS */
+.section { padding: 100px 24px; }
+.section-header { text-align: center; max-width: 720px; margin: 0 auto 60px; }
+.section-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(245,158,11,0.1); color: var(--primary-dark); padding: 10px 20px; border-radius: 50px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+.section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 800; color: var(--text); margin-bottom: 16px; line-height: 1.2; }
+.section-desc { font-size: 17px; color: var(--text-light); line-height: 1.8; }
+.container { max-width: 1320px; margin: 0 auto; }
+
+/* STATS BAR */
+.stats-bar { background: var(--gradient); padding: 60px 24px; position: relative; overflow: hidden; }
+.stats-bar::before { content: ''; position: absolute; top: -50%; left: -20%; width: 500px; height: 500px; background: rgba(255,255,255,0.08); border-radius: 50%; }
+.stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; z-index: 1; }
+.stats-item { text-align: center; color: white; padding: 24px 16px; background: rgba(255,255,255,0.1); border-radius: var(--radius-xl); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); transition: transform 0.3s; cursor: pointer; }
+.stats-item:hover { transform: translateY(-5px); }
+.stats-item i { font-size: 28px; margin-bottom: 10px; opacity: 0.9; }
+.stats-item h3 { font-size: 38px; font-weight: 800; margin-bottom: 6px; }
+.stats-item p { font-size: 14px; opacity: 0.9; font-weight: 600; }
+</style>
+
+<style>
+/* SERVICES */
+.services { background: var(--bg-white); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; }
+.service-card { background: var(--bg-white); border: 1px solid rgba(245,158,11,0.15); border-radius: var(--radius-xl); padding: 36px 28px; transition: all 0.4s; position: relative; overflow: hidden; cursor: pointer; }
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gradient); transform: scaleX(0); transition: transform 0.4s; }
+.service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl); border-color: var(--primary-light); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-icon { width: 70px; height: 70px; background: var(--gradient); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; margin-bottom: 20px; transition: transform 0.4s; }
+.service-card:hover .service-icon { transform: scale(1.1) rotate(5deg); }
+.service-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+.service-card p { color: var(--text-light); margin-bottom: 16px; line-height: 1.7; font-size: 15px; }
+.service-link { color: var(--primary-dark); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: gap 0.3s; font-size: 15px; }
+.service-link:hover { gap: 12px; }
+
+/* ACTIVITIES */
+.activities { background: var(--bg); }
+.activities-filter { display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+.filter-btn { padding: 10px 24px; border: 2px solid rgba(245,158,11,0.3); background: white; border-radius: 50px; font-weight: 600; font-size: 14px; cursor: pointer; transition: all 0.3s; font-family: inherit; color: var(--text); }
+.filter-btn:hover, .filter-btn.active { background: var(--gradient); color: white; border-color: transparent; }
+.activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+.activity-card { background: var(--bg-white); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow); transition: all 0.4s; border: 1px solid rgba(0,0,0,0.05); }
+.activity-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-xl); }
+.activity-image { height: 200px; position: relative; overflow: hidden; }
+.activity-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.activity-card:hover .activity-image img { transform: scale(1.08); }
+.activity-badge { position: absolute; top: 14px; left: 14px; background: var(--gradient); color: white; padding: 6px 14px; border-radius: 50px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+.activity-favorite { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-light); cursor: pointer; transition: all 0.3s; box-shadow: var(--shadow); border: none; font-size: 16px; }
+.activity-favorite:hover, .activity-favorite.active { color: #ef4444; transform: scale(1.1); }
+.activity-content { padding: 20px; }
+.activity-content h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text); transition: color 0.3s; line-height: 1.4; }
+.activity-card:hover .activity-content h3 { color: var(--primary-dark); }
+.activity-org { display: flex; align-items: center; gap: 8px; color: var(--text-light); font-size: 13px; margin-bottom: 14px; font-weight: 500; }
+.activity-org img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; }
+.activity-meta { display: flex; flex-direction: column; gap: 8px; }
+.activity-meta span { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-light); }
+.activity-meta i { color: var(--primary); width: 16px; font-size: 12px; }
+.activity-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.06); }
+.activity-slots { font-size: 12px; color: var(--text-light); }
+.activity-slots strong { color: var(--accent); }
+.activity-btn { background: var(--gradient); color: white; padding: 8px 18px; border-radius: 50px; font-size: 13px; font-weight: 700; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; font-family: inherit; }
+.activity-btn:hover { transform: scale(1.05); box-shadow: var(--shadow-glow); }
+
+/* GALLERY */
+.gallery { background: var(--bg-white); }
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(2, 200px); gap: 16px; }
+.gallery-item { border-radius: var(--radius-lg); overflow: hidden; position: relative; cursor: pointer; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.gallery-item:hover img { transform: scale(1.1); }
+.gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; }
+.gallery-item:hover::after { opacity: 1; }
+.gallery-item span { position: absolute; bottom: 16px; left: 16px; color: white; font-weight: 700; font-size: 14px; z-index: 1; opacity: 0; transform: translateY(10px); transition: all 0.3s; }
+.gallery-item:hover span { opacity: 1; transform: translateY(0); }
+.gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gallery-item:nth-child(4) { grid-column: span 2; }
+
+/* ABOUT */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.about-images { position: relative; }
+.about-main-img { width: 100%; border-radius: var(--radius-xl); box-shadow: var(--shadow-xl); }
+.about-float-img { position: absolute; width: 180px; height: 180px; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); border: 4px solid white; bottom: -25px; right: -25px; overflow: hidden; }
+.about-float-img img { width: 100%; height: 100%; object-fit: cover; }
+.about-badge-float { position: absolute; top: -15px; left: -15px; background: var(--gradient); color: white; padding: 18px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); text-align: center; }
+.about-badge-float h3 { font-size: 28px; font-weight: 800; }
+.about-badge-float p { font-size: 11px; font-weight: 600; }
+.about-content h2 { font-size: 34px; font-weight: 800; margin-bottom: 18px; color: var(--text); }
+.about-content > p { color: var(--text-light); margin-bottom: 16px; font-size: 15px; line-height: 1.8; }
+.about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 28px; }
+.about-feature { display: flex; align-items: center; gap: 10px; padding: 14px; background: rgba(245,158,11,0.08); border-radius: var(--radius); transition: all 0.3s; cursor: pointer; }
+.about-feature:hover { background: rgba(245,158,11,0.15); transform: translateX(5px); }
+.about-feature i { color: var(--accent); font-size: 18px; }
+.about-feature span { font-weight: 600; color: var(--text); font-size: 14px; }
+
+/* TESTIMONIALS */
+.testimonials { background: var(--gradient); padding: 80px 24px; position: relative; overflow: hidden; }
+.testimonials::before { content: ''; position: absolute; top: -100px; right: -100px; width: 350px; height: 350px; background: rgba(255,255,255,0.08); border-radius: 50%; }
+.testimonials .section-header { color: white; }
+.testimonials .section-badge { background: rgba(255,255,255,0.2); color: white; }
+.testimonials .section-title { color: white; }
+.testimonials .section-desc { color: rgba(255,255,255,0.9); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; position: relative; z-index: 1; }
+.testimonial-card { background: white; border-radius: var(--radius-xl); padding: 28px; box-shadow: var(--shadow-lg); transition: transform 0.3s; }
+.testimonial-card:hover { transform: translateY(-6px); }
+.testimonial-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.testimonial-avatar { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-light); }
+.testimonial-info h4 { font-weight: 700; color: var(--text); font-size: 15px; }
+.testimonial-info p { font-size: 12px; color: var(--text-light); }
+.testimonial-card blockquote { color: var(--text-light); font-style: italic; line-height: 1.7; padding-left: 16px; border-left: 3px solid var(--primary-light); font-size: 14px; }
+.testimonial-stars { display: flex; gap: 3px; margin-top: 16px; color: var(--primary); font-size: 14px; }
+</style>
+
+<style>
+/* CONTACT SECTION */
+.contact { background: var(--bg); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+.contact-info h2 { font-size: 32px; font-weight: 800; margin-bottom: 16px; color: var(--text); }
+.contact-info > p { color: var(--text-light); margin-bottom: 30px; line-height: 1.8; }
+.contact-items { display: flex; flex-direction: column; gap: 20px; }
+.contact-item { display: flex; align-items: flex-start; gap: 16px; padding: 20px; background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow); transition: transform 0.3s; }
+.contact-item:hover { transform: translateX(8px); }
+.contact-item-icon { width: 50px; height: 50px; background: var(--gradient); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; flex-shrink: 0; }
+.contact-item h4 { font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.contact-item p { color: var(--text-light); font-size: 14px; }
+.contact-item a { color: var(--primary-dark); text-decoration: none; font-weight: 600; }
+.contact-form { background: white; padding: 36px; border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); }
+.contact-form h3 { font-size: 22px; font-weight: 700; margin-bottom: 24px; color: var(--text); }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text); font-size: 14px; }
+.form-input { width: 100%; padding: 14px 18px; border: 2px solid rgba(0,0,0,0.1); border-radius: var(--radius); font-size: 15px; outline: none; transition: border-color 0.3s; font-family: inherit; }
+.form-input:focus { border-color: var(--primary); }
+.form-input::placeholder { color: var(--text-light); }
+textarea.form-input { resize: none; min-height: 120px; }
+.form-submit { width: 100%; background: var(--gradient); color: white; padding: 16px; border: none; border-radius: var(--radius); font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: inherit; }
+.form-submit:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
+
+/* CTA */
+.cta { background: var(--bg-white); text-align: center; padding: 80px 24px; }
+.cta-box { background: linear-gradient(135deg, #1f2937 0%, #374151 100%); border-radius: var(--radius-xl); padding: 60px 40px; max-width: 900px; margin: 0 auto; position: relative; overflow: hidden; }
+.cta-box::before { content: ''; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px; background: var(--gradient); opacity: 0.15; border-radius: 50%; }
+.cta-box h2 { font-size: 34px; font-weight: 800; color: white; margin-bottom: 14px; position: relative; }
+.cta-box p { color: rgba(255,255,255,0.8); font-size: 16px; margin-bottom: 30px; max-width: 550px; margin-left: auto; margin-right: auto; position: relative; }
+.cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+.btn-primary { background: var(--gradient); color: white; box-shadow: var(--shadow-glow); }
+.btn-primary:hover { transform: translateY(-3px); }
+.btn-dark-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); }
+.btn-dark-outline:hover { background: white; color: var(--text); border-color: white; }
+
+/* LIVE CHAT */
+.chat-widget { position: fixed; bottom: 24px; right: 24px; z-index: 1000; font-family: inherit; }
+.chat-toggle { width: 60px; height: 60px; background: var(--gradient); border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4); transition: all 0.3s; }
+.chat-toggle:hover { transform: scale(1.08); }
+.chat-toggle i { font-size: 26px; color: white; transition: transform 0.3s; }
+.chat-toggle.active i { transform: rotate(90deg); }
+.chat-badge { position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; background: #ef4444; border-radius: 50%; color: white; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.chat-window { position: absolute; bottom: 72px; right: 0; width: 360px; height: 480px; background: white; border-radius: var(--radius-xl); box-shadow: 0 10px 40px rgba(0,0,0,0.2); display: flex; flex-direction: column; overflow: hidden; opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.95); transition: all 0.3s; }
+.chat-window.active { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+.chat-header { background: var(--gradient); padding: 18px; color: white; display: flex; align-items: center; gap: 12px; }
+.chat-avatar { width: 44px; height: 44px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.chat-avatar i { font-size: 20px; color: var(--primary); }
+.chat-header-info h4 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.chat-header-info p { font-size: 11px; opacity: 0.9; display: flex; align-items: center; gap: 5px; }
+.online-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; }
+.chat-close { margin-left: auto; background: rgba(255,255,255,0.2); border: none; width: 32px; height: 32px; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.chat-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; background: #f9fafb; }
+.chat-message { display: flex; gap: 8px; animation: messageIn 0.3s ease; }
+@keyframes messageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.chat-message.user { flex-direction: row-reverse; }
+.chat-message-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--gradient); display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; flex-shrink: 0; }
+.chat-message.user .chat-message-avatar { background: var(--secondary); }
+.chat-message-content { max-width: 75%; }
+.chat-message-bubble { padding: 10px 14px; border-radius: 16px; font-size: 13px; line-height: 1.5; }
+.chat-message:not(.user) .chat-message-bubble { background: white; color: var(--text); border-bottom-left-radius: 4px; box-shadow: var(--shadow); }
+.chat-message.user .chat-message-bubble { background: var(--gradient); color: white; border-bottom-right-radius: 4px; }
+.chat-message-time { font-size: 10px; color: var(--text-light); margin-top: 4px; padding: 0 4px; }
+.chat-typing { display: flex; gap: 4px; padding: 10px 14px; background: white; border-radius: 16px; width: fit-content; box-shadow: var(--shadow); }
+.chat-typing span { width: 7px; height: 7px; background: var(--text-light); border-radius: 50%; animation: typing 1.4s infinite; }
+.chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+.chat-quick-replies { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 12px; background: white; }
+.quick-reply { padding: 6px 14px; background: rgba(245,158,11,0.1); border: 1px solid var(--primary-light); border-radius: 20px; font-size: 12px; color: var(--primary-dark); cursor: pointer; transition: all 0.3s; font-weight: 500; font-family: inherit; }
+.quick-reply:hover { background: var(--gradient); color: white; border-color: transparent; }
+.chat-input-area { padding: 14px; background: white; border-top: 1px solid rgba(0,0,0,0.06); display: flex; gap: 10px; align-items: center; }
+.chat-input { flex: 1; padding: 10px 14px; border: 2px solid rgba(0,0,0,0.1); border-radius: 20px; font-size: 13px; outline: none; transition: border-color 0.3s; font-family: inherit; }
+.chat-input:focus { border-color: var(--primary); }
+.chat-send { width: 40px; height: 40px; background: var(--gradient); border: none; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
+.chat-send:hover { transform: scale(1.1); }
+
+/* FOOTER */
+.footer { background: #111827; color: white; padding: 60px 24px 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1320px; margin: 0 auto 40px; }
+.footer-brand p { color: #9ca3af; margin: 16px 0 24px; line-height: 1.7; font-size: 14px; }
+.footer-social { display: flex; gap: 10px; }
+.footer-social a { width: 42px; height: 42px; background: rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: all 0.3s; }
+.footer-social a:hover { background: var(--gradient); transform: translateY(-3px); }
+.footer h4 { font-size: 15px; font-weight: 700; margin-bottom: 20px; color: white; }
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 12px; }
+.footer ul a { color: #9ca3af; text-decoration: none; transition: all 0.3s; display: flex; align-items: center; gap: 6px; font-size: 14px; }
+.footer ul a:hover { color: var(--primary-light); transform: translateX(4px); }
+.footer-bottom { border-top: 1px solid #374151; padding-top: 24px; text-align: center; max-width: 1320px; margin: 0 auto; }
+.footer-bottom p { color: #9ca3af; font-size: 13px; }
+
+/* SCROLL TO TOP */
+.scroll-top { position: fixed; bottom: 24px; left: 24px; width: 50px; height: 50px; background: var(--gradient); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 18px; opacity: 0; visibility: hidden; transition: all 0.3s; box-shadow: var(--shadow-lg); z-index: 999; }
+.scroll-top.show { opacity: 1; visibility: visible; }
+.scroll-top:hover { transform: translateY(-4px); }
+
+/* TOAST */
+.toast-container { position: fixed; top: 90px; right: 24px; z-index: 1001; display: flex; flex-direction: column; gap: 10px; }
+.toast { background: white; padding: 14px 20px; border-radius: var(--radius); box-shadow: var(--shadow-xl); display: flex; align-items: center; gap: 12px; animation: toastIn 0.3s ease; min-width: 280px; }
+@keyframes toastIn { from { opacity: 0; transform: translateX(100px); } to { opacity: 1; transform: translateX(0); } }
+.toast-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.toast.success .toast-icon { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+.toast.info .toast-icon { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+.toast-content h4 { font-size: 13px; font-weight: 700; color: var(--text); }
+.toast-content p { font-size: 12px; color: var(--text-light); }
+.toast-close { margin-left: auto; background: none; border: none; color: var(--text-light); cursor: pointer; }
+
+/* MODAL */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s; backdrop-filter: blur(4px); }
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal { background: white; border-radius: var(--radius-xl); max-width: 480px; width: 90%; max-height: 90vh; overflow: auto; transform: scale(0.9); transition: transform 0.3s; }
+.modal-overlay.active .modal { transform: scale(1); }
+.modal-header { padding: 20px 24px; border-bottom: 1px solid rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: space-between; }
+.modal-header h3 { font-size: 18px; font-weight: 700; }
+.modal-close { background: none; border: none; font-size: 20px; color: var(--text-light); cursor: pointer; }
+.modal-body { padding: 24px; }
+.modal-footer { padding: 16px 24px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; gap: 10px; justify-content: flex-end; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+    .hero-container, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { order: -1; max-width: 480px; margin: 0 auto; }
+    .hero-content { text-align: center; }
+    .hero-buttons, .hero-stats-row { justify-content: center; }
+    .hero p { margin-left: auto; margin-right: auto; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+    .gallery-item:nth-child(1) { grid-column: span 2; }
+    .gallery-item:nth-child(4) { grid-column: span 1; }
+}
+@media (max-width: 768px) {
+    .nav-menu, .nav-cta { display: none; }
+    .mobile-toggle { display: block; }
+    .hero { padding: 100px 20px 60px; }
+    .hero h1 { font-size: 32px; }
+    .hero-stats-row { flex-direction: column; gap: 14px; }
+    .hero-float-1, .hero-float-2, .hero-float-3 { display: none; }
+    .stats-grid { gap: 14px; }
+    .stats-item h3 { font-size: 28px; }
+    .section { padding: 60px 20px; }
+    .services-grid, .activities-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .about-features { grid-template-columns: 1fr; }
+    .about-float-img, .about-badge-float { display: none; }
+    .footer-grid { grid-template-columns: 1fr; text-align: center; }
+    .footer-social { justify-content: center; }
+    .cta-box { padding: 40px 20px; }
+    .cta-box h2 { font-size: 26px; }
+    .chat-window { width: 100%; right: -12px; height: 420px; }
+    .kids-scene { transform: scale(0.75); gap: 15px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+    <div class="preloader-bg"></div>
+    
+    <!-- Sun -->
+    <div class="sun"></div>
+    
+    <!-- Clouds -->
+    <div class="clouds">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+    </div>
+    
+    <!-- Floating decorations -->
+    <div class="float-deco"><i class="fas fa-heart"></i></div>
+    <div class="float-deco"><i class="fas fa-star"></i></div>
+    <div class="float-deco"><i class="fas fa-heart"></i></div>
+    <div class="float-deco"><i class="fas fa-star"></i></div>
+    
+    <!-- Ground -->
+    <div class="ground"></div>
+    
+    <!-- Cartoon Kids -->
+    <div class="kids-scene">
+        <div class="cartoon-kid">
+            <div class="kid-head"><div class="kid-hair"></div><div class="kid-eyes"><div class="kid-eye"></div><div class="kid-eye"></div></div><div class="kid-smile"></div></div>
+            <div class="kid-body"><div class="kid-arms"><div class="kid-arm left"></div><div class="kid-arm right"></div></div></div>
+            <div class="kid-legs"><div class="kid-leg"></div><div class="kid-leg"></div></div>
+            <div class="kid-shoes"><div class="kid-shoe"></div><div class="kid-shoe"></div></div>
+        </div>
+        <div class="cartoon-kid">
+            <div class="kid-head"><div class="kid-hair"></div><div class="kid-eyes"><div class="kid-eye"></div><div class="kid-eye"></div></div><div class="kid-smile"></div></div>
+            <div class="kid-body"><div class="kid-arms"><div class="kid-arm left"></div><div class="kid-arm right"></div></div></div>
+            <div class="kid-legs"><div class="kid-leg"></div><div class="kid-leg"></div></div>
+            <div class="kid-shoes"><div class="kid-shoe"></div><div class="kid-shoe"></div></div>
+        </div>
+        <div class="cartoon-kid">
+            <div class="kid-head"><div class="kid-hair"></div><div class="kid-eyes"><div class="kid-eye"></div><div class="kid-eye"></div></div><div class="kid-smile"></div></div>
+            <div class="kid-body"><div class="kid-arms"><div class="kid-arm left"></div><div class="kid-arm right"></div></div></div>
+            <div class="kid-legs"><div class="kid-leg"></div><div class="kid-leg"></div></div>
+            <div class="kid-shoes"><div class="kid-shoe"></div><div class="kid-shoe"></div></div>
+        </div>
+        <div class="cartoon-kid">
+            <div class="kid-head"><div class="kid-hair"></div><div class="kid-eyes"><div class="kid-eye"></div><div class="kid-eye"></div></div><div class="kid-smile"></div></div>
+            <div class="kid-body"><div class="kid-arms"><div class="kid-arm left"></div><div class="kid-arm right"></div></div></div>
+            <div class="kid-legs"><div class="kid-leg"></div><div class="kid-leg"></div></div>
+            <div class="kid-shoes"><div class="kid-shoe"></div><div class="kid-shoe"></div></div>
+        </div>
+    </div>
+    
+    <!-- Content -->
+    <div class="preloader-content">
+        <div class="preloader-logo"><i class="fas fa-hands-helping"></i></div>
+        <h2>Satu Langkah Project</h2>
+        <p>Platform Volunteer Indonesia</p>
+        <div class="loader-container">
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+            <p class="loader-text">Menyiapkan halaman<span></span></p>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+    <div class="nav-container">
+        <a href="#" class="logo">
+            <div class="logo-icon"><i class="fas fa-hands-helping"></i></div>
+            <span class="logo-text">Satu Langkah</span>
+        </a>
+        <ul class="nav-menu">
+            <li><a href="#home" class="active">Beranda</a></li>
+            <li><a href="#services">Layanan</a></li>
+            <li><a href="#activities">Aktivitas</a></li>
+            <li><a href="#gallery">Galeri</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+        <a href="#activities" class="nav-cta">Gabung Sekarang</a>
+        <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
+    </div>
+</header>
+
+<!-- HERO / BERANDA -->
+<section class="hero" id="home">
+    <div class="floating"><i class="fas fa-heart"></i></div>
+    <div class="floating"><i class="fas fa-users"></i></div>
+    <div class="floating"><i class="fas fa-globe"></i></div>
+    
+    <div class="hero-container">
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fas fa-star"></i> Platform Volunteer #1 Indonesia</div>
+            <h1>Ambil Peran, <span>Jadi Relawan</span> Hari Ini</h1>
+            <p>Ubah niat baik jadi aksi nyata. Bergabunglah dengan 300.000+ relawan di seluruh Indonesia dan ciptakan dampak positif yang berkelanjutan untuk masyarakat.</p>
+            <div class="hero-buttons">
+                <a href="#activities" class="btn btn-white"><i class="fas fa-search"></i> Cari Aktivitas</a>
+                <a href="#about" class="btn btn-outline"><i class="fas fa-play-circle"></i> Pelajari Lebih</a>
             </div>
-            <h1>Welcome to</h1>
-            <p>Satu Langkah Project</p>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
+            <div class="hero-stats-row">
+                <div class="hero-stat">
+                    <div class="hero-stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="hero-stat-text"><h4>302K+</h4><p>Relawan Aktif</p></div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-icon"><i class="fas fa-building"></i></div>
+                    <div class="hero-stat-text"><h4>6.4K+</h4><p>Organisasi</p></div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="hero-stat-text"><h4>12K+</h4><p>Aktivitas</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&q=80" alt="Volunteer Community" class="hero-main-image">
+            <div class="hero-float-1"><img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=200&q=80" alt="Helping"></div>
+            <div class="hero-float-2"><img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=200&q=80" alt="Team"></div>
+            <div class="hero-float-3"><img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=200&q=80" alt="Care"></div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+    <div class="stats-grid">
+        <div class="stats-item" data-count="302625"><i class="fas fa-users"></i><h3>0</h3><p>Relawan Aktif</p></div>
+        <div class="stats-item" data-count="6478"><i class="fas fa-building"></i><h3>0</h3><p>Organisasi Partner</p></div>
+        <div class="stats-item" data-count="12792"><i class="fas fa-calendar-check"></i><h3>0</h3><p>Aktivitas Selesai</p></div>
+        <div class="stats-item" data-count="150"><i class="fas fa-map-marker-alt"></i><h3>0</h3><p>Kota di Indonesia</p></div>
+    </div>
+</div>
+
+<!-- LAYANAN -->
+<section class="section services" id="services">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge"><i class="fas fa-sparkles"></i> Layanan Kami</span>
+            <h2 class="section-title">Kenali Layanan Satu Langkah Project</h2>
+            <p class="section-desc">Kami menyediakan berbagai layanan untuk memudahkan Anda berkontribusi dan membuat perubahan positif di masyarakat Indonesia.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card" onclick="showToast('info', 'Jadi Relawan', 'Temukan aktivitas yang sesuai dengan minat Anda!')">
+                <div class="service-icon"><i class="fas fa-hands-helping"></i></div>
+                <h3>Jadi Relawan</h3>
+                <p>Temukan aktivitas kerelawanan yang sesuai dengan minat dan keahlian Anda. Mulai dari pendidikan, lingkungan, kesehatan, hingga kemanusiaan.</p>
+                <a href="#activities" class="service-link">Mulai Sekarang <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card" onclick="showToast('success', 'Penukaran Poin', 'Kumpulkan poin dan dapatkan reward menarik!')">
+                <div class="service-icon"><i class="fas fa-coins"></i></div>
+                <h3>Penukaran Poin</h3>
+                <p>Kumpulkan poin dari setiap aktivitas volunteer dan tukarkan dengan berbagai reward menarik seperti sertifikat, merchandise, dan voucher.</p>
+                <a href="#" class="service-link">Lihat Reward <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card" onclick="showToast('info', 'Kerjasama CSR', 'Hubungi kami untuk program CSR perusahaan Anda!')">
+                <div class="service-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Kerjasama CSR</h3>
+                <p>Tingkatkan dampak program CSR perusahaan Anda dengan melibatkan komunitas lokal dan relawan profesional yang terverifikasi.</p>
+                <a href="#contact" class="service-link">Hubungi Kami <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card" onclick="showToast('info', 'Pelatihan', 'Tingkatkan skill Anda dengan pelatihan gratis!')">
+                <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3>Pelatihan Relawan</h3>
+                <p>Ikuti berbagai pelatihan gratis untuk meningkatkan kemampuan Anda sebagai relawan profesional yang siap berkontribusi.</p>
+                <a href="#" class="service-link">Lihat Pelatihan <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card" onclick="showToast('success', 'Sertifikasi', 'Dapatkan sertifikat resmi untuk portofolio Anda!')">
+                <div class="service-icon"><i class="fas fa-certificate"></i></div>
+                <h3>Sertifikasi Resmi</h3>
+                <p>Dapatkan sertifikat resmi yang diakui untuk setiap aktivitas volunteer yang Anda ikuti. Cocok untuk portofolio dan CV Anda.</p>
+                <a href="#" class="service-link">Pelajari Lebih <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card" onclick="showToast('info', 'Komunitas', 'Bergabung dengan komunitas relawan se-Indonesia!')">
+                <div class="service-icon"><i class="fas fa-users"></i></div>
+                <h3>Komunitas Relawan</h3>
+                <p>Bergabung dengan komunitas relawan se-Indonesia. Berbagi pengalaman, networking, dan kolaborasi untuk dampak yang lebih besar.</p>
+                <a href="#" class="service-link">Gabung Komunitas <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <div class="nav-brand">
-                    <h2 onclick="showPage('home')">Satu Langkah Project</h2>
+<!-- AKTIVITAS -->
+<section class="section activities" id="activities">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge"><i class="fas fa-calendar-check"></i> Aktivitas Terbaru</span>
+            <h2 class="section-title">Temukan Aktivitas Volunteer</h2>
+            <p class="section-desc">Pilih aktivitas yang sesuai dengan passion Anda dan mulai berkontribusi untuk masyarakat. Tersedia berbagai kategori aktivitas di seluruh Indonesia.</p>
+        </div>
+        
+        <!-- Filter -->
+        <div class="activities-filter">
+            <button class="filter-btn active" onclick="filterActivities('all', this)">Semua</button>
+            <button class="filter-btn" onclick="filterActivities('pendidikan', this)">Pendidikan</button>
+            <button class="filter-btn" onclick="filterActivities('lingkungan', this)">Lingkungan</button>
+            <button class="filter-btn" onclick="filterActivities('kesehatan', this)">Kesehatan</button>
+            <button class="filter-btn" onclick="filterActivities('sosial', this)">Sosial</button>
+        </div>
+        
+        <div class="activities-grid">
+            <div class="activity-card" data-category="pendidikan">
+                <div class="activity-image">
+                    <img src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=600&q=80" alt="Mengajar Anak">
+                    <span class="activity-badge">Pendidikan</span>
+                    <button class="activity-favorite" onclick="toggleFavorite(this)"><i class="far fa-heart"></i></button>
                 </div>
-                <ul class="nav-menu">
-                    <li><a onclick="showPage('home')" class="nav-link active">Beranda</a></li>
-                    <li><a onclick="showPage('activities')" class="nav-link">Cari Aktivitas</a></li>
-                    <li><a onclick="showPage('points')" class="nav-link">Penukaran Poin Langkah</a></li>
-                    <li><a onclick="showPage('about')" class="nav-link">Tentang Kami</a></li>
-                    <li><a onclick="showPage('blog')" class="nav-link">Blog</a></li>
-                    <li><a onclick="showPage('contact')" class="nav-link">Kontak</a></li>
-                </ul>
-                <div class="nav-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <div class="activity-content">
+                    <h3>Mengajar Anak-anak di Desa Terpencil</h3>
+                    <p class="activity-org"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=50&q=80" alt="">Yayasan Pendidikan Nusantara</p>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-calendar"></i> 15 Januari 2025</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Bogor, Jawa Barat</span>
+                    </div>
+                    <div class="activity-footer">
+                        <span class="activity-slots"><strong>5</strong> dari 20 slot</span>
+                        <button class="activity-btn" onclick="openModal('Mengajar Anak-anak di Desa Terpencil')">Daftar</button>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
+            <div class="activity-card" data-category="lingkungan">
+                <div class="activity-image">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&q=80" alt="Penanaman Mangrove">
+                    <span class="activity-badge">Lingkungan</span>
+                    <button class="activity-favorite" onclick="toggleFavorite(this)"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="activity-content">
+                    <h3>Penanaman 1000 Pohon Mangrove</h3>
+                    <p class="activity-org"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=50&q=80" alt="">Green Earth Indonesia</p>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-calendar"></i> 20 Januari 2025</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Pantai Indah Kapuk, Jakarta</span>
+                    </div>
+                    <div class="activity-footer">
+                        <span class="activity-slots"><strong>12</strong> dari 30 slot</span>
+                        <button class="activity-btn" onclick="openModal('Penanaman 1000 Pohon Mangrove')">Daftar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="activity-card" data-category="kesehatan">
+                <div class="activity-image">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&q=80" alt="Donor Darah">
+                    <span class="activity-badge">Kesehatan</span>
+                    <button class="activity-favorite" onclick="toggleFavorite(this)"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="activity-content">
+                    <h3>Donor Darah Massal</h3>
+                    <p class="activity-org"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&q=80" alt="">PMI Jakarta Pusat</p>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-calendar"></i> 25 Januari 2025</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Mall Central Park, Jakarta</span>
+                    </div>
+                    <div class="activity-footer">
+                        <span class="activity-slots"><strong>8</strong> dari 15 slot</span>
+                        <button class="activity-btn" onclick="openModal('Donor Darah Massal')">Daftar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="activity-card" data-category="sosial">
+                <div class="activity-image">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80" alt="Bagi Makanan">
+                    <span class="activity-badge">Sosial</span>
+                    <button class="activity-favorite" onclick="toggleFavorite(this)"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="activity-content">
+                    <h3>Berbagi Makanan untuk Tunawisma</h3>
+                    <p class="activity-org"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&q=80" alt="">Komunitas Berbagi Jakarta</p>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-calendar"></i> 5 Februari 2025</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Stasiun Gambir, Jakarta</span>
+                    </div>
+                    <div class="activity-footer">
+                        <span class="activity-slots"><strong>15</strong> dari 20 slot</span>
+                        <button class="activity-btn" onclick="openModal('Berbagi Makanan untuk Tunawisma')">Daftar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="activity-card" data-category="sosial">
+                <div class="activity-image">
+                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&q=80" alt="Renovasi">
+                    <span class="activity-badge">Sosial</span>
+                    <button class="activity-favorite" onclick="toggleFavorite(this)"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="activity-content">
+                    <h3>Renovasi Panti Asuhan</h3>
+                    <p class="activity-org"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&q=80" alt="">Rumah Yatim Indonesia</p>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-calendar"></i> 1 Februari 2025</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Depok, Jawa Barat</span>
+                    </div>
+                    <div class="activity-footer">
+                        <span class="activity-slots"><strong>3</strong> dari 25 slot</span>
+                        <button class="activity-btn" onclick="openModal('Renovasi Panti Asuhan')">Daftar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="activity-card" data-category="lingkungan">
+                <div class="activity-image">
+                    <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=600&q=80" alt="Zero Waste">
+                    <span class="activity-badge">Lingkungan</span>
+                    <button class="activity-favorite" onclick="toggleFavorite(this)"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="activity-content">
+                    <h3>Kampanye Zero Waste</h3>
+                    <p class="activity-org"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&q=80" alt="">EcoWarriors Indonesia</p>
+                    <div class="activity-meta">
+                        <span><i class="fas fa-calendar"></i> 10 Februari 2025</span>
+                        <span><i class="fas fa-map-marker-alt"></i> Taman Suropati, Jakarta</span>
+                    </div>
+                    <div class="activity-footer">
+                        <span class="activity-slots"><strong>7</strong> dari 40 slot</span>
+                        <button class="activity-btn" onclick="openModal('Kampanye Zero Waste')">Daftar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <!-- Sub Navbar -->
-    <div class="sub-navbar" id="subNavbar" style="display: none;">
-        <div class="container">
-            <ul class="sub-nav-menu" id="subNavMenu">
-                <!-- Sub menu items will be populated by JavaScript -->
+<!-- GALERI -->
+<section class="section gallery" id="gallery">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge"><i class="fas fa-images"></i> Galeri Kegiatan</span>
+            <h2 class="section-title">Momen Berharga Bersama Relawan</h2>
+            <p class="section-desc">Lihat dokumentasi kegiatan volunteer yang telah kami lakukan bersama ribuan relawan di seluruh Indonesia. Setiap foto menyimpan cerita dan dampak positif.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="showToast('info', 'Galeri', 'Tim Relawan Pendidikan - Mengajar di Pedalaman Papua')">
+                <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80" alt="Volunteer Team">
+                <span><i class="fas fa-expand"></i> Tim Relawan Pendidikan</span>
+            </div>
+            <div class="gallery-item" onclick="showToast('info', 'Galeri', 'Kerja Bakti Bersama - Membersihkan Pantai Bali')">
+                <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400&q=80" alt="Community Work">
+                <span><i class="fas fa-expand"></i> Kerja Bakti Bersama</span>
+            </div>
+            <div class="gallery-item" onclick="showToast('info', 'Galeri', 'Donasi Sembako - Bantuan untuk Korban Bencana')">
+                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?w=400&q=80" alt="Donation">
+                <span><i class="fas fa-expand"></i> Donasi Sembako</span>
+            </div>
+            <div class="gallery-item" onclick="showToast('info', 'Galeri', 'Mengajar Anak-anak - Program Literasi Desa')">
+                <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&q=80" alt="Teaching">
+                <span><i class="fas fa-expand"></i> Mengajar Anak-anak</span>
+            </div>
+            <div class="gallery-item" onclick="showToast('info', 'Galeri', 'Penanaman Pohon - 10.000 Pohon untuk Indonesia')">
+                <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=400&q=80" alt="Planting">
+                <span><i class="fas fa-expand"></i> Penanaman Pohon</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TENTANG -->
+<section class="section" id="about">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-images">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" alt="Tim Volunteer" class="about-main-img">
+                <div class="about-float-img"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=300&q=80" alt="Team"></div>
+                <div class="about-badge-float"><h3>8+</h3><p>Tahun Pengalaman</p></div>
+            </div>
+            <div class="about-content">
+                <span class="section-badge"><i class="fas fa-info-circle"></i> Tentang Kami</span>
+                <h2>Tentang Satu Langkah Project</h2>
+                <p>Satu Langkah Project adalah platform digital yang menghubungkan organisasi sosial yang membutuhkan relawan dengan individu yang ingin berkontribusi untuk masyarakat. Didirikan pada tahun 2017, kami telah membantu lebih dari 300.000 relawan menemukan aktivitas yang bermakna.</p>
+                <p>Misi kami adalah memudahkan setiap orang untuk mengambil langkah pertama dalam berkontribusi. Kami percaya bahwa setiap langkah kecil dapat menciptakan perubahan besar bagi Indonesia.</p>
+                <p>Visi kami adalah menjadi platform volunteer terdepan di Asia Tenggara yang menginspirasi jutaan orang untuk peduli dan bertindak demi kebaikan bersama.</p>
+                <div class="about-features">
+                    <div class="about-feature"><i class="fas fa-check-circle"></i><span>Terverifikasi & Terpercaya</span></div>
+                    <div class="about-feature"><i class="fas fa-check-circle"></i><span>300K+ Komunitas Aktif</span></div>
+                    <div class="about-feature"><i class="fas fa-check-circle"></i><span>Sertifikat Resmi</span></div>
+                    <div class="about-feature"><i class="fas fa-check-circle"></i><span>Reward Menarik</span></div>
+                    <div class="about-feature"><i class="fas fa-check-circle"></i><span>150+ Kota di Indonesia</span></div>
+                    <div class="about-feature"><i class="fas fa-check-circle"></i><span>Support 24/7</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge"><i class="fas fa-quote-left"></i> Testimoni</span>
+            <h2 class="section-title">Apa Kata Mereka?</h2>
+            <p class="section-desc">Dengarkan pengalaman para relawan yang telah bergabung dengan Satu Langkah Project dan merasakan dampak positifnya.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Sarah" class="testimonial-avatar">
+                    <div class="testimonial-info"><h4>Sarah Amelia</h4><p>Relawan Pendidikan • Jakarta</p></div>
+                </div>
+                <blockquote>"Bergabung dengan Satu Langkah Project mengubah hidup saya. Saya menemukan passion baru dalam mengajar anak-anak dan bertemu dengan orang-orang luar biasa yang memiliki visi yang sama."</blockquote>
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Budi" class="testimonial-avatar">
+                    <div class="testimonial-info"><h4>Budi Santoso</h4><p>Relawan Lingkungan • Bandung</p></div>
+                </div>
+                <blockquote>"Platform yang sangat memudahkan untuk menemukan aktivitas volunteer. Sistem poin dan sertifikat juga membuat saya semakin termotivasi untuk berkontribusi lebih banyak."</blockquote>
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Maya" class="testimonial-avatar">
+                    <div class="testimonial-info"><h4>Maya Putri</h4><p>Relawan Kesehatan • Surabaya</p></div>
+                </div>
+                <blockquote>"Sebagai mahasiswa kedokteran, Satu Langkah Project membantu saya mengaplikasikan ilmu sambil membantu masyarakat. Pengalaman yang tak ternilai untuk karir dan kehidupan saya!"</blockquote>
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            </div>
+        </div>
+    </div>
+</section>""
+
+<!-- KONTAK -->
+<section class="section contact" id="contact">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-badge"><i class="fas fa-envelope"></i> Hubungi Kami</span>
+            <h2 class="section-title">Ada Pertanyaan? Hubungi Kami</h2>
+            <p class="section-desc">Tim kami siap membantu Anda. Jangan ragu untuk menghubungi kami melalui form di bawah atau kontak langsung.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2>Mari Terhubung</h2>
+                <p>Kami selalu senang mendengar dari Anda. Baik itu pertanyaan tentang program volunteer, kerjasama CSR, atau sekadar ingin berbagi cerita, tim kami siap membantu.</p>
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Alamat Kantor</h4>
+                            <p>Jl. Sudirman No. 123, Lantai 15<br>Jakarta Pusat, 10220</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4>Telepon</h4>
+                            <p><a href="tel:+622112345678">+62 21 1234 5678</a></p>
+                            <p><a href="https://wa.me/6281234567890">WhatsApp: +62 812 3456 7890</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@satulangkah.org">info@satulangkah.org</a></p>
+                            <p><a href="mailto:partnership@satulangkah.org">partnership@satulangkah.org</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4>Jam Operasional</h4>
+                            <p>Senin - Jumat: 09:00 - 18:00 WIB</p>
+                            <p>Sabtu: 09:00 - 14:00 WIB</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Kirim Pesan</h3>
+                <form onsubmit="submitContactForm(event)">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" class="form-input" placeholder="Masukkan nama lengkap" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-input" placeholder="Masukkan email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Subjek</label>
+                        <input type="text" class="form-input" placeholder="Subjek pesan">
+                    </div>
+                    <div class="form-group">
+                        <label>Pesan</label>
+                        <textarea class="form-input" placeholder="Tulis pesan Anda..." rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <div class="container">
+        <div class="cta-box">
+            <h2>Siap Menjadi Bagian dari Perubahan?</h2>
+            <p>Bergabunglah dengan 300.000+ relawan lainnya dan mulai ciptakan dampak positif di masyarakat hari ini. Satu langkah kecil Anda bisa mengubah dunia.</p>
+            <div class="cta-buttons">
+                <a href="#activities" class="btn btn-primary"><i class="fas fa-rocket"></i> Mulai Sekarang</a>
+                <button class="btn btn-dark-outline" onclick="openChatWidget()"><i class="fas fa-comments"></i> Chat dengan Kami</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fas fa-hands-helping"></i></div>
+                <span class="logo-text" style="color: white; -webkit-text-fill-color: white;">Satu Langkah</span>
+            </a>
+            <p>Platform volunteer terpercaya untuk menciptakan perubahan positif di Indonesia. Bergabunglah dengan ribuan relawan dan mulai berkontribusi hari ini.</p>
+            <div class="footer-social">
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div>
+            <h4>Layanan</h4>
+            <ul>
+                <li><a href="#activities"><i class="fas fa-chevron-right"></i> Jadi Relawan</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Penukaran Poin</a></li>
+                <li><a href="#contact"><i class="fas fa-chevron-right"></i> Kerjasama CSR</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Pelatihan</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Tentang</h4>
+            <ul>
+                <li><a href="#about"><i class="fas fa-chevron-right"></i> Tentang Kami</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Tim Kami</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Karir</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Bantuan</h4>
+            <ul>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                <li><a href="#contact"><i class="fas fa-chevron-right"></i> Hubungi Kami</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Kebijakan Privasi</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Syarat & Ketentuan</a></li>
             </ul>
         </div>
     </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Satu Langkah Project. Semua hak dilindungi</p>
+    </div>
+</footer>
 
-    <!-- Home Page -->
-    <section id="home" class="page-section active">
-        <!-- Hero Section -->
-        <div class="hero">
-            <div class="floating-elements">
-                <div class="floating-element">
-                    <i class="fas fa-heart" style="font-size: 2rem;"></i>
-                </div>
-                <div class="floating-element">
-                    <i class="fas fa-hands-helping" style="font-size: 1.5rem;"></i>
-                </div>
-                <div class="floating-element">
-                    <i class="fas fa-users" style="font-size: 2.5rem;"></i>
-                </div>
-                <div class="floating-element">
-                    <i class="fas fa-globe" style="font-size: 2rem;"></i>
-                </div>
+<!-- LIVE CHAT -->
+<div class="chat-widget" id="chatWidget">
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <div class="chat-avatar"><i class="fas fa-headset"></i></div>
+            <div class="chat-header-info">
+                <h4>Tim Support</h4>
+                <p><span class="online-dot"></span> Online - Siap membantu</p>
             </div>
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Ambil Peran Jadi Relawan</h1>
-                    <p>Ubah niat baik jadi aksi baik hari ini. Bergabunglah dengan komunitas volunteer terbesar di Indonesia dan ciptakan dampak positif yang berkelanjutan.</p>
-                    <div class="hero-buttons">
-                        <a onclick="showPage('activities')" class="btn btn-primary">Cari Aktivitas</a>
-                        <a onclick="showPage('about')" class="btn btn-secondary">Pelajari Lebih Lanjut</a>
-                    </div>
+            <button class="chat-close" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message">
+                <div class="chat-message-avatar"><i class="fas fa-robot"></i></div>
+                <div class="chat-message-content">
+                    <div class="chat-message-bubble">Halo! 👋 Selamat datang di Satu Langkah Project. Ada yang bisa kami bantu?</div>
+                    <div class="chat-message-time">Baru saja</div>
                 </div>
             </div>
         </div>
-
-        <!-- Stats Section -->
-        <div class="stats">
-            <div class="container">
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <h3 data-target="302625">0</h3>
-                        <p>Relawan</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3 data-target="6478">0</h3>
-                        <p>Organisasi</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3 data-target="12792">0</h3>
-                        <p>Aktivitas</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3 data-target="150">0</h3>
-                        <p>Kota</p>
-                    </div>
-                </div>
-            </div>
+        <div class="chat-quick-replies" id="quickReplies">
+            <button class="quick-reply" onclick="sendQuickReply('Cara mendaftar jadi relawan')">Cara mendaftar</button>
+            <button class="quick-reply" onclick="sendQuickReply('Info aktivitas terbaru')">Aktivitas terbaru</button>
+            <button class="quick-reply" onclick="sendQuickReply('Cara menukar poin')">Tukar poin</button>
+            <button class="quick-reply" onclick="sendQuickReply('Hubungi admin')">Hubungi admin</button>
         </div>
-
-        <!-- Services Section -->
-        <div class="services">
-            <div class="container">
-                <h2 class="section-title">Kenali Layanan Satu Langkah Project</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <h3>Jadi Relawan</h3>
-                        <p>Baru memulai untuk jadi relawan? Pelajari selengkapnya dan mulai cari aktivitas kerelawanan pertama kamu! Temukan passion dan buat perubahan nyata.</p>
-                        <a onclick="showPage('activities')" class="service-link">Pelajari Selengkapnya <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-coins"></i>
-                        </div>
-                        <h3>Penukaran Poin Langkah</h3>
-                        <p>Tukarkan poin yang kamu kumpulkan dari aktivitas volunteer dengan berbagai reward menarik! Dapatkan sertifikat, merchandise, dan voucher pelatihan.</p>
-                        <a onclick="showPage('points')" class="service-link">Pelajari Selengkapnya <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
-                        <h3>Kerjasama CSR</h3>
-                        <p>Tingkatkan dampak program CSR perusahaan bersama kami dengan melibatkan komunitas lokal dan relawan! Ciptakan nilai berkelanjutan.</p>
-                        <a onclick="showPage('contact')" class="service-link">Pelajari Selengkapnya <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Ketik pesan..." onkeypress="handleChatKeypress(event)">
+            <button class="chat-send" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
         </div>
-    </section>
-
-    <!-- Activities Page -->
-    <section id="activities" class="page-section">
-        <div class="container">
-            <div class="page-header">
-                <h1>Cari Aktivitas</h1>
-                <p>Temukan berbagai aktivitas volunteer yang sesuai dengan minat dan keahlian Anda. Mulai perjalanan volunteer Anda hari ini!</p>
-            </div>
-
-            <!-- Filter Section -->
-            <div class="filter-section">
-                <div class="filter-row">
-                    <div class="filter-group">
-                        <i class="fas fa-filter"></i>
-                        <span>Filter:</span>
-                    </div>
-                    <div class="filter-group">
-                        <select class="filter-select" id="categoryFilter">
-                            <option>Semua Kategori</option>
-                            <option>Pendidikan</option>
-                            <option>Lingkungan</option>
-                            <option>Kesehatan</option>
-                            <option>Sosial</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <select class="filter-select" id="locationFilter">
-                            <option>Semua Lokasi</option>
-                            <option>Jakarta</option>
-                            <option>Bandung</option>
-                            <option>Surabaya</option>
-                            <option>Yogyakarta</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <select class="filter-select" id="timeFilter">
-                            <option>Semua Waktu</option>
-                            <option>Hari ini</option>
-                            <option>Minggu ini</option>
-                            <option>Bulan ini</option>
-                        </select>
-                    </div>
-                    <button class="filter-btn" onclick="filterActivities()">
-                        <i class="fas fa-search"></i> Cari
-                    </button>
-                </div>
-            </div>
-
-            <!-- Activities Grid -->
-            <div class="activity-grid" id="activitiesGrid">
-                <!-- Activities will be populated by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Points Exchange Page -->
-    <section id="points" class="page-section">
-        <div class="container">
-            <div class="page-header">
-                <h1>Penukaran Poin Langkah</h1>
-                <p>Tukarkan poin yang Anda kumpulkan dari aktivitas volunteer dengan berbagai reward menarik!</p>
-            </div>
-
-            <!-- Points Balance Section -->
-            <div class="points-balance">
-                <div class="points-display">
-                    <div class="points-card">
-                        <h3>1,250</h3>
-                        <p>Poin Anda</p>
-                    </div>
-                    <div class="points-info">
-                        <h4>Cara Mendapat Poin:</h4>
-                        <ul>
-                            <li>Mengikuti aktivitas volunteer: +100 poin</li>
-                            <li>Menyelesaikan project: +200 poin</li>
-                            <li>Mengajak teman bergabung: +50 poin</li>
-                            <li>Review aktivitas: +25 poin</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Rewards Grid -->
-            <div class="activity-grid" id="rewardsGrid">
-                <!-- Rewards will be populated by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Page -->
-    <section id="about" class="page-section">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Tentang Satu Langkah Project</h2>
-                    <p>Satu Langkah Project adalah platform yang menghubungkan organisasi sosial yang membutuhkan relawan dengan individu yang mencari kesempatan untuk berkontribusi. Misi utama kami adalah memudahkan relawan dan komunitas dengan misi sosial untuk saling menemukan dan berkolaborasi.</p>
-                    <p>Kami percaya bahwa setiap langkah kecil dapat menciptakan perubahan besar. Bergabunglah dengan kami untuk menjadi bagian dari gerakan positif di Indonesia dan wujudkan Indonesia yang lebih baik melalui aksi nyata.</p>
-                    <a onclick="showPage('contact')" class="btn btn-primary">Hubungi Kami</a>
-                </div>
-                <div class="about-image">
-                    <img src="https://media.licdn.com/dms/image/v2/D4E2DAQHCgzGxeTG0Dw/profile-treasury-image-shrink_800_800/B4EZjXxlTAHEAc-/0/1755966757952?e=1767355200&v=beta&t=Vulc3tvGzCMxD3R6hYzM2a1HqMpTg64hL_-N5Q9Td8A" alt="Komunitas Volunteer" class="lazy-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="image-placeholder" style="display: none;">
-                        <i class="fas fa-users"></i>
-                        <p>Gambar Komunitas Volunteer</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Page -->
-    <section id="blog" class="page-section">
-        <div class="container">
-            <div class="page-header">
-                <h1>Blog Satu Langkah Project</h1>
-                <p>Baca artikel terbaru tentang volunteer, tips, dan kisah inspiratif dari para relawan di seluruh Indonesia.</p>
-            </div>
-                        <div class="blog-grid" id="blogGrid">
-                <!-- Blog posts will be populated by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Page -->
-    <section id="contact" class="page-section">
-        <div class="container">
-            <div class="page-header">
-                <h1>Hubungi Kami</h1>
-                <p>Punya pertanyaan atau ingin berkolaborasi? Jangan ragu untuk menghubungi kami. Tim kami siap membantu Anda!</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>Informasi Kontak</h2>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> info@satulangkahproject.org</p>
-                        <p><i class="fas fa-phone"></i> +62 21 1234 5678</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Jl. Sudirman No. 123, Jakarta Pusat 10220</p>
-                        <p><i class="fas fa-clock"></i> Senin - Jumat: 09:00 - 17:00 WIB</p>
-                    </div>
-                    <h3 style="margin-top: 2rem; margin-bottom: 1rem; color: #FFD700; font-weight: 700;">Media Sosial</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <img src="https://media.licdn.com/dms/image/v2/D4E2DAQHHhJKKNAtM_A/profile-treasury-image-shrink_1280_1280/B4EZp2MIMzKcAQ-/0/1762919482945?e=1767330000&v=beta&t=_X2LCPguDkk1qVXaXrM8xUy5bl2Yzse7Wk5Z3jeGGD8" alt="Peta Lokasi Kantor" class="lazy-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="image-placeholder" style="display: none;">
-                        <i class="fas fa-map"></i>
-                        <p>Peta Lokasi Kantor</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Partners Section -->
-            <div class="partners" style="padding-top: 4rem;">
-                <h2 class="section-title">Mitra Kami</h2>
-                <div class="partners-grid">
-                    <div class="partner-item">
-                        <div class="partner-logo">
-                            <i class="fas fa-building"></i>
-                            <p>Partner 1</p>
-                        </div>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo">
-                            <i class="fas fa-building"></i>
-                            <p>Partner 2</p>
-                        </div>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo">
-                            <i class="fas fa-building"></i>
-                            <p>Partner 3</p>
-                        </div>
-                    </div>
-                    <div class="partner-item">
-                        <div class="partner-logo">
-                            <i class="fas fa-building"></i>
-                            <p>Partner 4</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Satu Langkah Project</h3>
-                    <p>Platform volunteer terpercaya untuk menciptakan perubahan positif di Indonesia. Bergabunglah dengan ribuan relawan lainnya!</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Layanan</h4>
-                    <ul>
-                        <li><a onclick="showPage('activities')">Jadi Relawan</a></li>
-                        <li><a onclick="showPage('points')">Penukaran Poin Langkah</a></li>
-                        <li><a onclick="showPage('contact')">Kerjasama CSR</a></li>
-                        <li><a href="#">Pelatihan</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Tentang</h4>
-                    <ul>
-                        <li><a onclick="showPage('about')">Visi Misi</a></li>
-                        <li><a href="#">Tim Kami</a></li>
-                        <li><a href="#">Karir</a></li>
-                        <li><a onclick="showPage('contact')">Kontak</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Kontak</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-envelope"></i> info@satulangkahproject.org</p>
-                        <p><i class="fas fa-phone"></i> +62 21 1234 5678</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</p>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Satu Langkah Project. Semua hak dilindungi.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scroll to Top Button -->
-    <button class="scroll-to-top" id="scrollToTop">
-        <i class="fas fa-arrow-up"></i>
+    </div>
+    <button class="chat-toggle" id="chatToggle" onclick="toggleChat()">
+        <i class="fas fa-comments"></i>
+        <span class="chat-badge" id="chatBadge">1</span>
     </button>
+</div>
 
-    <script>
-        // Data for activities, SL Feed, rewards, and blog posts
-        const activitiesData = [
-            {
-                title: "Mengajar Anak-anak di Desa Terpencil",
-                org: "Yayasan Pendidikan Nusantara",
-                category: "Pendidikan",
-                location: "Bogor",
-                date: "15 Januari 2025",
-                volunteers: "5 dari 20 relawan",
-                badge: "Event",
-                icon: "fas fa-graduation-cap",
-                image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Penanaman Pohon Mangrove",
-                org: "Green Earth Indonesia",
-                category: "Lingkungan",
-                location: "Pantai Indah Kapuk",
-                date: "20 Januari 2025",
-                volunteers: "12 dari 30 relawan",
-                badge: "Project",
-                icon: "fas fa-leaf",
-                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Donor Darah Massal",
-                org: "PMI Jakarta Pusat",
-                category: "Kesehatan",
-                location: "Mall Central Park",
-                date: "25 Januari 2025",
-                volunteers: "8 dari 15 relawan",
-                badge: "Event",
-                icon: "fas fa-heart",
-                image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Renovasi Rumah Yatim",
-                org: "Rumah Yatim Indonesia",
-                category: "Sosial",
-                location: "Depok",
-                date: "1 Februari 2025",
-                volunteers: "3 dari 25 relawan",
-                badge: "Project",
-                icon: "fas fa-home",
-                image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Bagi Makanan untuk Tunawisma",
-                org: "Komunitas Berbagi Jakarta",
-                category: "Sosial",
-                location: "Stasiun Gambir",
-                date: "5 Februari 2025",
-                volunteers: "15 dari 20 relawan",
-                badge: "Event",
-                icon: "fas fa-utensils",
-                image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Kampanye Zero Waste",
-                org: "EcoWarriors Indonesia",
-                category: "Lingkungan",
-                location: "Taman Suropati",
-                date: "10 Februari 2025",
-                volunteers: "7 dari 40 relawan",
-                badge: "Project",
-                icon: "fas fa-recycle",
-                image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            }
-        ];
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
 
-        // SL Feed data from Kak Ghanny
-        const slFeedData = [
-            {
-                title: "Dampak Positif Volunteer di Masa Pandemi COVID-19",
-                excerpt: "Bagaimana para volunteer tetap berkontribusi dan membantu masyarakat di tengah pandemi COVID-19.",
-                author: "Kak Ghanny",
-                date: "26 Desember 2024",
-                category: "Insight",
-                badge: "SL Feed",
-                icon: "fas fa-lightbulb",
-                image: "https://images.unsplash.com/photo-1584515933487-779824d29309?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Membangun Komunitas Volunteer yang Solid",
-                excerpt: "Tips dan strategi untuk membangun dan mempertahankan komunitas volunteer yang aktif dan berkelanjutan.",
-                author: "Kak Ghanny",
-                date: "25 Desember 2024",
-                category: "Tips",
-                badge: "SL Feed",
-                icon: "fas fa-users",
-                image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Teknologi untuk Kegiatan Sosial",
-                excerpt: "Pemanfaatan teknologi digital untuk meningkatkan efektivitas program-program sosial dan volunteer.",
-                author: "Kak Ghanny",
-                date: "24 Desember 2024",
-                category: "Teknologi",
-                badge: "SL Feed",
-                icon: "fas fa-laptop",
-                image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Pentingnya Empati dalam Kegiatan Volunteer",
-                excerpt: "Mengapa empati menjadi kunci sukses dalam setiap kegiatan volunteer dan bagaimana mengembangkannya.",
-                author: "Kak Ghanny",
-                date: "23 Desember 2024",
-                category: "Insight",
-                badge: "SL Feed",
-                icon: "fas fa-heart",
-                image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            }
-        ];
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
 
-        // Rewards data for points exchange
-        const rewardsData = [
-            {
-                title: "Sertifikat Volunteer Digital",
-                description: "Sertifikat resmi untuk portofolio karir Anda",
-                points: "500 Poin",
-                category: "Sertifikat",
-                badge: "Popular",
-                icon: "fas fa-certificate",
-                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Kaos Satu Langkah Project",
-                description: "Kaos eksklusif dengan desain limited edition",
-                points: "800 Poin",
-                category: "Merchandise",
-                badge: "Limited",
-                icon: "fas fa-tshirt",
-                image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Voucher Pelatihan Online",
-                description: "Akses ke berbagai kursus pengembangan diri",
-                points: "1000 Poin",
-                category: "Pelatihan",
-                badge: "New",
-                icon: "fas fa-graduation-cap",
-                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Tumbler Ramah Lingkungan",
-                description: "Tumbler berkualitas untuk gaya hidup sustainable",
-                points: "600 Poin",
-                category: "Merchandise",
-                badge: "Eco",
-                icon: "fas fa-leaf",
-                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Tas Volunteer Kit",
-                description: "Tas lengkap dengan perlengkapan volunteer",
-                points: "750 Poin",
-                category: "Merchandise",
-                badge: "Essential",
-                icon: "fas fa-backpack",
-                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Workshop Leadership",
-                description: "Pelatihan kepemimpinan untuk volunteer",
-                points: "1200 Poin",
-                category: "Pelatihan",
-                badge: "Premium",
-                icon: "fas fa-users-cog",
-                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            }
-        ];
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <h3 id="modalTitle">Daftar Aktivitas</h3>
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <p style="margin-bottom: 16px; color: var(--text-light); font-size: 14px;">Isi form berikut untuk mendaftar sebagai relawan:</p>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+                <input type="text" class="form-input" placeholder="Nama Lengkap" required>
+                <input type="email" class="form-input" placeholder="Email" required>
+                <input type="tel" class="form-input" placeholder="No. Telepon" required>
+                <textarea class="form-input" placeholder="Motivasi Anda menjadi relawan..." rows="3"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" style="color: var(--text); border-color: rgba(0,0,0,0.2); padding: 12px 24px;" onclick="closeModal()">Batal</button>
+            <button class="btn btn-primary" style="padding: 12px 24px;" onclick="submitRegistration()">Daftar Sekarang</button>
+        </div>
+    </div>
+</div>
 
-        const blogData = [
-            {
-                title: "Tips Menjadi Volunteer yang Efektif",
-                excerpt: "Pelajari cara memaksimalkan kontribusi Anda sebagai volunteer dan menciptakan dampak positif yang berkelanjutan.",
-                category: "Tips Volunteer",
-                image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Kisah Inspiratif Relawan Indonesia",
-                excerpt: "Temukan cerita-cerita menginspirasi dari para relawan yang telah membuat perubahan di komunitasnya.",
-                category: "Kisah Inspiratif",
-                image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Panduan Memulai Program CSR",
-                excerpt: "Langkah-langkah praktis untuk perusahaan yang ingin memulai program Corporate Social Responsibility.",
-                category: "Panduan CSR",
-                image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Dampak Positif Volunteer di Masa Pandemi",
-                excerpt: "Bagaimana para volunteer tetap berkontribusi dan membantu masyarakat di tengah pandemi COVID-19.",
-                category: "Berita Terkini",
-                image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Membangun Komunitas Volunteer yang Solid",
-                excerpt: "Tips dan strategi untuk membangun dan mempertahankan komunitas volunteer yang aktif dan berkelanjutan.",
-                category: "Tips Volunteer",
-                image: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            {
-                title: "Teknologi untuk Kegiatan Sosial",
-                excerpt: "Pemanfaatan teknologi digital untuk meningkatkan efektivitas program-program sosial dan volunteer.",
-                category: "Berita Terkini",
-                image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            }
-        ];
+<script>
+// Preloader
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('preloader').classList.add('hidden');
+        setTimeout(() => showToast('success', 'Selamat Datang! 🎉', 'Temukan aktivitas volunteer yang cocok untuk Anda'), 500);
+    }, 3000);
+});
 
-        // Sub navigation menus for different pages
-        const subMenus = {
-            activities: [
-                { text: 'Semua Aktivitas', active: true },
-                { text: 'SL Feed Insights', special: true },
-                { text: 'Pendidikan' },
-                { text: 'Lingkungan' },
-                { text: 'Kesehatan' },
-                { text: 'Sosial' },
-                { text: 'Teknologi' },
-                { text: 'Olahraga' }
-            ],
-            points: [
-                { text: 'Semua Reward', active: true },
-                { text: 'Sertifikat' },
-                { text: 'Merchandise' },
-                { text: 'Pelatihan' },
-                { text: 'Voucher' }
-            ],
-            blog: [
-                { text: 'Semua Artikel', active: true },
-                { text: 'Tips Volunteer' },
-                { text: 'Kisah Inspiratif' },
-                { text: 'Panduan CSR' },
-                { text: 'Berita Terkini' }
-            ]
-        };
+// Header scroll
+window.addEventListener('scroll', () => {
+    const header = document.getElementById('header');
+    const scrollTop = document.getElementById('scrollTop');
+    header.classList.toggle('scrolled', window.scrollY > 100);
+    scrollTop.classList.toggle('show', window.scrollY > 300);
+    updateActiveNavLink();
+});
 
-        // Welcome screen functionality
-        function hideWelcomeScreen() {
-            const welcomeScreen = document.getElementById('welcomeScreen');
-            setTimeout(() => {
-                welcomeScreen.classList.add('hidden');
-            }, 3500);
+// Active nav link
+function updateActiveNavLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    let current = '';
+    sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 100) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+    });
+}
+
+// Scroll to top
+document.getElementById('scrollTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+// Mobile menu
+const mobileToggle = document.getElementById('mobileToggle');
+const navMenu = document.querySelector('.nav-menu');
+let menuOpen = false;
+mobileToggle.addEventListener('click', function() {
+    menuOpen = !menuOpen;
+    if (menuOpen) {
+        navMenu.style.cssText = 'display:flex;position:absolute;top:76px;left:0;right:0;background:white;flex-direction:column;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,0.1);border-radius:0 0 20px 20px;';
+        this.innerHTML = '<i class="fas fa-times"></i>';
+    } else {
+        navMenu.style.display = 'none';
+        this.innerHTML = '<i class="fas fa-bars"></i>';
+    }
+});
+
+// Filter activities
+function filterActivities(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.activity-card').forEach(card => {
+        const show = category === 'all' || card.dataset.category === category;
+        card.style.display = show ? 'block' : 'none';
+        if (show) {
+            card.style.animation = 'fadeInUp 0.5s ease';
         }
+    });
+}
 
-        // Show page function
-        function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page-section');
-            pages.forEach(page => page.classList.remove('active'));
+// Favorite toggle
+function toggleFavorite(btn) {
+    const icon = btn.querySelector('i');
+    btn.classList.toggle('active');
+    if (btn.classList.contains('active')) {
+        icon.classList.replace('far', 'fas');
+        showToast('success', 'Ditambahkan ke Favorit', 'Aktivitas berhasil disimpan');
+    } else {
+        icon.classList.replace('fas', 'far');
+        showToast('info', 'Dihapus dari Favorit', 'Aktivitas dihapus dari daftar');
+    }
+}
 
-            // Show selected page
-            document.getElementById(pageId).classList.add('active');
+// Counter animation
+function animateCounter(el, target) {
+    let current = 0;
+    const increment = target / 50;
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            el.textContent = target.toLocaleString() + (target === 150 ? '+' : '');
+            clearInterval(timer);
+        } else {
+            el.textContent = Math.floor(current).toLocaleString();
+        }
+    }, 30);
+}
 
-            // Update main navigation
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => link.classList.remove('active'));
-
-            // Find and activate the correct nav link
-            const targetLink = Array.from(navLinks).find(link => 
-                link.getAttribute('onclick') && link.getAttribute('onclick').includes(pageId)
-            );
-            if (targetLink) {
-                targetLink.classList.add('active');
-            }
-
-            // Handle sub navigation
-            const subNavbar = document.getElementById('subNavbar');
-            const subNavMenu = document.getElementById('subNavMenu');
-
-            if (subMenus[pageId]) {
-                // Show sub navbar and populate menu
-                subNavbar.style.display = 'block';
+// Stats observer
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.stats-item').forEach((item, i) => {
                 setTimeout(() => {
-                    subNavbar.classList.add('show');
-                }, 100);
-
-                subNavMenu.innerHTML = '';
-                subMenus[pageId].forEach(item => {
-                    const li = document.createElement('li');
-                    if (item.active) li.classList.add('active');
-                    if (item.special) li.classList.add('sl-feed');
-                    
-                    const a = document.createElement('a');
-                    a.textContent = item.text;
-                    a.onclick = () => setActiveSubMenu(li);
-                    li.appendChild(a);
-                    subNavMenu.appendChild(li);
-                });
-            } else {
-                // Hide sub navbar
-                subNavbar.classList.remove('show');
-                setTimeout(() => {
-                    subNavbar.style.display = 'none';
-                }, 300);
-            }
-
-            // Load page content
-            loadPageContent(pageId);
-
-            // Close mobile menu if open
-            const navMenu = document.querySelector('.nav-menu');
-            const navToggle = document.querySelector('.nav-toggle');
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-
-            // Scroll to top with animation
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Load page content dynamically
-        function loadPageContent(pageId) {
-            switch(pageId) {
-                case 'activities':
-                    renderActivities(activitiesData);
-                    break;
-                case 'points':
-                    renderRewards(rewardsData);
-                    break;
-                case 'blog':
-                    renderBlogPosts(blogData);
-                    break;
-            }
-        }
-
-        // Render activities
-        function renderActivities(activities) {
-            const grid = document.getElementById('activitiesGrid');
-            grid.innerHTML = '';
-
-            activities.forEach((activity, index) => {
-                const card = document.createElement('div');
-                card.className = 'activity-card slide-up';
-                card.style.animationDelay = `${index * 0.1}s`;
-                card.innerHTML = `
-                    <div class="activity-image">
-                        <div class="activity-badge">${activity.badge}</div>
-                        <img src="${activity.image}" alt="${activity.title}" class="lazy-image"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="image-placeholder" style="display: none;">
-                            <i class="${activity.icon}"></i>
-                        </div>
-                    </div>
-                    <div class="activity-content">
-                        <h3 class="activity-title">${activity.title}</h3>
-                        <p class="activity-org">${activity.org}</p>
-                        <div class="activity-meta">
-                            <div><i class="fas fa-calendar"></i> ${activity.date}</div>
-                            <div><i class="fas fa-map-marker-alt"></i> ${activity.location}</div>
-                            <div><i class="fas fa-users"></i> ${activity.volunteers}</div>
-                        </div>
-                    </div>
-                `;
-
-                // Add click event for activity details
-                card.addEventListener('click', () => {
-                    showActivityModal(activity);
-                });
-
-                grid.appendChild(card);
-            });
-        }
-
-        // Render SL Feed
-        function renderSLFeed(feedPosts) {
-            const grid = document.getElementById('activitiesGrid');
-            grid.innerHTML = '';
-
-            feedPosts.forEach((post, index) => {
-                const card = document.createElement('div');
-                card.className = 'activity-card slide-up';
-                card.style.animationDelay = `${index * 0.1}s`;
-                card.innerHTML = `
-                    <div class="activity-image">
-                        <div class="activity-badge sl-feed">${post.badge}</div>
-                        <img src="${post.image}" alt="${post.title}" class="lazy-image"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="image-placeholder" style="display: none;">
-                            <i class="${post.icon}"></i>
-                        </div>
-                    </div>
-                    <div class="activity-content">
-                        <h3 class="activity-title">${post.title}</h3>
-                        <p class="activity-org">By ${post.author}</p>
-                        <div class="activity-meta">
-                            <div><i class="fas fa-calendar"></i> ${post.date}</div>
-                            <div><i class="fas fa-tag"></i> ${post.category}</div>
-                            <div><i class="fas fa-eye"></i> Baca Insight</div>
-                        </div>
-                    </div>
-                `;
-
-                card.addEventListener('click', () => {
-                    showSLFeedModal(post);
-                });
-
-                grid.appendChild(card);
-            });
-        }
-
-        // Render rewards for points exchange
-        function renderRewards(rewards) {
-            const grid = document.getElementById('rewardsGrid');
-            grid.innerHTML = '';
-
-            rewards.forEach((reward, index) => {
-                const card = document.createElement('div');
-                card.className = 'activity-card slide-up';
-                card.style.animationDelay = `${index * 0.1}s`;
-                card.innerHTML = `
-                    <div class="activity-image">
-                        <div class="activity-badge">${reward.badge}</div>
-                        <img src="${reward.image}" alt="${reward.title}" class="lazy-image"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="image-placeholder" style="display: none;">
-                            <i class="${reward.icon}"></i>
-                        </div>
-                    </div>
-                    <div class="activity-content">
-                        <h3 class="activity-title">${reward.title}</h3>
-                        <p class="activity-org">${reward.description}</p>
-                        <div class="activity-meta">
-                            <div><i class="fas fa-coins"></i> ${reward.points}</div>
-                            <div><i class="fas fa-tag"></i> ${reward.category}</div>
-                            <div style="margin-top: 1rem;">
-                                <button class="btn btn-primary" style="width: 100%; padding: 0.8rem;" onclick="exchangeReward('${reward.title}')">
-                                    Tukar Sekarang
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-
-                grid.appendChild(card);
-            });
-        }
-
-        // Render blog posts
-        function renderBlogPosts(posts) {
-            const grid = document.getElementById('blogGrid');
-            grid.innerHTML = '';
-
-            posts.forEach((post, index) => {
-                const card = document.createElement('article');
-                card.className = 'blog-card slide-up';
-                card.style.animationDelay = `${index * 0.1}s`;
-                card.innerHTML = `
-                    <div class="blog-image">
-                        <img src="${post.image}" alt="${post.title}" class="lazy-image"
-                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="image-placeholder" style="display: none;">
-                            <i class="fas fa-image"></i>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <h3>${post.title}</h3>
-                        <p>${post.excerpt}</p>
-                        <a href="#" class="blog-link">Baca Selengkapnya</a>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // Set active sub menu
-        function setActiveSubMenu(selectedItem) {
-            const subMenuItems = document.querySelectorAll('.sub-nav-menu li');
-            subMenuItems.forEach(item => item.classList.remove('active'));
-            selectedItem.classList.add('active');
-
-            // Filter content based on selected sub menu
-            const selectedText = selectedItem.textContent;
-            filterContentBySubMenu(selectedText);
-        }
-
-        // Filter content by sub menu selection
-        function filterContentBySubMenu(category) {
-            const currentPage = document.querySelector('.page-section.active').id;
-
-            if (currentPage === 'activities') {
-                if (category === 'SL Feed Insights') {
-                    renderSLFeed(slFeedData);
-                    return;
-                }
-                
-                let filteredActivities = activitiesData;
-                if (category !== 'Semua Aktivitas') {
-                    filteredActivities = activitiesData.filter(activity => 
-                        activity.category === category
-                    );
-                }
-                renderActivities(filteredActivities);
-            } else if (currentPage === 'points') {
-                let filteredRewards = rewardsData;
-                if (category !== 'Semua Reward') {
-                    filteredRewards = rewardsData.filter(reward => 
-                        reward.category === category
-                    );
-                }
-                renderRewards(filteredRewards);
-            } else if (currentPage === 'blog') {
-                let filteredPosts = blogData;
-                if (category !== 'Semua Artikel') {
-                    filteredPosts = blogData.filter(post => 
-                        post.category === category
-                    );
-                }
-                renderBlogPosts(filteredPosts);
-            }
-        }
-
-        // Filter activities function
-        function filterActivities() {
-            const category = document.getElementById('categoryFilter').value;
-            const location = document.getElementById('locationFilter').value;
-            const time = document.getElementById('timeFilter').value;
-
-            let filteredActivities = activitiesData;
-
-            if (category !== 'Semua Kategori') {
-                filteredActivities = filteredActivities.filter(activity => 
-                    activity.category === category
-                );
-            }
-
-            if (location !== 'Semua Lokasi') {
-                filteredActivities = filteredActivities.filter(activity => 
-                    activity.location.includes(location)
-                );
-            }
-
-            renderActivities(filteredActivities);
-
-            // Show filter animation
-            const filterSection = document.querySelector('.filter-section');
-            filterSection.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                filterSection.style.transform = 'scale(1)';
-            }, 150);
-        }
-
-        // Exchange reward function
-        function exchangeReward(rewardTitle) {
-            const modal = document.createElement('div');
-            modal.className = 'modal-overlay';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>Konfirmasi Penukaran</h2>
-                        <button class="modal-close" onclick="closeModal()">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Apakah Anda yakin ingin menukar poin untuk <strong>${rewardTitle}</strong>?</p>
-                        <p>Poin akan dipotong dari saldo Anda setelah konfirmasi.</p>
-                        <div class="modal-buttons">
-                            <button class="btn btn-primary" onclick="confirmExchange('${rewardTitle}')">Konfirmasi</button>
-                            <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            setTimeout(() => modal.classList.add('show'), 10);
-        }
-
-        // Confirm exchange
-        function confirmExchange(rewardTitle) {
-            closeModal();
-            // Show success message
-            const successModal = document.createElement('div');
-            successModal.className = 'modal-overlay';
-            successModal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>Penukaran Berhasil!</h2>
-                        <button class="modal-close" onclick="closeModal()">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Selamat! Anda berhasil menukar <strong>${rewardTitle}</strong>.</p>
-                        <p>Reward akan dikirim ke alamat yang terdaftar dalam 3-5 hari kerja.</p>
-                        <div class="modal-buttons">
-                            <button class="btn btn-primary" onclick="closeModal()">OK</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(successModal);
-            setTimeout(() => successModal.classList.add('show'), 10);
-        }
-
-        // Show activity modal
-        function showActivityModal(activity) {
-            const modal = document.createElement('div');
-            modal.className = 'modal-overlay';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>${activity.title}</h2>
-                        <button class="modal-close" onclick="closeModal()">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>Organisasi:</strong> ${activity.org}</p>
-                        <p><strong>Kategori:</strong> ${activity.category}</p>
-                        <p><strong>Lokasi:</strong> ${activity.location}</p>
-                        <p><strong>Tanggal:</strong> ${activity.date}</p>
-                        <p><strong>Status:</strong> ${activity.volunteers}</p>
-                        <div class="modal-buttons">
-                            <button class="btn btn-primary">Daftar Sekarang</button>
-                            <button class="btn btn-secondary" onclick="closeModal()">Tutup</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            setTimeout(() => modal.classList.add('show'), 10);
-        }
-
-        // Show SL Feed modal
-        function showSLFeedModal(post) {
-            const modal = document.createElement('div');
-            modal.className = 'modal-overlay';
-            modal.innerHTML = `
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>${post.title}</h2>
-                        <button class="modal-close" onclick="closeModal()">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>Penulis:</strong> ${post.author}</p>
-                        <p><strong>Tanggal:</strong> ${post.date}</p>
-                        <p><strong>Kategori:</strong> ${post.category}</p>
-                        <p style="margin-top: 1.5rem;">${post.excerpt}</p>
-                        <div class="modal-buttons">
-                            <button class="btn btn-primary">Baca Selengkapnya</button>
-                            <button class="btn btn-secondary" onclick="closeModal()">Tutup</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.body.appendChild(modal);
-            setTimeout(() => modal.classList.add('show'), 10);
-        }
-
-        // Close modal
-        function closeModal() {
-            const modal = document.querySelector('.modal-overlay');
-            if (modal) {
-                modal.classList.remove('show');
-                setTimeout(() => modal.remove(), 300);
-            }
-        }
-
-        // Animate counter numbers
-        function animateCounter(element, target) {
-            let current = 0;
-            const increment = target / 100;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                element.textContent = Math.floor(current).toLocaleString();
-            }, 20);
-        }
-
-        // Parallax effect for hero section
-        function handleParallax() {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero && window.innerWidth > 768) {
-                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-        }
-
-        // Lazy loading for images
-        function lazyLoadImages() {
-            const images = document.querySelectorAll('.lazy-image');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.classList.add('loaded');
-                        observer.unobserve(img);
+                    if (!item.classList.contains('animated')) {
+                        item.classList.add('animated');
+                        animateCounter(item.querySelector('h3'), parseInt(item.dataset.count));
                     }
-                });
+                }, i * 100);
             });
-
-            images.forEach(img => imageObserver.observe(img));
+            statsObserver.unobserve(entry.target);
         }
+    });
+}, { threshold: 0.5 });
+const statsBar = document.querySelector('.stats-bar');
+if (statsBar) statsObserver.observe(statsBar);
 
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Hide welcome screen after animation
-            hideWelcomeScreen();
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, { threshold: 0.1 });
+document.querySelectorAll('.service-card, .activity-card, .testimonial-card, .about-feature, .contact-item, .gallery-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'all 0.5s ease';
+    observer.observe(el);
+});
+</script>
 
-            // Initialize mobile navigation
-            const navToggle = document.querySelector('.nav-toggle');
-            const navMenu = document.querySelector('.nav-menu');
+<script>
+// LIVE CHAT
+let chatOpen = false;
+const chatResponses = {
+    'cara mendaftar jadi relawan': 'Untuk mendaftar jadi relawan:\n\n1. Pilih aktivitas di halaman Aktivitas\n2. Klik tombol "Daftar"\n3. Isi formulir pendaftaran\n4. Tunggu konfirmasi\n\nMudah kan? 😊',
+    'info aktivitas terbaru': 'Aktivitas terbaru kami:\n\n🎓 Mengajar Anak - 15 Jan 2025\n🌱 Penanaman Mangrove - 20 Jan 2025\n❤️ Donor Darah - 25 Jan 2025\n\nLihat selengkapnya di halaman Aktivitas!',
+    'cara menukar poin': 'Poin bisa ditukar dengan:\n\n🏆 Sertifikat Digital\n👕 Merchandise Eksklusif\n🎁 Voucher Belanja\n\nKumpulkan minimal 100 poin untuk mulai menukar!',
+    'hubungi admin': 'Hubungi admin:\n\n📧 info@satulangkah.org\n📱 WA: +62 812-3456-7890\n📞 (021) 1234-5678\n\nJam: Senin-Jumat, 09:00-18:00 WIB'
+};
 
-            if (navToggle && navMenu) {
-                navToggle.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
-                    navToggle.classList.toggle('active');
-                });
-            }
+function toggleChat() {
+    chatOpen = !chatOpen;
+    document.getElementById('chatWindow').classList.toggle('active', chatOpen);
+    document.getElementById('chatToggle').classList.toggle('active', chatOpen);
+    if (chatOpen) {
+        document.getElementById('chatBadge').style.display = 'none';
+        document.getElementById('chatInput').focus();
+    }
+}
 
-            // Header scroll effect with parallax
-            window.addEventListener('scroll', function() {
-                const header = document.querySelector('.header');
-                const scrollTop = window.pageYOffset;
+function openChatWidget() { if (!chatOpen) toggleChat(); }
 
-                if (scrollTop > 100) {
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
-                    header.style.backdropFilter = 'blur(15px)';
-                    header.style.boxShadow = '0 4px 25px rgba(255, 215, 0, 0.2)';
-                } else {
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
-                    header.style.backdropFilter = 'blur(15px)';
-                    header.style.boxShadow = '0 4px 25px rgba(255, 215, 0, 0.15)';
-                }
+function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (!message) return;
+    addMessage(message, true);
+    input.value = '';
+    showTyping();
+    setTimeout(() => {
+        hideTyping();
+        addMessage(getResponse(message.toLowerCase()), false);
+    }, 1200);
+}
 
-                // Parallax effect
-                handleParallax();
+function sendQuickReply(text) {
+    document.getElementById('chatInput').value = text;
+    sendMessage();
+    document.getElementById('quickReplies').style.display = 'none';
+}
 
-                // Show/hide scroll to top button
-                const scrollToTopBtn = document.getElementById('scrollToTop');
-                if (scrollTop > 300) {
-                    scrollToTopBtn.classList.add('show');
-                } else {
-                    scrollToTopBtn.classList.remove('show');
-                }
-            });
+function addMessage(text, isUser) {
+    const container = document.getElementById('chatMessages');
+    const time = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    const div = document.createElement('div');
+    div.className = `chat-message ${isUser ? 'user' : ''}`;
+    div.innerHTML = `
+        <div class="chat-message-avatar"><i class="fas fa-${isUser ? 'user' : 'robot'}"></i></div>
+        <div class="chat-message-content">
+            <div class="chat-message-bubble">${text.replace(/\n/g, '<br>')}</div>
+            <div class="chat-message-time">${time}</div>
+        </div>`;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+}
 
-            // Scroll to top functionality
-            document.getElementById('scrollToTop').addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
+function showTyping() {
+    const container = document.getElementById('chatMessages');
+    const div = document.createElement('div');
+    div.className = 'chat-message';
+    div.id = 'typingIndicator';
+    div.innerHTML = '<div class="chat-message-avatar"><i class="fas fa-robot"></i></div><div class="chat-typing"><span></span><span></span><span></span></div>';
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+}
 
-            // Animate stats on scroll
-            const observerOptions = {
-                threshold: 0.5,
-                rootMargin: '0px 0px -100px 0px'
-            };
+function hideTyping() {
+    const typing = document.getElementById('typingIndicator');
+    if (typing) typing.remove();
+}
 
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const statItems = entry.target.querySelectorAll('.stat-item h3');
-                        statItems.forEach(item => {
-                            const target = parseInt(item.getAttribute('data-target'));
-                            animateCounter(item, target);
-                        });
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+function getResponse(msg) {
+    for (const [key, val] of Object.entries(chatResponses)) {
+        if (msg.includes(key)) return val;
+    }
+    if (msg.includes('halo') || msg.includes('hai') || msg.includes('hi')) return 'Halo! 👋 Ada yang bisa saya bantu?';
+    if (msg.includes('terima kasih') || msg.includes('makasih')) return 'Sama-sama! Senang bisa membantu 😊';
+    if (msg.includes('relawan') || msg.includes('volunteer')) return 'Tertarik jadi relawan? 🎉 Lihat aktivitas kami di halaman Aktivitas!';
+    return 'Terima kasih! Tim kami akan segera membantu. Atau hubungi admin langsung ya 😊';
+}
 
-            const statsSection = document.querySelector('.stats');
-            if (statsSection) {
-                observer.observe(statsSection);
-            }
+function handleChatKeypress(e) { if (e.key === 'Enter') sendMessage(); }
 
-            // Load initial content
-            loadPageContent('home');
+// TOAST
+function showToast(type, title, message) {
+    const container = document.getElementById('toastContainer');
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.innerHTML = `
+        <div class="toast-icon"><i class="fas fa-${type === 'success' ? 'check' : 'info'}"></i></div>
+        <div class="toast-content"><h4>${title}</h4><p>${message}</p></div>
+        <button class="toast-close" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>`;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 4000);
+}
 
-            // Initialize lazy loading
-            lazyLoadImages();
+// MODAL
+function openModal(name) {
+    document.getElementById('modalTitle').textContent = `Daftar: ${name}`;
+    document.getElementById('modalOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-            // Add keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeModal();
-                    // Close mobile menu
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                }
-            });
+function closeModal(e) {
+    if (e && e.target !== e.currentTarget) return;
+    document.getElementById('modalOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+}
 
-            // Add click ripple effect to buttons
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('btn') || e.target.classList.contains('filter-btn')) {
-                    const ripple = document.createElement('span');
-                    const rect = e.target.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size / 2;
-                    const y = e.clientY - rect.top - size / 2;
+function submitRegistration() {
+    showToast('success', 'Pendaftaran Berhasil! 🎉', 'Kami akan menghubungi Anda segera');
+    closeModal();
+    createConfetti();
+}
 
-                    ripple.style.cssText = `
-                        position: absolute;
-                        width: ${size}px;
-                        height: ${size}px;
-                        left: ${x}px;
-                        top: ${y}px;
-                        background: rgba(255, 255, 255, 0.5);
-                        border-radius: 50%;
-                        transform: scale(0);
-                        animation: ripple 0.6s ease-out;
-                        pointer-events: none;
-                    `;
+function submitContactForm(e) {
+    e.preventDefault();
+    showToast('success', 'Pesan Terkirim! ✉️', 'Tim kami akan segera merespons');
+    e.target.reset();
+}
 
-                    e.target.style.position = 'relative';
-                    e.target.style.overflow = 'hidden';
-                    e.target.appendChild(ripple);
+// Confetti
+function createConfetti() {
+    const colors = ['#f59e0b', '#22c55e', '#3b82f6', '#ef4444', '#a855f7'];
+    for (let i = 0; i < 40; i++) {
+        const c = document.createElement('div');
+        c.style.cssText = `position:fixed;width:8px;height:8px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}vw;top:-10px;border-radius:${Math.random()>0.5?'50%':'0'};animation:confetti ${2+Math.random()*2}s linear forwards;z-index:9999;pointer-events:none;`;
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4000);
+    }
+}
 
-                    setTimeout(() => ripple.remove(), 600);
-                }
-            });
+// Add confetti animation
+const style = document.createElement('style');
+style.textContent = '@keyframes confetti{to{transform:translateY(100vh) rotate(720deg);opacity:0;}}';
+document.head.appendChild(style);
 
-            // Add ripple animation
-            const rippleStyle = document.createElement('style');
-            rippleStyle.textContent = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(2);
-                        opacity: 0;
-                    }
-                }
-            `;
-            document.head.appendChild(rippleStyle);
-        });
-    </script>
+// Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeModal();
+        if (chatOpen) toggleChat();
+    }
+});
+
+console.log('🎉 Satu Langkah Project loaded!');
+</script>
 </body>
 </html>
-Perfect! I've created a complete updated HTML file with all the requested changes:
-
