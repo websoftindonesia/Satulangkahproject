@@ -639,9 +639,51 @@ textarea.form-input { resize: none; min-height: 120px; }
     .footer-social { justify-content: center; }
     .cta-box { padding: 40px 20px; }
     .cta-box h2 { font-size: 26px; }
-    .chat-window { width: 100%; right: -12px; height: 420px; }
     .kids-scene { transform: scale(0.75); gap: 15px; }
     .gallery-grid { grid-template-columns: 1fr 1fr; }
+    
+    /* Mobile Chat Widget */
+    .chat-widget { bottom: 16px; right: 16px; }
+    .chat-toggle { width: 56px; height: 56px; }
+    .chat-toggle i { font-size: 24px; }
+    .chat-badge { width: 20px; height: 20px; font-size: 10px; top: -2px; right: -2px; }
+    .chat-window {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        z-index: 1001;
+    }
+    .chat-header { padding: 16px; }
+    .chat-avatar { width: 40px; height: 40px; }
+    .chat-avatar i { font-size: 18px; }
+    .chat-header-info h4 { font-size: 14px; }
+    .chat-header-info p { font-size: 10px; }
+    .chat-close { width: 36px; height: 36px; }
+    .chat-messages { padding: 14px; gap: 12px; }
+    .chat-message-avatar { width: 30px; height: 30px; font-size: 11px; }
+    .chat-message-bubble { padding: 10px 12px; font-size: 13px; border-radius: 14px; }
+    .chat-message-time { font-size: 9px; }
+    .chat-quick-replies { padding: 0 14px 10px; gap: 6px; }
+    .quick-reply { padding: 6px 12px; font-size: 11px; }
+    .chat-input-area { padding: 12px 14px; gap: 8px; }
+    .chat-input { padding: 10px 14px; font-size: 14px; }
+    .chat-send { width: 38px; height: 38px; }
+    .chat-typing span { width: 6px; height: 6px; }
+}
+
+/* Extra small screens */
+@media (max-width: 380px) {
+    .chat-header { padding: 14px; }
+    .chat-avatar { width: 36px; height: 36px; }
+    .chat-header-info h4 { font-size: 13px; }
+    .quick-reply { padding: 5px 10px; font-size: 10px; }
+    .chat-input { padding: 9px 12px; font-size: 13px; }
+    .chat-send { width: 36px; height: 36px; }
 }
 </style>
 
@@ -1193,7 +1235,7 @@ textarea.form-input { resize: none; min-height: 120px; }
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2025 Satu Langkah Project. Semua hak dilindungi</p>
+        <p>&copy; 2025 Satu Langkah Project. Semua hak dilindungi. Dibuat dengan ❤️ di Indonesia</p>
     </div>
 </footer>
 
@@ -1410,11 +1452,22 @@ const chatResponses = {
 
 function toggleChat() {
     chatOpen = !chatOpen;
-    document.getElementById('chatWindow').classList.toggle('active', chatOpen);
-    document.getElementById('chatToggle').classList.toggle('active', chatOpen);
+    const chatWindow = document.getElementById('chatWindow');
+    const chatToggle = document.getElementById('chatToggle');
+    
+    chatWindow.classList.toggle('active', chatOpen);
+    chatToggle.classList.toggle('active', chatOpen);
+    
     if (chatOpen) {
         document.getElementById('chatBadge').style.display = 'none';
         document.getElementById('chatInput').focus();
+        // Prevent body scroll on mobile when chat is open
+        if (window.innerWidth <= 768) {
+            document.body.style.overflow = 'hidden';
+        }
+    } else {
+        // Restore body scroll when chat is closed
+        document.body.style.overflow = '';
     }
 }
 
